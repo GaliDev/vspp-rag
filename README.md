@@ -51,3 +51,18 @@ Ingestion behavior:
 2. Share `PM_Catalog.md` as the current standards menu.
 3. Trigger `ingest.py` only for requested authorities/specs.
 
+## Publish to GitHub
+
+1. On GitHub, create a **new empty repository** (no README/license—this repo already has them).
+2. From this folder, add your remote and push (replace `YOUR_USER` and repo name if different):
+
+```powershell
+cd VSPP-Standards-Vault
+git remote add origin https://github.com/YOUR_USER/VSPP-Standards-Vault.git
+git branch -M main
+git push -u origin main
+```
+
+3. When prompted for credentials, use a **Personal Access Token** (classic: `repo` scope), not your account password. Alternatively use **SSH** (`git@github.com:YOUR_USER/VSPP-Standards-Vault.git`) or **GitHub Desktop**.
+
+The repo already has an initial commit on `main` and a `.gitignore` that excludes `.venv/` and `data/`.
