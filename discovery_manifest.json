@@ -1040,14 +1040,18 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:29.052524+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T10:38:00.109830+00:00",
+    "local_path": "data\\3gpp\\raw\\26102-j00.zip",
+    "sha256": "f2383b03b3e6220f07e9efc2e633d69c7c5599b771beb73565ca4d401ac5baea",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "docx_files": [
+        "data\\3gpp\\raw\\26102-j00\\26102-j00.docx"
+      ],
+      "extracted_to": "data\\3gpp\\raw\\26102-j00"
     }
   },
   {

@@ -37,12 +37,16 @@ This writes all discovered rows with `status: "discovered"`.
 ```bash
 python ingest.py --source 3gpp
 python ingest.py --all
+python ingest.py --source github --limit 5 --max-mb 100
 ```
 
 Ingestion behavior:
 
 - Downloads to `data/[authority]/raw/`
-- For 3GPP zip archives, extracts contents and tracks `.docx` files in metadata
+- Optional caps: `--limit` (max new ingestible rows per run) and `--max-mb` (per-file download cap). HTTP(S) uses `Content-Length` when available and streams with a hard byte limit.
+- Zip archives (3GPP and others) are extracted under a sibling folder of the zip with bounded member count and total uncompressed size; paths are normalized to block zip-slip.
+- GitHub `repository` rows download `https://github.com/{owner}/{repo}/archive/refs/heads/{branch}.zip` (branch from manifest `version`, default `main`), with `metadata.ingest_archive_url` and `metadata.extracted_to` when unzip succeeds.
+- For 3GPP zip archives, metadata still lists `.docx` paths in `docx_files`.
 - Updates manifest records to `status: "ingested"` with `local_path` and `sha256`
 
 ## PM Workflow
