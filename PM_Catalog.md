@@ -43,26 +43,26 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 
 | Source | Category | Tier | Authority | ID | Title | Version | Publication (portal) | Status | URL |
 |---|---|---|---|---|---|---|---|---|---|
-| cta | Structural/System | system-level | CTA/CEA | cta-cea-608 | CEA-608 (Line 21 closed captions): Collection: Standards | - | - | discovered (2026-05-10) | https://shop.cta.tech/collections/standards |
+| cta | Structural/System | system-level | CTA/CEA | cta-cea-608 | CEA-608 (Line 21 closed captions): Collection: Standards | - | - | ingested (discovered 2026-05-10) | https://shop.cta.tech/collections/standards |
 | cta | Structural/System | system-level | CTA/CEA | cta-cea-708 | CEA-708 (Digital closed captions): Collection: Standards | - | - | discovered (2026-05-10) | https://shop.cta.tech/collections/standards |
-| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-dash-ts103168 | DVB-DASH (TS 103 168 / A168 family): Technology hub | - | Published | discovered (2026-05-10) | https://www.etsi.org/technologies/ |
+| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-dash-ts103168 | DVB-DASH (TS 103 168 / A168 family): Technology hub | - | Published | ingested (discovered 2026-05-10) | https://www.etsi.org/technologies/ |
 | etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-743-dvb-sub | DVB Subtitling (EN 300 743): www.etsi.org - /deliver/etsi_en/300700_300799/300743/ | - | - | discovered (2026-05-10) | https://www.etsi.org/deliver/etsi_en/300700_300799/300743/ |
 | iso | Structural/System | system-level | ISO/IEC | iso-iec-13818-1 | ISO/IEC 13818-1:2025 Information technology — Generic coding of moving pictures and associated audio information Part 1: Systems | - | - | discovered (2026-05-10) | https://www.iso.org/standard/91403.html |
-| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-12 | ISO/IEC 14496-12:2022 Information technology — Coding of audio-visual objects Part 12: ISO base media file format | - | - | discovered (2026-05-10) | https://www.iso.org/standard/83102.html |
+| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-12 | ISO/IEC 14496-12:2022 Information technology — Coding of audio-visual objects Part 12: ISO base media file format | - | - | ingested (discovered 2026-05-10) | https://www.iso.org/standard/83102.html |
 | iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-15 | ISO/IEC 14496-15:2024 Information technology — Coding of audio-visual objects Part 15: Carriage of network abstraction layer (NAL) unit structured video in the ISO base media file format | - | - | discovered (2026-05-10) | https://www.iso.org/standard/89118.html |
 
 ## Other system-level standards (Structural/System)
 
 | Source | Category | Tier | Authority | ID | Title | Version | Publication (portal) | Status | URL |
 |---|---|---|---|---|---|---|---|---|---|
-| dvb | Structural/System | system-level | DVB | dvb-bluebook-portal | DVB BlueBooks (no crawl hits from dvb.org listings) | - | - | discovered (2026-05-10) | https://www.dvb.org/standards/ |
+| dvb | Structural/System | system-level | DVB | dvb-bluebook-portal | DVB BlueBooks (no crawl hits from dvb.org listings) | - | - | ingested (discovered 2026-05-10) | https://dvb.org/specifications/standards-bluebooks/ |
 | etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-s2-en302307 | DVB-S2 (EN 302 307 family): www.etsi.org - /deliver/etsi_en/302300_302399/302307/ | - | - | discovered (2026-05-10) | https://www.etsi.org/deliver/etsi_en/302300_302399/302307/ |
 | etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-468-dvb-si | DVB-SI (EN 300 468): www.etsi.org - /deliver/etsi_en/300400_300499/300468/ | - | - | discovered (2026-05-10) | https://www.etsi.org/deliver/etsi_en/300400_300499/300468/ |
 | github | Structural/System | system-level | GitHub/w3c | w3c/imsc | TTML Profiles for Internet Media Subtitles and Captions (IMSC) | main | 2026-04-03T20:24:34Z | discovered (2026-05-10) | https://github.com/w3c/imsc |
 | iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-14 | ISO/IEC 14496-14:2020 Information technology — Coding of audio-visual objects Part 14: MP4 file format | - | - | discovered (2026-05-10) | https://www.iso.org/standard/79110.html |
 | smpte | Structural/System | system-level | SMPTE | smpte-st-2022 | SMPTE ST 2022 (video over IP) (no detail link from listing) | - | - | discovered (2026-05-10) | https://www.smpte.org/standards |
-| smpte | Structural/System | system-level | SMPTE | smpte-st-2110 | SMPTE ST 2110 (professional media over IP): ST 2110 Suite of Standards | - | Published | discovered (2026-05-10) | https://www.smpte.org/standards/st2110?hsLang=en#SMPTE-2110-FAQs |
-| w3c | Structural/System | system-level | W3C | w3c-tr-imsc11 | TTML Profiles for Internet Media Subtitles and Captions 1.1 | - | Published | discovered (2026-05-10) | https://www.w3.org/TR/ttml-imsc1.1/ |
+| smpte | Structural/System | system-level | SMPTE | smpte-st-2110 | SMPTE ST 2110 (professional media over IP): ST 2110 Suite of Standards | - | Published | ingested (discovered 2026-05-10) | https://www.smpte.org/standards/st2110?hsLang=en#SMPTE-2110-FAQs |
+| w3c | Structural/System | system-level | W3C | w3c-tr-imsc11 | TTML Profiles for Internet Media Subtitles and Captions 1.1 | - | Published | ingested (discovered 2026-05-10) | https://www.w3.org/TR/ttml-imsc1.1/ |
 | w3c | Structural/System | system-level | W3C | w3c-tr-imsc13 | IMSC Text Profile 1.3 | - | Published | discovered (2026-05-10) | https://www.w3.org/TR/ttml-imsc1.3/ |
 
 ## Transport-Level standards
@@ -97,8 +97,8 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 | 3gpp | Transport | transport-level | 3GPP | 26102-f00 | 26-series spec package 26102-f00.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-f00.zip |
 | 3gpp | Transport | transport-level | 3GPP | 26102-g00 | 26-series spec package 26102-g00.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-g00.zip |
 | 3gpp | Transport | transport-level | 3GPP | 26102-h00 | 26-series spec package 26102-h00.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-h00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-i00 | 26-series spec package 26102-i00.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-i00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-j00 | 26-series spec package 26102-j00.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-j00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-i00 | 26-series spec package 26102-i00.zip | - | - | ingested (discovered 2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-i00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-j00 | 26-series spec package 26102-j00.zip | - | - | ingested (discovered 2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-j00.zip |
 | 3gpp | Transport | transport-level | 3GPP | 29061-520 | 29-series spec package 29061-520.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-520.zip |
 | 3gpp | Transport | transport-level | 3GPP | 29061-521 | 29-series spec package 29061-521.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-521.zip |
 | 3gpp | Transport | transport-level | 3GPP | 29061-530 | 29-series spec package 29061-530.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-530.zip |
@@ -130,13 +130,13 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 | 3gpp | Transport | transport-level | 3GPP | 29061-710 | 29-series spec package 29061-710.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-710.zip |
 | 3gpp | Transport | transport-level | 3GPP | 29061-720 | 29-series spec package 29061-720.zip | - | - | discovered (2026-05-10) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-720.zip |
 | github | Transport | transport-level | GitHub/AOMediaCodec | AOMediaCodec/av1-spec | AV1 Bitstream & Decoding Process Specification | master | 2026-03-30T01:55:53Z | discovered (2026-05-10) | https://github.com/AOMediaCodec/av1-spec |
-| github | Transport | transport-level | GitHub/w3c | w3c/ttml1 | Timed Text Markup Language 1 (TTML1) | main | 2023-09-09T09:36:44Z | discovered (2026-05-10) | https://github.com/w3c/ttml1 |
+| github | Transport | transport-level | GitHub/w3c | w3c/ttml1 | Timed Text Markup Language 1 (TTML1) | main | 2023-09-09T09:36:44Z | ingested (discovered 2026-05-10) | https://github.com/w3c/ttml1 |
 | github | Transport | transport-level | GitHub/w3c | w3c/webvtt | WebVTT Standard | main | 2026-05-01T09:40:46Z | discovered (2026-05-10) | https://github.com/w3c/webvtt |
 | ietf | Transport | transport-level | IETF | agenda-96-quic | Agenda for QUIC at IETF-96 | 2 | 2016-07-11T19:33:41Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/agenda-96-quic/ |
 | ietf | Transport | transport-level | IETF | bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol | Intrgtation of SW103K protocol with HLS protocol | 00 | 2024-09-27T19:08:28Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol/ |
 | ietf | Transport | transport-level | IETF | conflict-review-pantos-hls-rfc8216bis | IETF conflict review for draft-pantos-hls-rfc8216bis | 00 | 2026-04-16T18:57:52Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/conflict-review-pantos-hls-rfc8216bis/ |
 | ietf | Transport | transport-level | IETF | draft-aboba-avtcore-hevc-webrtc | H.265 Profile for WebRTC | 02 | 2023-10-13T11:58:10Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/draft-aboba-avtcore-hevc-webrtc/ |
-| ietf | Transport | transport-level | IETF | draft-dashevskyi-dnsrr-antipatterns | Common Implementation Anti-Patterns Related to Domain Name System (DNS) Resource Record (RR) Processing | 06 | 2022-07-28T14:03:37Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/draft-dashevskyi-dnsrr-antipatterns/ |
+| ietf | Transport | transport-level | IETF | draft-dashevskyi-dnsrr-antipatterns | Common Implementation Anti-Patterns Related to Domain Name System (DNS) Resource Record (RR) Processing | 06 | 2022-07-28T14:03:37Z | ingested (discovered 2026-05-10) | https://datatracker.ietf.org/doc/draft-dashevskyi-dnsrr-antipatterns/ |
 | ietf | Transport | transport-level | IETF | draft-hamilton-early-deployment-quic | QUIC: A UDP-Based Secure and Reliable Transport for HTTP/2 | 00 | 2017-01-09T08:08:14Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/draft-hamilton-early-deployment-quic/ |
 | ietf | Transport | transport-level | IETF | draft-hamilton-quic-transport-protocol | QUIC: A UDP-Based Multiplexed and Secure Transport | 01 | 2016-11-23T08:04:48Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/draft-hamilton-quic-transport-protocol/ |
 | ietf | Transport | transport-level | IETF | draft-hancke-webrtc-sped | STUN Protocol for Embedding DTLS (SPED) | 00 | 2026-03-02T23:30:02Z | discovered (2026-05-10) | https://datatracker.ietf.org/doc/draft-hancke-webrtc-sped/ |
@@ -305,12 +305,12 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 - https://datatracker.ietf.org/doc/slides-96-quic-0/
 - https://datatracker.ietf.org/doc/slides-98-quic-ecn/
 - https://datatracker.ietf.org/doc/slides-interim-2020-tcpm-01-sessa-draft-balasubramanian-tcpm-hystartplusplus/
+- https://dvb.org/specifications/standards-bluebooks/
 - https://github.com/AOMediaCodec/av1-spec
 - https://github.com/w3c/imsc
 - https://github.com/w3c/ttml1
 - https://github.com/w3c/webvtt
 - https://shop.cta.tech/collections/standards
-- https://www.dvb.org/standards/
 - https://www.etsi.org/deliver/etsi_en/300400_300499/300468/
 - https://www.etsi.org/deliver/etsi_en/300700_300799/300743/
 - https://www.etsi.org/deliver/etsi_en/302300_302399/302307/

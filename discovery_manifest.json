@@ -11,13 +11,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:02.671529+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:41.579192+00:00",
+    "local_path": "data\\ietf\\raw\\draft-dashevskyi-dnsrr-antipatterns.html",
+    "sha256": "f419bccb1f52b28c5a63a21eda8db0f7d87d59e15bfa9efbf5c2bf2e9a849c81",
     "metadata": {
-      "topic": "dash"
+      "topic": "dash",
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "html"
     }
   },
   {
@@ -1066,14 +1068,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:29.052524+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:13.556426+00:00",
+    "local_path": "data\\3gpp\\raw\\26102-i00.zip",
+    "sha256": "f2e1e07a1838297a6875b1621e84795e62e6d7b439328481e257956a84b49fdb",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data\\3gpp\\raw\\26102-i00"
     }
   },
   {
@@ -2364,13 +2367,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:02.326671+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:16.957458+00:00",
+    "local_path": "data\\github_w3c\\raw\\w3c_ttml1_main_archive.zip",
+    "sha256": "4285532b41b3aa9fb360ac85c231a47b372d774548c31ae02b91cd2d9bd787c8",
     "metadata": {
-      "stars": 13
+      "stars": 13,
+      "ingest_archive_url": "https://github.com/w3c/ttml1/archive/refs/heads/main.zip",
+      "extracted_to": "data\\github_w3c\\raw\\w3c_ttml1_main_archive_extracted"
     }
   },
   {
@@ -2427,17 +2432,19 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:02.756210+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:04:23.113524+00:00",
+    "local_path": "data\\iso_iec\\raw\\iso-iec-14496-12.html",
+    "sha256": "5474b717748fabaefcd97b6a0593d3bf7aada84ed9fd1d5d5f3b4bd13f3fae69",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
         "https://www.iso.org/obp/ui/en/"
       ],
-      "core_structural_syntax": true
+      "core_structural_syntax": true,
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "standard-page"
     }
   },
   {
@@ -2529,15 +2536,17 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": "Published",
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:15.220321+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:04:25.259641+00:00",
+    "local_path": "data\\etsi_dvb\\raw\\etsi-dvb-dash-ts103168.html",
+    "sha256": "af4a4e2be20c50148afd4d46d4d0d83af3ab61d294be83e01f23ee617f39cd98",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [],
-      "core_structural_syntax": true
+      "core_structural_syntax": true,
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "standard-page"
     }
   },
   {
@@ -2677,18 +2686,20 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": "Published",
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:03.799192+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:40.136704+00:00",
+    "local_path": "data\\w3c\\raw\\w3c-tr-imsc11.html",
+    "sha256": "fbd08b223ae8e467ba06742e33c38f1c80bfe6a7ddc105529339957858504b29",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
         "https://tech.ebu.ch/files/live/sites/tech/files/shared/tech/tech3380v1_0_1.pdf",
         "https://tech.ebu.ch/files/live/sites/tech/files/shared/tech/tech3390.pdf",
         "http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip"
-      ]
+      ],
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "standard-page"
     }
   },
   {
@@ -2728,16 +2739,18 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": "Published",
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:05.022108+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:39.447871+00:00",
+    "local_path": "data\\smpte\\raw\\smpte-st-2110.html",
+    "sha256": "6f66433c151610656ded3faf23c5b25deedc322ed6b7b6e2a12fd10bd6993404",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
         "https://www.smpte.org/technology-reports-downloads?hsLang=en"
-      ]
+      ],
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "standard-page"
     }
   },
   {
@@ -2774,16 +2787,18 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:04.503218+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:02:38.118266+00:00",
+    "local_path": "data\\cta_cea\\raw\\cta-cea-608.html",
+    "sha256": "81800096f996386d081508ffe553a26f38b9495998766a7e00e50f8490ab0af4",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [],
       "core_structural_syntax": true,
-      "compliance_track": "legacy_captions"
+      "compliance_track": "legacy_captions",
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "standard-page"
     }
   },
   {
@@ -2817,19 +2832,21 @@
     "external_id": "dvb-bluebook-portal",
     "version": null,
     "published": null,
-    "remote_url": "https://www.dvb.org/standards/",
+    "remote_url": "https://dvb.org/specifications/standards-bluebooks/",
     "file_type": "portal",
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-10T20:49:08.768997+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "ingested_at": "2026-05-12T17:04:28.011967+00:00",
+    "local_path": "data\\dvb\\raw\\dvb-bluebook-portal.html",
+    "sha256": "a1fb1afa10c849ac582fd70ab98f1613a09150fdc145d74f76214a91eaa22090",
     "metadata": {
       "dvb_crawler": "bluebook_suite",
-      "note": "listing_empty"
+      "note": "listing_empty",
+      "ingest_kind": "page_snapshot",
+      "original_file_type": "portal"
     }
   },
   {

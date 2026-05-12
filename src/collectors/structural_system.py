@@ -493,8 +493,9 @@ def _discover_dvb_bluebooks() -> list[DiscoveryRecord]:
     seen: set[str] = set()
     candidates: list[tuple[str, str]] = []
     for seed in (
-        "https://www.dvb.org/standards/",
-        "https://www.dvb.org/resources/",
+        "https://dvb.org/specifications/",
+        "https://dvb.org/specifications/standards-bluebooks/",
+        "https://dvb.org/resources/",
     ):
         html = _fetch(seed)
         if not html:
@@ -566,7 +567,7 @@ def _discover_dvb_bluebooks() -> list[DiscoveryRecord]:
                 external_id="dvb-bluebook-portal",
                 version=None,
                 published=None,
-                remote_url="https://www.dvb.org/standards/",
+                remote_url="https://dvb.org/specifications/standards-bluebooks/",
                 file_type="portal",
                 category=STRUCTURAL,
                 tier=SYSTEM_TIER,

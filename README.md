@@ -38,12 +38,14 @@ This writes all discovered rows with `status: "discovered"`.
 python ingest.py --source 3gpp
 python ingest.py --all
 python ingest.py --source github --limit 5 --max-mb 100
+python ingest.py --source iso --limit 1 --max-mb 5 --include-pages
 ```
 
 Ingestion behavior:
 
 - Downloads to `data/[authority]/raw/`
 - Optional caps: `--limit` (max new ingestible rows per run) and `--max-mb` (per-file download cap). HTTP(S) uses `Content-Length` when available and streams with a hard byte limit.
+- `--include-pages` enables lightweight HTML snapshots for `html`, `portal`, and `standard-page` rows without crawling linked assets.
 - Zip archives (3GPP and others) are extracted under a sibling folder of the zip with bounded member count and total uncompressed size; paths are normalized to block zip-slip.
 - GitHub `repository` rows download `https://github.com/{owner}/{repo}/archive/refs/heads/{branch}.zip` (branch from manifest `version`, default `main`), with `metadata.ingest_archive_url` and `metadata.extracted_to` when unzip succeeds.
 - For 3GPP zip archives, metadata still lists `.docx` paths in `docx_files`.

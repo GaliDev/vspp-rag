@@ -17,6 +17,7 @@ MANIFEST_PATH = ROOT / "discovery_manifest.json"
 DATA_DIR = ROOT / "data"
 
 CHUNK = 1024 * 1024
+HTTP_HEADERS = {"User-Agent": "VSPP-Standards-Vault/1.0 (+https://github.com/GaliDev/vspp-rag)"}
 
 
 @dataclass
@@ -25,6 +26,7 @@ class IngestOptions:
 
     max_bytes: int | None = None
     limit: int | None = None
+    include_pages: bool = False
 
 
 def utc_now_iso() -> str:
@@ -45,7 +47,7 @@ def safe_filename(name: str) -> str:
 
 def _head_content_length(url: str) -> int | None:
     try:
-        req = Request(url, method="HEAD")
+        req = Request(url, headers=HTTP_HEADERS, method="HEAD")
         with urlopen(req, timeout=30) as resp:
             cl = resp.headers.get("Content-Length")
             return int(cl) if cl else None
@@ -61,7 +63,8 @@ def download_file(remote_url: str, destination: Path, max_bytes: int | None = No
         if cl is not None and cl > max_bytes:
             raise ValueError(f"Content-Length {cl} exceeds cap {max_bytes}")
 
-    with urlopen(remote_url, timeout=120) as response, destination.open("wb") as out:
+    request = Request(remote_url, headers=HTTP_HEADERS) if parsed.scheme in ("http", "https") else remote_url
+    with urlopen(request, timeout=120) as response, destination.open("wb") as out:
         total = 0
         while True:
             buf = response.read(CHUNK)
@@ -116,10 +119,15 @@ def _github_archive_url(record: dict) -> str | None:
     return f"https://github.com/{owner}/{repo}/archive/refs/heads/{branch}.zip"
 
 
-def _should_skip_file_type(record: dict) -> bool:
+PAGE_FILE_TYPES = {"portal", "html", "standard-page"}
+
+
+def _should_skip_file_type(record: dict, include_pages: bool = False) -> bool:
     ft = record.get("file_type")
-    if ft in {"portal", "html", "error", "standard-page"}:
+    if ft == "error":
         return True
+    if ft in PAGE_FILE_TYPES:
+        return not include_pages
     if ft == "repository" and record.get("source") == "github":
         return False
     if ft == "repository":
@@ -133,7 +141,20 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     authority_dir = record["authority"].lower().replace("/", "_")
     raw_dir = DATA_DIR / authority_dir / "raw"
 
-    if _should_skip_file_type(record):
+    if _should_skip_file_type(record, opts.include_pages):
+        return record
+
+    if record.get("file_type") in PAGE_FILE_TYPES:
+        target_path = raw_dir / safe_filename(f"{record['external_id']}.html")
+        downloaded_path = download_file(record["remote_url"], target_path, opts.max_bytes)
+        metadata = record.setdefault("metadata", {})
+        metadata.pop("ingest_error", None)
+        record["status"] = "ingested"
+        record["ingested_at"] = utc_now_iso()
+        record["local_path"] = str(downloaded_path.relative_to(ROOT))
+        record["sha256"] = sha256_file(downloaded_path)
+        metadata["ingest_kind"] = "page_snapshot"
+        metadata["original_file_type"] = record.get("file_type")
         return record
 
     gh_url = _github_archive_url(record)
@@ -142,17 +163,19 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
         branch = (record.get("version") or "main").replace("/", "_")
         target_path = raw_dir / safe_filename(f"{ext}_{branch}_archive.zip")
         downloaded_path = download_file(gh_url, target_path, opts.max_bytes)
+        metadata = record.setdefault("metadata", {})
+        metadata.pop("ingest_error", None)
         record["status"] = "ingested"
         record["ingested_at"] = utc_now_iso()
         record["local_path"] = str(downloaded_path.relative_to(ROOT))
         record["sha256"] = sha256_file(downloaded_path)
-        record.setdefault("metadata", {})["ingest_archive_url"] = gh_url
+        metadata["ingest_archive_url"] = gh_url
         extract_dir = downloaded_path.parent / (downloaded_path.stem + "_extracted")
         try:
             safe_unzip(downloaded_path, extract_dir)
-            record["metadata"]["extracted_to"] = str(extract_dir.relative_to(ROOT))
+            metadata["extracted_to"] = str(extract_dir.relative_to(ROOT))
         except Exception as exc:
-            record["metadata"]["extract_unzip_error"] = str(exc)
+            metadata["extract_unzip_error"] = str(exc)
         return record
 
     parsed = urlparse(record["remote_url"])
@@ -160,6 +183,7 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     target_path = raw_dir / filename
 
     downloaded_path = download_file(record["remote_url"], target_path, opts.max_bytes)
+    record.setdefault("metadata", {}).pop("ingest_error", None)
     record["status"] = "ingested"
     record["ingested_at"] = utc_now_iso()
     record["local_path"] = str(downloaded_path.relative_to(ROOT))
@@ -180,10 +204,10 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     return record
 
 
-def _ingestible(record: dict) -> bool:
+def _ingestible(record: dict, options: IngestOptions) -> bool:
     if record.get("status") == "ingested":
         return False
-    if _should_skip_file_type(record):
+    if _should_skip_file_type(record, options.include_pages):
         return False
     if _github_archive_url(record):
         return True
@@ -202,7 +226,7 @@ async def ingest(
 
     to_process: list[dict] = []
     for r in selected:
-        if not _ingestible(r):
+        if not _ingestible(r, opts):
             continue
         to_process.append(r)
         if opts.limit is not None and len(to_process) >= opts.limit:
@@ -240,19 +264,27 @@ def main() -> None:
         default=None,
         help="Max number of newly ingestible rows to process this run (stable order within filter).",
     )
+    parser.add_argument(
+        "--include-pages",
+        action="store_true",
+        help="Also ingest lightweight HTML snapshots for html, portal, and standard-page records.",
+    )
     args = parser.parse_args()
 
     if not MANIFEST_PATH.exists():
         raise SystemExit("discovery_manifest.json not found. Run discover.py first.")
 
     max_bytes = int(args.max_mb * 1024 * 1024) if args.max_mb is not None else None
-    options = IngestOptions(max_bytes=max_bytes, limit=args.limit)
+    options = IngestOptions(max_bytes=max_bytes, limit=args.limit, include_pages=args.include_pages)
 
     records = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     source = "all" if args.all else args.source
     records = asyncio.run(ingest(records, source, options))
     MANIFEST_PATH.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
-    print(f"Ingestion complete for source={source} (limit={args.limit}, max_mb={args.max_mb}).")
+    print(
+        f"Ingestion complete for source={source} "
+        f"(limit={args.limit}, max_mb={args.max_mb}, include_pages={args.include_pages})."
+    )
 
 
 if __name__ == "__main__":
