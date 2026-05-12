@@ -66,6 +66,7 @@ Normalization behavior:
 - Upserts a local global JSONL index at `data/normalized/records.jsonl`.
 - HTML/page snapshots are converted with BeautifulSoup.
 - Extracted GitHub repositories are bundled from text-like files (`.md`, `.txt`, `.xml`, `.html`, `.json`, etc.) with file-count and file-size caps.
+- DOCX files inside extracted packages or ZIP archives are converted directly from WordprocessingML, so 3GPP packages can normalize without an extra dependency.
 - Does not mutate `discovery_manifest.json`; normalized outputs are local because `data/` is gitignored.
 
 ## PM Workflow
