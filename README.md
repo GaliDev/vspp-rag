@@ -51,11 +51,29 @@ Ingestion behavior:
 - For 3GPP zip archives, metadata still lists `.docx` paths in `docx_files`.
 - Updates manifest records to `status: "ingested"` with `local_path` and `sha256`
 
+## Normalization
+
+```bash
+python normalize.py --limit 10
+python normalize.py --source iso --limit 1
+python normalize.py --source github --max-files 200 --max-file-kb 512
+```
+
+Normalization behavior:
+
+- Reads only manifest rows with `status: "ingested"`.
+- Writes clean text artifacts next to each raw authority folder, e.g. `data/iso_iec/normalized/iso-iec-14496-12.txt`.
+- Upserts a local global JSONL index at `data/normalized/records.jsonl`.
+- HTML/page snapshots are converted with BeautifulSoup.
+- Extracted GitHub repositories are bundled from text-like files (`.md`, `.txt`, `.xml`, `.html`, `.json`, etc.) with file-count and file-size caps.
+- Does not mutate `discovery_manifest.json`; normalized outputs are local because `data/` is gitignored.
+
 ## PM Workflow
 
 1. Run `python discover.py` before PM reporting.
 2. Share `PM_Catalog.md` as the current standards menu.
 3. Trigger `ingest.py` only for requested authorities/specs.
+4. Run `normalize.py` before chunking/indexing for RAG.
 
 ## GitHub
 
