@@ -27,6 +27,7 @@ class IngestOptions:
     max_bytes: int | None = None
     limit: int | None = None
     include_pages: bool = False
+    one_per_authority: bool = False
 
 
 def utc_now_iso() -> str:
@@ -224,13 +225,24 @@ async def ingest(
     if source and source != "all":
         selected = [r for r in records if r["source"] == source]
 
-    to_process: list[dict] = []
-    for r in selected:
-        if not _ingestible(r, opts):
-            continue
-        to_process.append(r)
-        if opts.limit is not None and len(to_process) >= opts.limit:
-            break
+    candidates = [r for r in selected if _ingestible(r, opts)]
+    if opts.one_per_authority:
+        seen_authority: set[str] = set()
+        to_process = []
+        for r in candidates:
+            auth_key = (r.get("authority") or r.get("source") or "").strip()
+            if auth_key in seen_authority:
+                continue
+            seen_authority.add(auth_key)
+            to_process.append(r)
+        if opts.limit is not None:
+            to_process = to_process[: opts.limit]
+    else:
+        to_process = []
+        for r in candidates:
+            to_process.append(r)
+            if opts.limit is not None and len(to_process) >= opts.limit:
+                break
 
     sem = asyncio.Semaphore(4)
 
@@ -269,13 +281,27 @@ def main() -> None:
         action="store_true",
         help="Also ingest lightweight HTML snapshots for html, portal, and standard-page records.",
     )
+    parser.add_argument(
+        "--one-per-authority",
+        action="store_true",
+        help="Ingest at most one new row per manifest authority (first ingestible in stable order). "
+        "With --source all, touches each distinct authority once. --limit caps the resulting list. "
+        "Implies --include-pages so authorities that only expose HTML/portal rows still get one snapshot.",
+    )
     args = parser.parse_args()
+
+    include_pages = args.include_pages or args.one_per_authority
 
     if not MANIFEST_PATH.exists():
         raise SystemExit("discovery_manifest.json not found. Run discover.py first.")
 
     max_bytes = int(args.max_mb * 1024 * 1024) if args.max_mb is not None else None
-    options = IngestOptions(max_bytes=max_bytes, limit=args.limit, include_pages=args.include_pages)
+    options = IngestOptions(
+        max_bytes=max_bytes,
+        limit=args.limit,
+        include_pages=include_pages,
+        one_per_authority=args.one_per_authority,
+    )
 
     records = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     source = "all" if args.all else args.source
@@ -283,7 +309,8 @@ def main() -> None:
     MANIFEST_PATH.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
     print(
         f"Ingestion complete for source={source} "
-        f"(limit={args.limit}, max_mb={args.max_mb}, include_pages={args.include_pages})."
+        f"(limit={args.limit}, max_mb={args.max_mb}, include_pages={include_pages}, "
+        f"one_per_authority={args.one_per_authority})."
     )
 
 
