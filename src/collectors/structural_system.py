@@ -10,11 +10,12 @@ from urllib.parse import urljoin, urlparse
 import requests
 from bs4 import BeautifulSoup
 
+from src.core.artifacts import extract_pdf_links, pdf_url_matches_record, pick_best_pdf
 from src.core.models import DiscoveryRecord
 
 logger = logging.getLogger(__name__)
 
-HEADERS = {"User-Agent": "VSPP-Standards-Vault/1.0 (+https://example.invalid)"}
+HEADERS = {"User-Agent": "VSPP-Standards-Vault/1.0 (+https://github.com/GaliDev/vspp-rag)"}
 STRUCTURAL = "Structural/System"
 SYSTEM_TIER = "system-level"
 
@@ -39,6 +40,20 @@ ISO_SEEDS: list[tuple[str, str, int]] = [
     ("iso-iec-14496-15", "ISO/IEC 14496-15 (NAL unit carriage in ISOBMFF)", 89118),
     ("iso-iec-13818-1", "ISO/IEC 13818-1 (MPEG-2 / MPEG-TS Systems)", 91403),
 ]
+
+# Open GitHub reference implementations mapped to ISO seeds (not a substitute for purchased ISO PDFs).
+ISO_GITHUB_ARTIFACTS: dict[str, tuple[str, str, str]] = {
+    "iso-iec-14496-12": (
+        "MPEGGroup",
+        "isobmff",
+        "MPEG ISOBMFF reference software (ISO/IEC 14496-12)",
+    ),
+    "iso-iec-14496-15": (
+        "MPEGGroup",
+        "FileFormatConformance",
+        "MPEG file-format conformance resources (14496-15 / related)",
+    ),
+}
 
 # ETSI: primary deliver roots + search fallback query strings.
 ETSI_TARGETS: list[dict[str, Any]] = [
@@ -113,6 +128,99 @@ def _fetch(url: str, timeout: int = 28) -> str | None:
     except requests.RequestException as exc:
         logger.debug("fetch failed %s: %s", url, exc)
         return None
+
+
+def _extract_pdf_urls_regex(html: str, base_url: str) -> list[str]:
+    seen: set[str] = set()
+    out: list[str] = []
+    for match in re.finditer(r"""['"]([^'"]+\.pdf(?:\?[^'"]*)?)['"]""", html, re.I):
+        full = urljoin(base_url, match.group(1))
+        if full not in seen:
+            seen.add(full)
+            out.append(full)
+    return out
+
+
+def _resolve_pdf_artifact(
+    html: str,
+    page_url: str,
+    *,
+    source: str,
+    authority: str,
+    external_id: str,
+    title: str,
+    category: str = STRUCTURAL,
+    tier: str = SYSTEM_TIER,
+    metadata_extra: dict[str, Any] | None = None,
+) -> DiscoveryRecord | None:
+    stub = {"source": source, "external_id": external_id, "remote_url": page_url}
+    pdfs = extract_pdf_links(html, page_url)
+    if not pdfs:
+        pdfs = _extract_pdf_urls_regex(html, page_url)
+    pdfs = [p for p in pdfs if pdf_url_matches_record(p, stub)]
+    pdf_url = pick_best_pdf(pdfs)
+    if not pdf_url:
+        return None
+    meta: dict[str, Any] = {
+        "discovery_profile": "structural_system",
+        "artifact_url": pdf_url,
+        "portal_url": page_url,
+    }
+    if metadata_extra:
+        meta.update(metadata_extra)
+    if external_id in CORE_STRUCTURAL_IDS and "core_structural_syntax" not in meta:
+        meta["core_structural_syntax"] = True
+    return DiscoveryRecord(
+        source=source,
+        authority=authority,
+        title=title,
+        external_id=external_id,
+        version=None,
+        published=None,
+        remote_url=pdf_url,
+        file_type="pdf",
+        category=category,
+        tier=tier,
+        publication_status=None,
+        metadata=meta,
+    )
+
+
+def _github_iso_artifact(ext_id: str, owner: str, repo: str, title: str) -> DiscoveryRecord | None:
+    api_url = f"https://api.github.com/repos/{owner}/{repo}"
+    try:
+        r = requests.get(
+            api_url,
+            headers={**HEADERS, "Accept": "application/vnd.github+json"},
+            timeout=20,
+        )
+        r.raise_for_status()
+        data = r.json()
+    except requests.RequestException as exc:
+        logger.debug("iso github artifact %s/%s failed: %s", owner, repo, exc)
+        return None
+    meta: dict[str, Any] = {
+        "discovery_profile": "structural_system",
+        "iso_standard": ext_id,
+        "artifact_role": "reference_implementation",
+        "artifact_url": data.get("html_url", f"https://github.com/{owner}/{repo}"),
+    }
+    if ext_id in CORE_STRUCTURAL_IDS:
+        meta["core_structural_syntax"] = True
+    return DiscoveryRecord(
+        source="github",
+        authority="ISO/IEC",
+        title=title,
+        external_id=f"{owner}/{repo}",
+        version=data.get("default_branch"),
+        published=data.get("updated_at"),
+        remote_url=data.get("html_url", f"https://github.com/{owner}/{repo}"),
+        file_type="repository",
+        category=STRUCTURAL,
+        tier=SYSTEM_TIER,
+        publication_status=None,
+        metadata=meta,
+    )
 
 
 def _collect_hidden_links(soup: BeautifulSoup, base_url: str, limit: int = 40) -> list[str]:
@@ -234,6 +342,11 @@ def _discover_iso() -> list[DiscoveryRecord]:
             )
             continue
         records.append(_parse_iso_page(html, url, ext_id, seed_title))
+        if ext_id in ISO_GITHUB_ARTIFACTS:
+            owner, repo, gh_title = ISO_GITHUB_ARTIFACTS[ext_id]
+            gh = _github_iso_artifact(ext_id, owner, repo, gh_title)
+            if gh:
+                records.append(gh)
     return records
 
 
@@ -309,11 +422,16 @@ def _discover_etsi() -> list[DiscoveryRecord]:
         hint = spec["title_hint"]
         landed_url: str | None = None
         html: str | None = None
+        candidates: list[tuple[str, str]] = []
         for u in spec["urls"]:
             h = _fetch(u)
             if h:
-                landed_url, html = u, h
-                break
+                candidates.append((u, h))
+        if candidates:
+            landed_url, html = max(
+                candidates,
+                key=lambda pair: ("/deliver/" in pair[0].lower(), len(pair[0])),
+            )
         if not html:
             for q in spec["search_queries"]:
                 hit = _etsi_search_first_hit(q)
@@ -351,17 +469,31 @@ def _discover_etsi() -> list[DiscoveryRecord]:
         em_etsi: dict[str, Any] = {}
         if spec.get("core_structural_syntax"):
             em_etsi["core_structural_syntax"] = True
-        records.append(
-            _parse_generic_portal(
-                html,
-                landed_url or "",
-                source="etsi",
-                authority="ETSI/DVB",
-                external_id=ext_id,
-                title_hint=hint,
-                metadata_extra=em_etsi or None,
-            )
+        pdf_rec = _resolve_pdf_artifact(
+            html,
+            landed_url or "",
+            source="etsi",
+            authority="ETSI/DVB",
+            external_id=ext_id,
+            title=hint,
+            metadata_extra=em_etsi or None,
         )
+        if pdf_rec:
+            records.append(pdf_rec)
+        else:
+            portal_meta = dict(em_etsi)
+            portal_meta["note"] = "deliver_page_no_pdf_resolved"
+            records.append(
+                _parse_generic_portal(
+                    html,
+                    landed_url or "",
+                    source="etsi",
+                    authority="ETSI/DVB",
+                    external_id=ext_id,
+                    title_hint=hint,
+                    metadata_extra=portal_meta,
+                )
+            )
     return records
 
 
@@ -547,17 +679,29 @@ def _discover_dvb_bluebooks() -> list[DiscoveryRecord]:
                 )
             )
             continue
-        records.append(
-            _parse_generic_portal(
-                page,
-                url,
-                source="dvb",
-                authority="DVB",
-                external_id=ext_id,
-                title_hint=f"DVB BlueBook / related: {label[:60] or 'link'}",
-                metadata_extra=extra,
-            )
+        pdf_rec = _resolve_pdf_artifact(
+            page,
+            url,
+            source="dvb",
+            authority="DVB",
+            external_id=ext_id,
+            title=f"DVB BlueBook / related: {label[:60] or 'link'}",
+            metadata_extra=extra,
         )
+        if pdf_rec:
+            records.append(pdf_rec)
+        else:
+            records.append(
+                _parse_generic_portal(
+                    page,
+                    url,
+                    source="dvb",
+                    authority="DVB",
+                    external_id=ext_id,
+                    title_hint=f"DVB BlueBook / related: {label[:60] or 'link'}",
+                    metadata_extra=extra,
+                )
+            )
     if not records:
         records.append(
             DiscoveryRecord(
@@ -625,20 +769,36 @@ def _discover_cta() -> list[DiscoveryRecord]:
                 )
             )
             continue
-        out.append(
-            _parse_generic_portal(
-                page,
-                url,
-                source="cta",
-                authority="CTA/CEA",
-                external_id=ext_id,
-                title_hint=hint,
-                metadata_extra={
-                    "core_structural_syntax": True,
-                    "compliance_track": "legacy_captions",
-                },
-            )
+        cta_meta = {
+            "core_structural_syntax": True,
+            "compliance_track": "legacy_captions",
+            "collection": CTA_STANDARDS_COLLECTION,
+        }
+        pdf_rec = _resolve_pdf_artifact(
+            page,
+            url,
+            source="cta",
+            authority="CTA/CEA",
+            external_id=ext_id,
+            title=hint,
+            metadata_extra=cta_meta,
         )
+        if pdf_rec:
+            out.append(pdf_rec)
+        else:
+            cta_meta["access"] = "paywalled"
+            cta_meta["note"] = "no_public_pdf_found_on_shop_pages"
+            out.append(
+                _parse_generic_portal(
+                    page,
+                    url,
+                    source="cta",
+                    authority="CTA/CEA",
+                    external_id=ext_id,
+                    title_hint=hint,
+                    metadata_extra=cta_meta,
+                )
+            )
     return out
 
 

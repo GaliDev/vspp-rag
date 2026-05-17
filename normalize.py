@@ -13,6 +13,8 @@ from xml.etree import ElementTree
 
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 
+from src.core.text_prep import content_with_header
+
 ROOT = Path(__file__).parent
 MANIFEST_PATH = ROOT / "discovery_manifest.json"
 NORMALIZED_DIR = ROOT / "data" / "normalized"
@@ -34,6 +36,7 @@ TEXT_EXTENSIONS = {
 }
 
 DOCX_EXTENSIONS = {".docx"}
+PDF_EXTENSIONS = {".pdf"}
 
 SKIP_DIRS = {
     ".git",
@@ -117,21 +120,54 @@ def docx_bytes_to_text(blob: bytes) -> str:
             return docx_xml_to_text(f.read())
 
 
-def manifest_header(record: dict[str, Any]) -> str:
-    fields = [
-        ("title", record.get("title")),
-        ("external_id", record.get("external_id")),
-        ("source", record.get("source")),
-        ("authority", record.get("authority")),
-        ("category", record.get("category")),
-        ("tier", record.get("tier")),
-        ("remote_url", record.get("remote_url")),
-    ]
-    lines = ["# " + str(record.get("title") or record.get("external_id") or "Untitled")]
-    for key, value in fields:
-        if value:
-            lines.append(f"{key}: {value}")
-    return "\n".join(lines)
+def is_pdf_file(path: Path) -> bool:
+    try:
+        with path.open("rb") as f:
+            return f.read(5).startswith(b"%PDF")
+    except OSError:
+        return False
+
+
+def looks_like_html_file(path: Path) -> bool:
+    try:
+        head = path.read_bytes()[:512].lower()
+    except OSError:
+        return False
+    return b"<html" in head or b"<!doctype" in head
+
+
+def pdf_to_text(path: Path, *, max_pages: int | None = None) -> tuple[str, dict[str, Any]]:
+    from pypdf import PdfReader
+    from pypdf.errors import PdfReadError, PdfStreamError
+
+    if not is_pdf_file(path):
+        raise ValueError("not a valid PDF file (missing %PDF header)")
+
+    reader = PdfReader(str(path))
+    if reader.is_encrypted:
+        try:
+            reader.decrypt("")
+        except Exception as exc:
+            raise ValueError(f"encrypted PDF: {exc}") from exc
+
+    total = len(reader.pages)
+    limit = total if max_pages is None else min(total, max_pages)
+    parts: list[str] = []
+    for idx in range(limit):
+        try:
+            page_text = reader.pages[idx].extract_text() or ""
+        except PdfReadError as exc:
+            raise ValueError(f"page {idx + 1}: {exc}") from exc
+        if page_text.strip():
+            parts.append(page_text.strip())
+
+    meta: dict[str, Any] = {
+        "pdf_page_count": total,
+        "pdf_pages_extracted": limit,
+    }
+    if max_pages is not None and total > limit:
+        meta["pdf_pages_truncated"] = True
+    return collapse_blank_lines("\n\n".join(parts)), meta
 
 
 def normalized_path_for(record: dict[str, Any], raw_path: Path | None) -> Path:
@@ -208,7 +244,7 @@ def iter_docx_files(root: Path, max_files: int, max_file_bytes: int) -> tuple[li
 
 def normalize_page(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[str, Any]]:
     text = html_to_text(raw_path.read_text(encoding="utf-8", errors="replace"))
-    content = f"{manifest_header(record)}\n\n{text}\n"
+    content = content_with_header(record, text)
     return content, {
         "normalizer": "html_text_v1",
         "source_files": [str(raw_path.relative_to(ROOT))],
@@ -217,7 +253,7 @@ def normalize_page(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[st
 
 def normalize_text_file(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[str, Any]]:
     text = read_text_file(raw_path)
-    content = f"{manifest_header(record)}\n\n{text}\n"
+    content = content_with_header(record, text)
     return content, {
         "normalizer": "single_text_v1",
         "source_files": [str(raw_path.relative_to(ROOT))],
@@ -226,16 +262,37 @@ def normalize_text_file(record: dict[str, Any], raw_path: Path) -> tuple[str, di
 
 def normalize_docx_file(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[str, Any]]:
     text = docx_to_text(raw_path)
-    content = f"{manifest_header(record)}\n\n{text}\n"
+    content = content_with_header(record, text)
     return content, {
         "normalizer": "docx_text_v1",
         "source_files": [str(raw_path.relative_to(ROOT))],
     }
 
 
+def normalize_pdf_file(
+    record: dict[str, Any],
+    raw_path: Path,
+    *,
+    max_pages: int | None,
+) -> tuple[str, dict[str, Any]]:
+    text, pdf_meta = pdf_to_text(raw_path, max_pages=max_pages)
+    if not text:
+        raise ValueError("no extractable text in PDF")
+    content = content_with_header(record, text)
+    meta: dict[str, Any] = {
+        "normalizer": "pdf_text_v1",
+        "source_files": [str(raw_path.relative_to(ROOT))],
+    }
+    meta.update(pdf_meta)
+    artifact = (record.get("metadata") or {}).get("artifact_url")
+    if artifact:
+        meta["artifact_url"] = artifact
+    return content, meta
+
+
 def normalize_docx_bundle(record: dict[str, Any], extracted_to: Path, max_files: int, max_file_bytes: int) -> tuple[str, dict[str, Any]]:
     files, skipped = iter_docx_files(extracted_to, max_files, max_file_bytes)
-    sections = [manifest_header(record)]
+    sections = [content_with_header(record, "").strip()]
     source_files: list[str] = []
     for path in files:
         rel = path.relative_to(extracted_to)
@@ -257,7 +314,7 @@ def normalize_docx_bundle(record: dict[str, Any], extracted_to: Path, max_files:
 
 
 def normalize_docx_zip(record: dict[str, Any], zip_path: Path, max_files: int, max_file_bytes: int) -> tuple[str, dict[str, Any]]:
-    sections = [manifest_header(record)]
+    sections = [content_with_header(record, "").strip()]
     source_files: list[str] = []
     skipped: list[str] = []
     with zipfile.ZipFile(zip_path, "r") as zf:
@@ -288,7 +345,7 @@ def normalize_docx_zip(record: dict[str, Any], zip_path: Path, max_files: int, m
 
 def normalize_repo(record: dict[str, Any], extracted_to: Path, max_files: int, max_file_bytes: int) -> tuple[str, dict[str, Any]]:
     files, skipped = iter_repo_text_files(extracted_to, max_files, max_file_bytes)
-    sections = [manifest_header(record)]
+    sections = [content_with_header(record, "").strip()]
     source_files: list[str] = []
     for path in files:
         rel = path.relative_to(extracted_to)
@@ -309,7 +366,13 @@ def normalize_repo(record: dict[str, Any], extracted_to: Path, max_files: int, m
     }
 
 
-def normalize_record(record: dict[str, Any], max_files: int, max_file_bytes: int) -> dict[str, Any] | None:
+def normalize_record(
+    record: dict[str, Any],
+    max_files: int,
+    max_file_bytes: int,
+    *,
+    max_pdf_pages: int | None = None,
+) -> dict[str, Any] | None:
     if record.get("status") != "ingested":
         return None
 
@@ -334,6 +397,33 @@ def normalize_record(record: dict[str, Any], max_files: int, max_file_bytes: int
             }
     elif raw_path and raw_path.exists() and raw_path.suffix.lower() in {".html", ".htm"}:
         content, meta = normalize_page(record, raw_path)
+    elif raw_path and raw_path.exists() and raw_path.suffix.lower() in PDF_EXTENSIONS:
+        if looks_like_html_file(raw_path):
+            content, meta = normalize_page(record, raw_path)
+            meta["normalizer"] = "html_text_v1"
+            meta["note"] = "ingest_path_ended_in_pdf_but_content_is_html"
+        else:
+            try:
+                content, meta = normalize_pdf_file(record, raw_path, max_pages=max_pdf_pages)
+            except (OSError, ValueError) as exc:
+                return {
+                    "external_id": record.get("external_id"),
+                    "source": record.get("source"),
+                    "status": "skipped",
+                    "reason": f"pdf_extract_failed: {exc}",
+                    "raw_path": str(raw_path.relative_to(ROOT)),
+                    "normalized_at": utc_now_iso(),
+                }
+            except Exception as exc:
+                exc_name = type(exc).__module__ + "." + type(exc).__name__
+                return {
+                    "external_id": record.get("external_id"),
+                    "source": record.get("source"),
+                    "status": "skipped",
+                    "reason": f"pdf_extract_failed: {exc_name}: {exc}",
+                    "raw_path": str(raw_path.relative_to(ROOT)),
+                    "normalized_at": utc_now_iso(),
+                }
     elif raw_path and raw_path.exists() and raw_path.suffix.lower() in DOCX_EXTENSIONS:
         content, meta = normalize_docx_file(record, raw_path)
     elif raw_path and raw_path.exists() and raw_path.suffix.lower() == ".zip":
@@ -409,6 +499,12 @@ def main() -> None:
     parser.add_argument("--limit", type=int, default=None, help="Maximum ingested rows to process this run.")
     parser.add_argument("--max-files", type=int, default=200, help="Max text files to include from an extracted repo.")
     parser.add_argument("--max-file-kb", type=int, default=512, help="Max size per text file included from a repo.")
+    parser.add_argument(
+        "--max-pdf-pages",
+        type=int,
+        default=800,
+        help="Max PDF pages to extract per file (0 = no limit).",
+    )
     args = parser.parse_args()
 
     if not MANIFEST_PATH.exists():
@@ -421,11 +517,18 @@ def main() -> None:
     if args.limit is not None:
         selected = selected[: args.limit]
 
+    max_pdf_pages = None if args.max_pdf_pages <= 0 else args.max_pdf_pages
+
     existing = load_existing_records(RECORDS_PATH)
     normalized = 0
     skipped = 0
     for record in selected:
-        row = normalize_record(record, args.max_files, args.max_file_kb * 1024)
+        row = normalize_record(
+            record,
+            args.max_files,
+            args.max_file_kb * 1024,
+            max_pdf_pages=max_pdf_pages,
+        )
         if row is None:
             continue
         existing[(row.get("source"), row.get("external_id"))] = row

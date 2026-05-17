@@ -12,6 +12,7 @@ REPOS = [
     ("w3c", "webvtt"),
     ("w3c", "ttml1"),
     ("AOMediaCodec", "av1-spec"),
+    # MPEGGroup/isobmff is discovered under ISO/IEC via structural_system (reference implementation).
 ]
 
 

@@ -2,8 +2,11 @@ from __future__ import annotations
 
 import argparse
 import json
+import re
 from pathlib import Path
 from typing import Any, Iterator
+
+from src.core.text_prep import strip_manifest_preamble
 
 ROOT = Path(__file__).parent
 RECORDS_PATH = ROOT / "data" / "normalized" / "records.jsonl"
@@ -25,6 +28,77 @@ def naive_char_chunks(text: str, chunk_chars: int, overlap_chars: int) -> Iterat
         if end >= n:
             break
         start += step
+
+
+def _split_paragraphs(text: str) -> list[str]:
+    return [p.strip() for p in re.split(r"\n\s*\n", text) if p.strip()]
+
+
+def paragraph_aware_chunks(
+    text: str,
+    chunk_chars: int,
+    overlap_chars: int,
+) -> Iterator[tuple[int, int, str]]:
+    """Pack paragraphs up to chunk_chars; overlap carries trailing paragraphs."""
+    if chunk_chars <= 0:
+        raise ValueError("chunk_chars must be positive")
+    paras = _split_paragraphs(text)
+    if not paras:
+        yield from naive_char_chunks(text, chunk_chars, overlap_chars)
+        return
+    if any(len(p) > chunk_chars for p in paras):
+        yield from naive_char_chunks(text, chunk_chars, overlap_chars)
+        return
+
+    packed: list[str] = []
+    buf: list[str] = []
+    buf_len = 0
+
+    def flush() -> None:
+        nonlocal buf, buf_len
+        if not buf:
+            return
+        packed.append("\n\n".join(buf))
+        buf = []
+        buf_len = 0
+
+    for para in paras:
+        add = len(para) + (2 if buf else 0)
+        if buf and buf_len + add > chunk_chars:
+            flush()
+        buf.append(para)
+        buf_len += add
+    flush()
+
+    if len(packed) <= 1:
+        for start, end, chunk in naive_char_chunks(text, chunk_chars, overlap_chars):
+            yield start, end, chunk
+        return
+
+    overlap = max(0, min(overlap_chars, chunk_chars - 1))
+    merged: list[str] = [packed[0]]
+    for i in range(1, len(packed)):
+        prev_paras = _split_paragraphs(packed[i - 1])
+        prefix: list[str] = []
+        plen = 0
+        for para in reversed(prev_paras):
+            add = len(para) + (2 if prefix else 0)
+            if prefix and plen + add > overlap:
+                break
+            prefix.insert(0, para)
+            plen += add
+        body = packed[i]
+        merged.append("\n\n".join(prefix + [body]) if prefix else body)
+
+    cursor = 0
+    for chunk in merged:
+        probe = chunk[: min(120, len(chunk))]
+        start = text.find(probe, cursor) if probe else cursor
+        if start < 0:
+            start = cursor
+        end = start + len(chunk)
+        yield start, end, chunk
+        cursor = max(0, end - overlap)
 
 
 def load_normalized_rows(path: Path) -> list[dict[str, Any]]:
@@ -49,12 +123,12 @@ def chunk_record(
     path = ROOT / norm_rel
     if not path.is_file():
         return []
-    text = path.read_text(encoding="utf-8", errors="replace")
+    text = strip_manifest_preamble(path.read_text(encoding="utf-8", errors="replace"))
     source = str(record.get("source") or "")
     ext = str(record.get("external_id") or "")
     out: list[dict[str, Any]] = []
     for idx, (start, end, chunk_text) in enumerate(
-        naive_char_chunks(text, chunk_chars, overlap_chars)
+        paragraph_aware_chunks(text, chunk_chars, overlap_chars)
     ):
         chunk_id = f"{source}:{ext}:{idx:05d}"
         out.append(
@@ -71,7 +145,7 @@ def chunk_record(
                 "category": record.get("category"),
                 "tier": record.get("tier"),
                 "normalized_path": norm_rel,
-                "chunker": "naive_chars_v1",
+                "chunker": "paragraph_pack_v1",
                 "chunk_chars": chunk_chars,
                 "overlap_chars": overlap_chars,
             }
@@ -81,7 +155,7 @@ def chunk_record(
 
 def main() -> None:
     parser = argparse.ArgumentParser(
-        description="Naive fixed-character chunking over normalized .txt (from records.jsonl).",
+        description="Paragraph-aware chunking over normalized .txt (from records.jsonl).",
     )
     parser.add_argument(
         "--chunk-chars",

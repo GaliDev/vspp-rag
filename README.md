@@ -45,7 +45,9 @@ Ingestion behavior:
 
 - Downloads to `data/[authority]/raw/`
 - Optional caps: `--limit` (max new ingestible rows per run) and `--max-mb` (per-file download cap). HTTP(S) uses `Content-Length` when available and streams with a hard byte limit.
-- `--include-pages` enables lightweight HTML snapshots for `html`, `portal`, and `standard-page` rows without crawling linked assets.
+- **IETF** discovery resolves `ietf.org/archive/id/...txt` artifacts (not only Datatracker HTML). **ISO** seeds add **MPEGGroup** GitHub reference repos where available. **ETSI/DVB** discovery tries to resolve direct `.pdf` links from deliver/listing pages.
+- `--include-pages` enables lightweight HTML snapshots for `html`, `portal`, and `standard-page` rows (skipped for `metadata.access=paywalled` CTA shop pages unless you need catalog text).
+- `--one-per-authority` picks the **best row per authority** (artifacts first). By default it **falls back to portal/TR HTML** when no artifact exists (`--no-page-fallback` to disable). At ingest time, ETSI deliver pages are crawled for `.pdf` links (including version subfolders).
 - Zip archives (3GPP and others) are extracted under a sibling folder of the zip with bounded member count and total uncompressed size; paths are normalized to block zip-slip.
 - GitHub `repository` rows download `https://github.com/{owner}/{repo}/archive/refs/heads/{branch}.zip` (branch from manifest `version`, default `main`), with `metadata.ingest_archive_url` and `metadata.extracted_to` when unzip succeeds.
 - For 3GPP zip archives, metadata still lists `.docx` paths in `docx_files`.
@@ -67,6 +69,7 @@ Normalization behavior:
 - HTML/page snapshots are converted with BeautifulSoup.
 - Extracted GitHub repositories are bundled from text-like files (`.md`, `.txt`, `.xml`, `.html`, `.json`, etc.) with file-count and file-size caps.
 - DOCX files inside extracted packages or ZIP archives are converted directly from WordprocessingML, so 3GPP packages can normalize without an extra dependency.
+- PDF files (ETSI, SMPTE, etc.) are converted with `pypdf` (`normalizer: pdf_text_v1`). Use `--max-pdf-pages` to cap very large documents.
 - Does not mutate `discovery_manifest.json`; normalized outputs are local because `data/` is gitignored.
 
 ## PM Workflow
