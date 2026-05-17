@@ -2,240 +2,49 @@
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "The QUICKSTART SMTP service extension",
-    "external_id": "draft-fanf-smtp-quickstart",
-    "version": "01",
-    "published": "2007-04-10T07:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-01.txt",
+    "title": "Common Implementation Anti-Patterns Related to Domain Name System (DNS) Resource Record (RR) Processing",
+    "external_id": "draft-dashevskyi-dnsrr-antipatterns",
+    "version": "06",
+    "published": "2022-07-28T14:03:37Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-dashevskyi-dnsrr-antipatterns-06.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.425377+00:00",
+    "discovered_at": "2026-05-17T15:22:48.929308+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-01.txt"
+      "topic": "dash",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-dashevskyi-dnsrr-antipatterns/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-dashevskyi-dnsrr-antipatterns/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-dashevskyi-dnsrr-antipatterns-06.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-dashevskyi-dnsrr-antipatterns-06.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "The QUICKSTART SMTP service extension (simple profile)",
-    "external_id": "draft-fanf-smtp-quickstart-a",
-    "version": "00",
-    "published": "2007-04-18T07:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-a-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.622731+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-a/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-a/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-a-00.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "The QUICKSTART SMTP service extension (full profile)",
-    "external_id": "draft-fanf-smtp-quickstart-b",
-    "version": "00",
-    "published": "2007-04-18T07:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-b-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.802728+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-b/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-b/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-b-00.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "TCP Flow Control for Fast Startup Schemes",
-    "external_id": "draft-scharf-tcpm-flow-control-quick-start",
-    "version": "00",
-    "published": "2008-07-07T07:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-scharf-tcpm-flow-control-quick-start-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.985881+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-scharf-tcpm-flow-control-quick-start/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-scharf-tcpm-flow-control-quick-start/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-scharf-tcpm-flow-control-quick-start-00.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Minutes IETF121: quic",
-    "external_id": "minutes-121-quic",
-    "version": "00",
-    "published": "2024-12-06T21:51:17Z",
-    "remote_url": "https://datatracker.ietf.org/doc/minutes-121-quic/",
+    "title": "DASH/WebRTC report",
+    "external_id": "slides-113-mops-dashwebrtc-report",
+    "version": "02",
+    "published": "2022-03-21T01:07:38Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-113-mops-dashwebrtc-report/",
     "file_type": "html",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:02.508567+00:00",
+    "discovered_at": "2026-05-17T15:22:49.494586+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/minutes-121-quic/",
-      "portal_url": "https://datatracker.ietf.org/doc/minutes-121-quic/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "06 The QuicTLS Project",
-    "external_id": "slides-120-hotrfc-sessa-06-the-quictls-project",
-    "version": "00",
-    "published": "2024-07-18T22:22:08Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-120-hotrfc-sessa-06-the-quictls-project/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:03.020943+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-120-hotrfc-sessa-06-the-quictls-project/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-120-hotrfc-sessa-06-the-quictls-project/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Quick Answer for SIMPLE",
-    "external_id": "draft-gautam-simple-quick-answer",
-    "version": "01",
-    "published": "2010-01-13T08:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-gautam-simple-quick-answer-01.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:03.203195+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-gautam-simple-quick-answer/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-gautam-simple-quick-answer/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-gautam-simple-quick-answer-01.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Quick Answer",
-    "external_id": "draft-gautam-dispatch-quick-answer",
-    "version": "00",
-    "published": "2010-05-20T07:00:00Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-gautam-dispatch-quick-answer-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:03.385084+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-gautam-dispatch-quick-answer/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-gautam-dispatch-quick-answer/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-gautam-dispatch-quick-answer-00.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Minutes interim-2019-quic-01: Wed 09:00",
-    "external_id": "minutes-interim-2019-quic-01-201901300900",
-    "version": "01",
-    "published": "2019-02-14T06:03:09Z",
-    "remote_url": "https://datatracker.ietf.org/doc/minutes-interim-2019-quic-01-201901300900/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:03.915930+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/minutes-interim-2019-quic-01-201901300900/",
-      "portal_url": "https://datatracker.ietf.org/doc/minutes-interim-2019-quic-01-201901300900/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "ECN",
-    "external_id": "slides-98-quic-ecn",
-    "version": "00",
-    "published": "2017-03-23T05:18:53Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-98-quic-ecn/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:04.722925+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "quic",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-98-quic-ecn/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-98-quic-ecn/",
+      "topic": "dash",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-113-mops-dashwebrtc-report/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-113-mops-dashwebrtc-report/",
       "note": "text_artifact_unavailable_using_datatracker_html"
     }
   },
@@ -252,7 +61,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.225862+00:00",
+    "discovered_at": "2026-05-17T15:22:49.599826+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -276,7 +85,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.735886+00:00",
+    "discovered_at": "2026-05-17T15:22:49.698773+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -300,7 +109,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:06.254433+00:00",
+    "discovered_at": "2026-05-17T15:22:49.916234+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -324,7 +133,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:06.753877+00:00",
+    "discovered_at": "2026-05-17T15:22:50.279786+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -348,7 +157,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:07.253545+00:00",
+    "discovered_at": "2026-05-17T15:22:50.372114+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -372,7 +181,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:07.761780+00:00",
+    "discovered_at": "2026-05-17T15:22:50.478685+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -396,7 +205,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:07.928415+00:00",
+    "discovered_at": "2026-05-17T15:22:50.512454+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -404,7 +213,8 @@
       "topic": "dash",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-saintandre-xdash-considered-harmful/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-saintandre-xdash-considered-harmful/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt"
     }
   },
   {
@@ -420,7 +230,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:08.110325+00:00",
+    "discovered_at": "2026-05-17T15:22:50.571467+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -428,298 +238,255 @@
       "topic": "dash",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-saintandre-xdash/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-saintandre-xdash/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Deprecating the \"X-\" Prefix and Similar Constructs in Application Protocols",
-    "external_id": "draft-ietf-appsawg-xdash",
-    "version": "05",
-    "published": "2015-10-14T20:52:32Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-appsawg-xdash-05.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:08.282620+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "dash",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-appsawg-xdash/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-appsawg-xdash/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-appsawg-xdash-05.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Liaison Statement on Dynamic Adaptive Streaming over HTTP (DASH)",
-    "external_id": "liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1",
-    "version": "",
-    "published": "2010-08-10T07:00:00Z",
-    "remote_url": "https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/",
+    "title": "Agenda IETF125: quic",
+    "external_id": "agenda-125-quic",
+    "version": "02",
+    "published": "2026-03-19T02:15:10Z",
+    "remote_url": "https://datatracker.ietf.org/doc/agenda-125-quic/",
     "file_type": "html",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:08.787633+00:00",
+    "discovered_at": "2026-05-17T15:22:50.823290+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "dash",
-      "datatracker_url": "https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/",
-      "portal_url": "https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/",
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/agenda-125-quic/",
+      "portal_url": "https://datatracker.ietf.org/doc/agenda-125-quic/",
       "note": "text_artifact_unavailable_using_datatracker_html"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "H.264/AVC as Mandatory-to-Implement Video Codec for RTCweb",
-    "external_id": "draft-dbenham-webrtc-videomti",
-    "version": "02",
-    "published": "2014-03-03T08:11:14Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-dbenham-webrtc-videomti-02.txt",
-    "file_type": "txt",
+    "title": "Media over QUIC Update",
+    "external_id": "slides-120-mops-media-over-quic-update",
+    "version": "00",
+    "published": "2024-07-22T17:31:01Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-120-mops-media-over-quic-update/",
+    "file_type": "html",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:08.975321+00:00",
-    "ingested_at": "2026-05-17T08:42:49.226202+00:00",
-    "local_path": "data/ietf/raw/draft-dbenham-webrtc-videomti.txt",
-    "sha256": "0241012e2c5920f379d86e20fb5c6ac9903f33dc62e98f3ba2bc1b8cc45bfd5a",
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:50.977845+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-dbenham-webrtc-videomti/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-dbenham-webrtc-videomti/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-dbenham-webrtc-videomti-02.txt",
-      "ingest_kind": "text_artifact"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-120-mops-media-over-quic-update/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-120-mops-media-over-quic-update/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "MSRP over WebRTC data channels",
-    "external_id": "draft-marcon-msrp-over-webrtc-data-channels",
+    "title": "Minutes IETF103: quic",
+    "external_id": "minutes-103-quic",
     "version": "00",
-    "published": "2014-01-09T08:08:58Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-marcon-msrp-over-webrtc-data-channels-00.txt",
+    "published": "2018-11-16T04:42:12Z",
+    "remote_url": "https://datatracker.ietf.org/doc/minutes-103-quic/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:51.342319+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/minutes-103-quic/",
+      "portal_url": "https://datatracker.ietf.org/doc/minutes-103-quic/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Quick-Start for TCP and IP",
+    "external_id": "draft-ietf-tsvwg-quickstart",
+    "version": "07",
+    "published": "2020-01-21T08:27:51Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-tsvwg-quickstart-07.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:09.157290+00:00",
+    "discovered_at": "2026-05-17T15:22:51.385066+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-marcon-msrp-over-webrtc-data-channels/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-marcon-msrp-over-webrtc-data-channels/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-marcon-msrp-over-webrtc-data-channels-00.txt"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-tsvwg-quickstart/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-tsvwg-quickstart/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-tsvwg-quickstart-07.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-tsvwg-quickstart-07.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Simulcast and layered video coding support in WebRTC",
-    "external_id": "draft-garcia-simulcast-and-layered-video-webrtc",
+    "title": "Review: Quick-Start for TCP and IP",
+    "external_id": "draft-briscoe-tsvwg-quickstart-rvw",
     "version": "00",
-    "published": "2014-02-06T08:08:21Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-garcia-simulcast-and-layered-video-webrtc-00.txt",
+    "published": "2005-11-28T08:00:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-briscoe-tsvwg-quickstart-rvw-00.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:09.327533+00:00",
+    "discovered_at": "2026-05-17T15:22:51.413815+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-garcia-simulcast-and-layered-video-webrtc/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-garcia-simulcast-and-layered-video-webrtc/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-garcia-simulcast-and-layered-video-webrtc-00.txt"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-briscoe-tsvwg-quickstart-rvw/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-briscoe-tsvwg-quickstart-rvw/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-briscoe-tsvwg-quickstart-rvw-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-briscoe-tsvwg-quickstart-rvw-00.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Using Interactive Connectivity Establishment (ICE) in Web Real-Time Communications (WebRTC)",
-    "external_id": "draft-thomson-mmusic-ice-webrtc",
+    "title": "Quick-Start for the Datagram Congestion Control Protocol (DCCP)",
+    "external_id": "draft-ietf-dccp-quickstart",
+    "version": "05",
+    "published": "2015-10-14T20:51:44Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-dccp-quickstart-05.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:51.460489+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-dccp-quickstart/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-dccp-quickstart/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-dccp-quickstart-05.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-dccp-quickstart-05.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Avoiding Interactions of Quick-Start TCP and Flow Control",
+    "external_id": "draft-scharf-tsvwg-quick-start-flow-control",
     "version": "01",
-    "published": "2014-04-21T07:06:59Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-thomson-mmusic-ice-webrtc-01.txt",
+    "published": "2007-07-05T07:00:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-scharf-tsvwg-quick-start-flow-control-01.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:09.513826+00:00",
+    "discovered_at": "2026-05-17T15:22:51.487479+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-thomson-mmusic-ice-webrtc/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-thomson-mmusic-ice-webrtc/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-thomson-mmusic-ice-webrtc-01.txt"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-scharf-tsvwg-quick-start-flow-control/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-scharf-tsvwg-quick-start-flow-control/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-scharf-tsvwg-quick-start-flow-control-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-scharf-tsvwg-quick-start-flow-control-01.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Additional RTP Control Protocol (RTCP) Extended Report (XR) Metrics for WebRTC Statistics API",
-    "external_id": "draft-singh-xrblock-webrtc-additional-stats",
-    "version": "02",
-    "published": "2014-08-18T07:08:52Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-singh-xrblock-webrtc-additional-stats-02.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:09.679990+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-singh-xrblock-webrtc-additional-stats/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-singh-xrblock-webrtc-additional-stats/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-singh-xrblock-webrtc-additional-stats-02.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "SDP-based WebRTC data channel negotiation",
-    "external_id": "draft-ejzak-dispatch-webrtc-data-channel-sdpneg",
-    "version": "00",
-    "published": "2014-02-17T23:47:17Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-ejzak-dispatch-webrtc-data-channel-sdpneg-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:09.840119+00:00",
-    "ingested_at": "2026-05-17T09:10:50.782174+00:00",
-    "local_path": "data/ietf/raw/draft-ejzak-dispatch-webrtc-data-channel-sdpneg.pdf",
-    "sha256": "a5e3ef63b7328c3c8ae950ca942b9305f70cacaf515088898be528994f06592b",
-    "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ejzak-dispatch-webrtc-data-channel-sdpneg/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-ejzak-dispatch-webrtc-data-channel-sdpneg/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-ejzak-dispatch-webrtc-data-channel-sdpneg-00.txt",
-      "ingest_kind": "pdf_artifact",
-      "resolved_at_ingest": true
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Survey of WebRTC based P2P Streaming",
-    "external_id": "draft-huang-ppsp-p2p-webrtc-survey",
-    "version": "00",
-    "published": "2014-08-17T07:08:38Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-huang-ppsp-p2p-webrtc-survey-00.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.018371+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-huang-ppsp-p2p-webrtc-survey/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-huang-ppsp-p2p-webrtc-survey/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-huang-ppsp-p2p-webrtc-survey-00.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "WebRTC Use Case and Framework for Privacy Enhanced RTP Conferencing (PERC)",
-    "external_id": "draft-westerlund-perc-webrtc-use-case",
+    "title": "The QUICKSTART SMTP service extension",
+    "external_id": "draft-fanf-smtp-quickstart",
     "version": "01",
-    "published": "2016-04-21T07:10:50Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-westerlund-perc-webrtc-use-case-01.txt",
+    "published": "2007-04-10T07:00:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-01.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.192439+00:00",
+    "discovered_at": "2026-05-17T15:22:51.522993+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-westerlund-perc-webrtc-use-case/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-westerlund-perc-webrtc-use-case/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-westerlund-perc-webrtc-use-case-01.txt"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-01.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "A WebRTC Data Channel Transport for the Constrained Application Protocol (CoAP)",
-    "external_id": "draft-groves-coap-webrtcdc",
-    "version": "02",
-    "published": "2017-10-21T07:13:33Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-groves-coap-webrtcdc-02.txt",
-    "file_type": "txt",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.364689+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-groves-coap-webrtcdc/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-groves-coap-webrtcdc/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-groves-coap-webrtcdc-02.txt"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Using Privacy Enhanced Real-time Conferencing (PERC) in a WebRTC Context",
-    "external_id": "draft-roach-perc-webrtc",
+    "title": "The QUICKSTART SMTP service extension (simple profile)",
+    "external_id": "draft-fanf-smtp-quickstart-a",
     "version": "00",
-    "published": "2017-09-14T07:15:54Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-roach-perc-webrtc-00.txt",
+    "published": "2007-04-18T07:00:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-a-00.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.537104+00:00",
+    "discovered_at": "2026-05-17T15:22:51.550263+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
-      "topic": "webrtc",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-roach-perc-webrtc/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-roach-perc-webrtc/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-roach-perc-webrtc-00.txt"
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-a/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-a/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-a-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-a-00.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "The QUICKSTART SMTP service extension (full profile)",
+    "external_id": "draft-fanf-smtp-quickstart-b",
+    "version": "00",
+    "published": "2007-04-18T07:00:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-b-00.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:51.576265+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "quic",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-b/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-fanf-smtp-quickstart-b/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-b-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-fanf-smtp-quickstart-b-00.txt"
     }
   },
   {
@@ -735,7 +502,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.708799+00:00",
+    "discovered_at": "2026-05-17T15:22:51.601484+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -743,7 +510,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-ohlsson-rtcweb-sdes-support/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-ohlsson-rtcweb-sdes-support/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt"
     }
   },
   {
@@ -759,7 +527,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:10.873617+00:00",
+    "discovered_at": "2026-05-17T15:22:51.628196+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -767,7 +535,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-ace-oauth-introspection/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-ace-oauth-introspection/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt"
     }
   },
   {
@@ -783,7 +552,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:11.048039+00:00",
+    "discovered_at": "2026-05-17T15:22:51.658195+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -791,7 +560,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-oauth-cbor-web-token/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-oauth-cbor-web-token/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt"
     }
   },
   {
@@ -807,7 +577,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:11.213523+00:00",
+    "discovered_at": "2026-05-17T15:22:51.688012+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -815,7 +585,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-ace-cbor-web-token/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-wahlstroem-ace-cbor-web-token/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt"
     }
   },
   {
@@ -831,7 +602,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:11.400535+00:00",
+    "discovered_at": "2026-05-17T15:22:51.724763+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -839,7 +610,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-margaria-pce-pcep-hlsp-extension/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-margaria-pce-pcep-hlsp-extension/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt"
     }
   },
   {
@@ -855,7 +627,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:11.467836+00:00",
+    "discovered_at": "2026-05-17T15:22:51.808972+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -879,7 +651,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:11.493842+00:00",
+    "discovered_at": "2026-05-17T15:22:51.839625+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -887,7 +659,8 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-pantos-hls-rfc8216bis/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt"
     }
   },
   {
@@ -903,7 +676,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:12.004378+00:00",
+    "discovered_at": "2026-05-17T15:22:51.909529+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -927,7 +700,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:12.184490+00:00",
+    "discovered_at": "2026-05-17T15:22:51.944105+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -935,247 +708,502 @@
       "topic": "hls",
       "datatracker_url": "https://datatracker.ietf.org/doc/draft-sodder-ppvpn-vhls/",
       "portal_url": "https://datatracker.ietf.org/doc/draft-sodder-ppvpn-vhls/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt"
+      "artifact_url": "https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Agenda for RTPSEC at IETF-68",
-    "external_id": "agenda-68-rtpsec",
-    "version": "00",
-    "published": "2007-03-08T00:35:22Z",
-    "remote_url": "https://datatracker.ietf.org/doc/agenda-68-rtpsec/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:12.707135+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/agenda-68-rtpsec/",
-      "portal_url": "https://datatracker.ietf.org/doc/agenda-68-rtpsec/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Minutes for RTPSEC at IETF-68",
-    "external_id": "minutes-68-rtpsec",
-    "version": "00",
-    "published": "2007-03-23T11:43:44Z",
-    "remote_url": "https://datatracker.ietf.org/doc/minutes-68-rtpsec/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:13.215660+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/minutes-68-rtpsec/",
-      "portal_url": "https://datatracker.ietf.org/doc/minutes-68-rtpsec/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "DTLS-SRTP",
-    "external_id": "slides-68-rtpsec-0",
-    "version": "00",
-    "published": "2007-03-19T11:11:28Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-0/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:13.718238+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-0/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-0/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "Status of MMUSIC SDP Capability Negotiation",
-    "external_id": "slides-68-rtpsec-1",
-    "version": "00",
-    "published": "2007-03-19T12:46:40Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-1/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:14.250993+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-1/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-1/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "RTPSEC BoF",
-    "external_id": "slides-68-rtpsec-2",
-    "version": "00",
-    "published": "2007-03-18T07:00:00Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-2/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:14.761350+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-2/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-2/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "ZRTP",
-    "external_id": "slides-68-rtpsec-3",
-    "version": "00",
-    "published": "2007-03-19T16:26:50Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-3/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:15.261959+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-3/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-3/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "MIKEYv2",
-    "external_id": "slides-68-rtpsec-4",
-    "version": "00",
-    "published": "2007-03-19T16:52:41Z",
-    "remote_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-4/",
-    "file_type": "html",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:15.760492+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-4/",
-      "portal_url": "https://datatracker.ietf.org/doc/slides-68-rtpsec-4/",
-      "note": "text_artifact_unavailable_using_datatracker_html"
-    }
-  },
-  {
-    "source": "ietf",
-    "authority": "IETF",
-    "title": "RTP Payload Format for sub-codestream latency JPEG 2000 streaming",
-    "external_id": "draft-lemieux-avtcore-rtp-j2k-scl",
-    "version": "01",
-    "published": "2023-09-20T16:40:27Z",
-    "remote_url": "https://www.ietf.org/archive/id/draft-lemieux-avtcore-rtp-j2k-scl-01.txt",
+    "title": "Closing the RTP Payload Format Media Types IANA Registry",
+    "external_id": "draft-ietf-avtcore-rtp-payload-registry",
+    "version": "05",
+    "published": "2025-03-19T06:52:34Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-payload-registry-05.txt",
     "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:15.944557+00:00",
+    "discovered_at": "2026-05-17T15:22:52.146354+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
       "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/draft-lemieux-avtcore-rtp-j2k-scl/",
-      "portal_url": "https://datatracker.ietf.org/doc/draft-lemieux-avtcore-rtp-j2k-scl/",
-      "artifact_url": "https://www.ietf.org/archive/id/draft-lemieux-avtcore-rtp-j2k-scl-01.txt"
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-rtp-payload-registry/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-rtp-payload-registry/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-payload-registry-05.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-payload-registry-05.txt"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Agenda for RTPSEC at IETF-66",
-    "external_id": "agenda-66-rtpsec",
-    "version": "00",
-    "published": "2006-07-03T20:00:20Z",
-    "remote_url": "https://datatracker.ietf.org/doc/agenda-66-rtpsec/",
-    "file_type": "html",
+    "title": "Signaling Additional SRTP Context information via SDP",
+    "external_id": "draft-davis-mmusic-srtp-assurance",
+    "version": "03",
+    "published": "2024-07-23T07:05:29Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-davis-mmusic-srtp-assurance-03.txt",
+    "file_type": "txt",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:16.447916+00:00",
+    "discovered_at": "2026-05-17T15:22:52.314154+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
       "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/agenda-66-rtpsec/",
-      "portal_url": "https://datatracker.ietf.org/doc/agenda-66-rtpsec/",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-davis-mmusic-srtp-assurance/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-davis-mmusic-srtp-assurance/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-davis-mmusic-srtp-assurance-03.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-davis-mmusic-srtp-assurance-03.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "RTP Payload Format for the Secure Communication Interoperability Protocol (SCIP) Codec",
+    "external_id": "draft-ietf-avtcore-rtp-scip",
+    "version": "09",
+    "published": "2024-07-24T17:30:28Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-scip-09.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:52.498204+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-rtp-scip/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-rtp-scip/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-scip-09.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-avtcore-rtp-scip-09.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Early Review of draft-ietf-avtcore-rtp-payload-registry-02",
+    "external_id": "review-ietf-avtcore-rtp-payload-registry-02-genart-early-davies-2024-09-19",
+    "version": "00",
+    "published": "2024-09-19T21:21:33Z",
+    "remote_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-02-genart-early-davies-2024-09-19/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:53.025450+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-02-genart-early-davies-2024-09-19/",
+      "portal_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-02-genart-early-davies-2024-09-19/",
       "note": "text_artifact_unavailable_using_datatracker_html"
     }
   },
   {
     "source": "ietf",
     "authority": "IETF",
-    "title": "Minutes for RTPSEC at IETF-66",
-    "external_id": "minutes-66-rtpsec",
+    "title": "Last Call Review of draft-ietf-avtcore-rtp-payload-registry-03",
+    "external_id": "review-ietf-avtcore-rtp-payload-registry-03-secdir-lc-hardaker-2024-09-30",
     "version": "00",
-    "published": "2006-08-04T19:30:46Z",
-    "remote_url": "https://datatracker.ietf.org/doc/minutes-66-rtpsec/",
+    "published": "2024-09-30T17:47:38Z",
+    "remote_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-03-secdir-lc-hardaker-2024-09-30/",
     "file_type": "html",
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:16.951665+00:00",
+    "discovered_at": "2026-05-17T15:22:53.587854+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
     "metadata": {
       "topic": "rtp",
-      "datatracker_url": "https://datatracker.ietf.org/doc/minutes-66-rtpsec/",
-      "portal_url": "https://datatracker.ietf.org/doc/minutes-66-rtpsec/",
+      "datatracker_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-03-secdir-lc-hardaker-2024-09-30/",
+      "portal_url": "https://datatracker.ietf.org/doc/review-ietf-avtcore-rtp-payload-registry-03-secdir-lc-hardaker-2024-09-30/",
       "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "RTP Payload Format for V-DMC",
+    "external_id": "draft-hsyang-avtcore-rtp-vdmc",
+    "version": "04",
+    "published": "2025-10-14T06:19:57Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-hsyang-avtcore-rtp-vdmc-04.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:53.783647+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-hsyang-avtcore-rtp-vdmc/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-hsyang-avtcore-rtp-vdmc/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-hsyang-avtcore-rtp-vdmc-04.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-hsyang-avtcore-rtp-vdmc-04.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Viewport and Region-of-Interest-Dependent Delivery of Visual Volumetric Media",
+    "external_id": "draft-gudumasu-avtcore-rtp-volumetric-media-roi",
+    "version": "02",
+    "published": "2024-12-02T08:05:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-gudumasu-avtcore-rtp-volumetric-media-roi-02.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:53.977745+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-gudumasu-avtcore-rtp-volumetric-media-roi/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-gudumasu-avtcore-rtp-volumetric-media-roi/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-gudumasu-avtcore-rtp-volumetric-media-roi-02.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-gudumasu-avtcore-rtp-volumetric-media-roi-02.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Protocol Extensions for ECRTP over MPLS",
+    "external_id": "draft-ash-avt-ecrtp-over-mpls-protocol",
+    "version": "02",
+    "published": "2024-12-18T18:43:42Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ash-avt-ecrtp-over-mpls-protocol-02.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.154430+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ash-avt-ecrtp-over-mpls-protocol/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ash-avt-ecrtp-over-mpls-protocol/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ash-avt-ecrtp-over-mpls-protocol-02.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ash-avt-ecrtp-over-mpls-protocol-02.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "RTP Payload Format for the iSAC Codec",
+    "external_id": "draft-ietf-avt-rtp-isac",
+    "version": "04",
+    "published": "2024-12-18T18:44:00Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-avt-rtp-isac-04.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.347168+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-avt-rtp-isac/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-avt-rtp-isac/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-avt-rtp-isac-04.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-avt-rtp-isac-04.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "Multipath RTP (MPRTP)",
+    "external_id": "draft-ietf-avtcore-mprtp",
+    "version": "03",
+    "published": "2025-02-11T19:37:37Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-mprtp-03.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.530889+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "rtp",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-mprtp/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-mprtp/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-mprtp-03.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-avtcore-mprtp-03.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "STUN Protocol for Embedding DTLS (SPED)",
+    "external_id": "draft-hancke-webrtc-sped",
+    "version": "00",
+    "published": "2026-03-02T23:30:02Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-hancke-webrtc-sped-00.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.554639+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-hancke-webrtc-sped/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-hancke-webrtc-sped/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-hancke-webrtc-sped-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-hancke-webrtc-sped-00.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "draft-ietf-avtcore-hevc-webrtc",
+    "external_id": "slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc",
+    "version": "00",
+    "published": "2026-03-15T21:15:51Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.764000+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "H.265 Profile for WebRTC",
+    "external_id": "slides-125-avtcore-h265-profile-for-webrtc",
+    "version": "00",
+    "published": "2026-03-17T21:10:53Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-h265-profile-for-webrtc/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.847900+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-h265-profile-for-webrtc/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-125-avtcore-h265-profile-for-webrtc/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "The WebRTC URI Scheme",
+    "external_id": "draft-jiang7369-webrtc-uri-scheme",
+    "version": "02",
+    "published": "2023-10-21T07:13:58Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-jiang7369-webrtc-uri-scheme-02.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.876487+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-jiang7369-webrtc-uri-scheme/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-jiang7369-webrtc-uri-scheme/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-jiang7369-webrtc-uri-scheme-02.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-jiang7369-webrtc-uri-scheme-02.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "H.265 Profile for WebRTC",
+    "external_id": "draft-ietf-avtcore-hevc-webrtc",
+    "version": "08",
+    "published": "2026-03-25T23:38:13Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-hevc-webrtc-08.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.909794+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-hevc-webrtc/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-ietf-avtcore-hevc-webrtc/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-ietf-avtcore-hevc-webrtc-08.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-ietf-avtcore-hevc-webrtc-08.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "WebRTC-HTTP Interactive Signaling Protocol",
+    "external_id": "slides-118-wish-webrtc-http-interactive-signaling-protocol",
+    "version": "00",
+    "published": "2023-11-04T11:39:16Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-118-wish-webrtc-http-interactive-signaling-protocol/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:54.991622+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-118-wish-webrtc-http-interactive-signaling-protocol/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-118-wish-webrtc-http-interactive-signaling-protocol/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "WebRTC-HTTP Interactive Signaling Protocol(WHISP)",
+    "external_id": "draft-liu-webrtc-http-interactive-protocol",
+    "version": "00",
+    "published": "2024-01-11T08:14:10Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-liu-webrtc-http-interactive-protocol-00.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:55.044479+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-liu-webrtc-http-interactive-protocol/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-liu-webrtc-http-interactive-protocol/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-liu-webrtc-http-interactive-protocol-00.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-liu-webrtc-http-interactive-protocol-00.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "H.265 Profile for WebRTC",
+    "external_id": "draft-aboba-avtcore-hevc-webrtc",
+    "version": "02",
+    "published": "2023-10-13T11:58:10Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-aboba-avtcore-hevc-webrtc-02.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:55.093521+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-aboba-avtcore-hevc-webrtc/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-aboba-avtcore-hevc-webrtc/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-aboba-avtcore-hevc-webrtc-02.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-aboba-avtcore-hevc-webrtc-02.txt"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "L4S + WebRTC",
+    "external_id": "slides-121-hackathon-sessd-l4s-webrtc",
+    "version": "00",
+    "published": "2024-11-03T13:44:20Z",
+    "remote_url": "https://datatracker.ietf.org/doc/slides-121-hackathon-sessd-l4s-webrtc/",
+    "file_type": "html",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:55.158685+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/slides-121-hackathon-sessd-l4s-webrtc/",
+      "portal_url": "https://datatracker.ietf.org/doc/slides-121-hackathon-sessd-l4s-webrtc/",
+      "note": "text_artifact_unavailable_using_datatracker_html"
+    }
+  },
+  {
+    "source": "ietf",
+    "authority": "IETF",
+    "title": "WebRTC JavaScript Object API Rationale",
+    "external_id": "draft-raymond-rtcweb-webrtc-js-obj-api-rationale",
+    "version": "01",
+    "published": "2014-01-07T08:08:37Z",
+    "remote_url": "https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt",
+    "file_type": "txt",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:55.185527+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
+    "metadata": {
+      "topic": "webrtc",
+      "datatracker_url": "https://datatracker.ietf.org/doc/draft-raymond-rtcweb-webrtc-js-obj-api-rationale/",
+      "portal_url": "https://datatracker.ietf.org/doc/draft-raymond-rtcweb-webrtc-js-obj-api-rationale/",
+      "artifact_url": "https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt",
+      "ingest_error": "resolved URL is not a PDF: https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt"
     }
   },
   {
@@ -1190,14 +1218,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267006+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844184+00:00",
+    "ingested_at": "2026-05-17T15:18:41.278741+00:00",
+    "local_path": "data/3gpp/raw/26102-j00.zip",
+    "sha256": "f2383b03b3e6220f07e9efc2e633d69c7c5599b771beb73565ca4d401ac5baea",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-j00"
     }
   },
   {
@@ -1212,14 +1241,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267041+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844238+00:00",
+    "ingested_at": "2026-05-17T15:18:41.410874+00:00",
+    "local_path": "data/3gpp/raw/26102-i00.zip",
+    "sha256": "f2e1e07a1838297a6875b1621e84795e62e6d7b439328481e257956a84b49fdb",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-i00"
     }
   },
   {
@@ -1234,14 +1264,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267052+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844258+00:00",
+    "ingested_at": "2026-05-17T15:18:41.139778+00:00",
+    "local_path": "data/3gpp/raw/26102-h00.zip",
+    "sha256": "a58d1e0393466c522996e10ea3c5efe67a026a5118a947d41cf568fbd974cdd1",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-h00"
     }
   },
   {
@@ -1256,14 +1287,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267061+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844274+00:00",
+    "ingested_at": "2026-05-17T15:18:41.276650+00:00",
+    "local_path": "data/3gpp/raw/26102-g00.zip",
+    "sha256": "1c3a761335c0b952ab3be0d6ce63800a80e1b5f33503fe3e6d4bedc47a4e4beb",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-g00"
     }
   },
   {
@@ -1278,14 +1310,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267069+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844291+00:00",
+    "ingested_at": "2026-05-17T15:18:43.296831+00:00",
+    "local_path": "data/3gpp/raw/26102-f00.zip",
+    "sha256": "4a1cbb74a736e3739e2158723925545b62fc1c96b3861b438d2db4d2fc9d159f",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-f00"
     }
   },
   {
@@ -1300,14 +1333,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267078+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844305+00:00",
+    "ingested_at": "2026-05-17T15:18:44.114473+00:00",
+    "local_path": "data/3gpp/raw/26102-e00.zip",
+    "sha256": "b5782d6e3666cfaa259671c12e3d1ac8573aa94747e12cccceda81933a7bb21b",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-e00"
     }
   },
   {
@@ -1322,14 +1356,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267085+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844318+00:00",
+    "ingested_at": "2026-05-17T15:18:44.192576+00:00",
+    "local_path": "data/3gpp/raw/26102-d00.zip",
+    "sha256": "5e1cd413ae2d4b04be594fff2437e2acf9dad04c027ba0aef3ca4959cdbaaf09",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-d00"
     }
   },
   {
@@ -1344,14 +1379,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267093+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844331+00:00",
+    "ingested_at": "2026-05-17T15:18:45.234147+00:00",
+    "local_path": "data/3gpp/raw/26102-c00.zip",
+    "sha256": "43caa105e172861c88a8d748fb68ab85ace43a22600a3231aca3ce39fa73ed1a",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-c00"
     }
   },
   {
@@ -1366,14 +1402,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267100+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844345+00:00",
+    "ingested_at": "2026-05-17T15:18:46.363312+00:00",
+    "local_path": "data/3gpp/raw/26102-b00.zip",
+    "sha256": "18410fd05c78d45baa46a8901564588359d97e7282bfa4a9fcc1b7912f84b986",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-b00"
     }
   },
   {
@@ -1388,14 +1425,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267109+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844358+00:00",
+    "ingested_at": "2026-05-17T15:18:46.871931+00:00",
+    "local_path": "data/3gpp/raw/26102-a00.zip",
+    "sha256": "b07ddbb5e3ed355e53bf4d06bb6678a791c9fd609b8f786439999e786b4fef97",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-a00"
     }
   },
   {
@@ -1410,14 +1448,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267116+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844371+00:00",
+    "ingested_at": "2026-05-17T15:18:46.937896+00:00",
+    "local_path": "data/3gpp/raw/26102-920.zip",
+    "sha256": "c17db9a9220972a96d3654c198b90c030cc3110e280682b3cd734adf08d31d63",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-920"
     }
   },
   {
@@ -1432,14 +1471,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267123+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844384+00:00",
+    "ingested_at": "2026-05-17T15:18:47.722928+00:00",
+    "local_path": "data/3gpp/raw/26102-910.zip",
+    "sha256": "67c6dff36995f400de58499653c05bc6ecdb163d376a8a5fc11fe99ef451a8ff",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-910"
     }
   },
   {
@@ -1454,14 +1494,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267131+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844395+00:00",
+    "ingested_at": "2026-05-17T15:18:48.456599+00:00",
+    "local_path": "data/3gpp/raw/26102-900.zip",
+    "sha256": "1610e2424d731cfc79a655152d3477ff2f00631899b6a4d21afb5072d6c5081e",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-900"
     }
   },
   {
@@ -1476,14 +1517,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267138+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844408+00:00",
+    "ingested_at": "2026-05-17T15:18:49.015537+00:00",
+    "local_path": "data/3gpp/raw/26102-850.zip",
+    "sha256": "7b1a5a15796325362792f88ec28adaff1f4766b32dc105d18604d021885af230",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-850"
     }
   },
   {
@@ -1498,14 +1540,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267145+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844421+00:00",
+    "ingested_at": "2026-05-17T15:18:49.111529+00:00",
+    "local_path": "data/3gpp/raw/26102-840.zip",
+    "sha256": "f3a9cab820da8dd5320d8494100834311de6c06b5b528b03c72dd4085fef0164",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-840"
     }
   },
   {
@@ -1520,14 +1563,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267152+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844433+00:00",
+    "ingested_at": "2026-05-17T15:18:49.735386+00:00",
+    "local_path": "data/3gpp/raw/26102-830.zip",
+    "sha256": "8465eec12588d03dd3cbbb53dc48079676b3f55d1109a72ecfe3a8f581f11ea6",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-830"
     }
   },
   {
@@ -1542,14 +1586,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267160+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844445+00:00",
+    "ingested_at": "2026-05-17T15:18:50.435763+00:00",
+    "local_path": "data/3gpp/raw/26102-820.zip",
+    "sha256": "1e5d61fc5557a08d6f17c84bcc90933defab596624a927aef9a39249f1dac96a",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-820"
     }
   },
   {
@@ -1564,14 +1609,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267168+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844458+00:00",
+    "ingested_at": "2026-05-17T15:18:51.081238+00:00",
+    "local_path": "data/3gpp/raw/26102-810.zip",
+    "sha256": "7be83c56c541e4fb7496a111948920b22a12bb50b9a5dde2378a23651ae05a03",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-810"
     }
   },
   {
@@ -1586,14 +1632,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267192+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844470+00:00",
+    "ingested_at": "2026-05-17T15:18:50.832406+00:00",
+    "local_path": "data/3gpp/raw/26102-800.zip",
+    "sha256": "6ba4df880f5674b91eba70518136cee8d55afb4a1bcc2c07b7f608fb8e78f77e",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-800"
     }
   },
   {
@@ -1608,14 +1655,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267201+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844482+00:00",
+    "ingested_at": "2026-05-17T15:18:51.394251+00:00",
+    "local_path": "data/3gpp/raw/26102-710.zip",
+    "sha256": "c49132beb5e973a3d0f58733f755524564b00964029db4b9fd0a1637f15106be",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-710"
     }
   },
   {
@@ -1630,14 +1678,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267209+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844495+00:00",
+    "ingested_at": "2026-05-17T15:18:52.121258+00:00",
+    "local_path": "data/3gpp/raw/26102-700.zip",
+    "sha256": "f47821d29045b2b1c74b24ae5d11d316e0508133c439a95ec671654557999544",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-700"
     }
   },
   {
@@ -1652,14 +1701,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267216+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844507+00:00",
+    "ingested_at": "2026-05-17T15:18:52.548538+00:00",
+    "local_path": "data/3gpp/raw/26102-600.zip",
+    "sha256": "5da30f73a1110aa4a35e2b2b3bc37b1cc641b0dbfbd867d523cd84bdbec2efe2",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-600"
     }
   },
   {
@@ -1674,14 +1724,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267223+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844519+00:00",
+    "ingested_at": "2026-05-17T15:18:52.805455+00:00",
+    "local_path": "data/3gpp/raw/26102-520.zip",
+    "sha256": "58ff3e37f0fabe1c0ac0f8471d285aa08f100563e602ad75fc3362691b7a1b84",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-520"
     }
   },
   {
@@ -1696,14 +1747,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267230+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844531+00:00",
+    "ingested_at": "2026-05-17T15:18:53.092791+00:00",
+    "local_path": "data/3gpp/raw/26102-510.zip",
+    "sha256": "8a00e85a9c067db2e9f6ad5b402e49ea2e52dbe75182d0db73ab2fab89760b9d",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-510"
     }
   },
   {
@@ -1718,14 +1770,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267243+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844544+00:00",
+    "ingested_at": "2026-05-17T15:18:53.648323+00:00",
+    "local_path": "data/3gpp/raw/26102-500.zip",
+    "sha256": "42e56cc34e90c25c8e515c02fcc493e740802a6519e892fb872161986497555b",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-500"
     }
   },
   {
@@ -1740,14 +1793,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267250+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844556+00:00",
+    "ingested_at": "2026-05-17T15:18:54.267199+00:00",
+    "local_path": "data/3gpp/raw/26102-410.zip",
+    "sha256": "fb90c73508560f865bc22a195f98cff5fdf0b44fa9b73fb298f2e5f233ae7c04",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-410"
     }
   },
   {
@@ -1762,14 +1816,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267258+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844569+00:00",
+    "ingested_at": "2026-05-17T15:18:54.340300+00:00",
+    "local_path": "data/3gpp/raw/26102-400.zip",
+    "sha256": "a7dcd44fea0414318de1edd2449e73f674351146c52cec57fd72de9855c23265",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-400"
     }
   },
   {
@@ -1784,14 +1839,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:24.267265+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:13.844582+00:00",
+    "ingested_at": "2026-05-17T15:18:54.712182+00:00",
+    "local_path": "data/3gpp/raw/26102-340.zip",
+    "sha256": "7e6247d9299de2872c4c1fcf994e43e428911d329f708afbcc4b0731702e5c28",
     "metadata": {
       "series": "26-series",
-      "ftp_path": "/Specs/archive/26_series/26.102/"
+      "ftp_path": "/Specs/archive/26_series/26.102/",
+      "extracted_to": "data/3gpp/raw/26102-340"
     }
   },
   {
@@ -1807,7 +1863,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:24.267272+00:00",
+    "discovered_at": "2026-05-17T15:23:13.844595+00:00",
     "ingested_at": "2026-05-17T09:10:52.194000+00:00",
     "local_path": "data/3gpp/raw/26102-330.zip",
     "sha256": "3fe43f58279ed1eedd85f1e53ab1eea6546272fd331239c48d9c9f08172f718e",
@@ -1830,7 +1886,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:24.267279+00:00",
+    "discovered_at": "2026-05-17T15:23:13.844607+00:00",
     "ingested_at": "2026-05-17T08:42:49.937839+00:00",
     "local_path": "data/3gpp/raw/26102-020.zip",
     "sha256": "4f6431153733c740fa6f0e1ddcd45edab1f39b1445dab5bcd8a85f6e11dcde22",
@@ -1852,14 +1908,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635681+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274012+00:00",
+    "ingested_at": "2026-05-17T15:18:57.645495+00:00",
+    "local_path": "data/3gpp/raw/29061-720.zip",
+    "sha256": "0fa5fd851780798024a71415038d2055ec0236dcc5bb5ad2c50ea03666bfb9f3",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-720"
     }
   },
   {
@@ -1874,14 +1931,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635740+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274087+00:00",
+    "ingested_at": "2026-05-17T15:18:57.593441+00:00",
+    "local_path": "data/3gpp/raw/29061-710.zip",
+    "sha256": "b37e88a8702c538ddd4afcd9ae206ac91ae78d848782bc55477f434e31f8f6df",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-710"
     }
   },
   {
@@ -1896,14 +1954,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635764+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274116+00:00",
+    "ingested_at": "2026-05-17T15:18:57.795534+00:00",
+    "local_path": "data/3gpp/raw/29061-700.zip",
+    "sha256": "a415567eb54540175062a68ead7eeea68aa2f430c16a49a6eb23900b6f629ec5",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-700"
     }
   },
   {
@@ -1918,14 +1977,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635773+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274142+00:00",
+    "ingested_at": "2026-05-17T15:18:58.194304+00:00",
+    "local_path": "data/3gpp/raw/29061-6f0.zip",
+    "sha256": "60a11fd41ec71da6f94de20bd597f3362153d33373cd0a12b70100de1be633fb",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6f0"
     }
   },
   {
@@ -1940,14 +2000,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635781+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274165+00:00",
+    "ingested_at": "2026-05-17T15:19:00.463425+00:00",
+    "local_path": "data/3gpp/raw/29061-6e0.zip",
+    "sha256": "524f4a25dbe9bb54e48f9adc8378cc6fa2526f2cab93fa0f8bc352f8a0e820ff",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6e0"
     }
   },
   {
@@ -1962,14 +2023,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635788+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274185+00:00",
+    "ingested_at": "2026-05-17T15:19:00.464159+00:00",
+    "local_path": "data/3gpp/raw/29061-6d0.zip",
+    "sha256": "260a5843f32382f768c7ec950675b29b5c0ae083efe4627a466855029d6dfcbf",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6d0"
     }
   },
   {
@@ -1984,14 +2046,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635797+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274206+00:00",
+    "ingested_at": "2026-05-17T15:19:00.527623+00:00",
+    "local_path": "data/3gpp/raw/29061-6c0.zip",
+    "sha256": "f6c8ac12bfa2a27f4148e4e5ed4c9fca59d815f887c9fb628c76b5fae241c3c4",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6c0"
     }
   },
   {
@@ -2006,14 +2069,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635805+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274227+00:00",
+    "ingested_at": "2026-05-17T15:19:00.951576+00:00",
+    "local_path": "data/3gpp/raw/29061-6b0.zip",
+    "sha256": "15e398dd0b184cfcc86a74c2f2620b0c8fb3b4ecc5f00e3888e0943dc0b47d16",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6b0"
     }
   },
   {
@@ -2028,14 +2092,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635813+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274251+00:00",
+    "ingested_at": "2026-05-17T15:19:03.162620+00:00",
+    "local_path": "data/3gpp/raw/29061-6a0.zip",
+    "sha256": "1674b0d9e9f4b91ba0f4b7a5a457a83d14d2246c202370b173383d110113068c",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-6a0"
     }
   },
   {
@@ -2050,14 +2115,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635820+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274275+00:00",
+    "ingested_at": "2026-05-17T15:19:03.272098+00:00",
+    "local_path": "data/3gpp/raw/29061-690.zip",
+    "sha256": "e7b0d3a4f2482544e19c3013523174e2677f503fde0f3bcc04ab2bb654f700e4",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-690"
     }
   },
   {
@@ -2072,14 +2138,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635828+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274297+00:00",
+    "ingested_at": "2026-05-17T15:19:03.356540+00:00",
+    "local_path": "data/3gpp/raw/29061-680.zip",
+    "sha256": "5cfb5321821fa27afac84a8185e61d7a425717c2ef6f5d2b733712341302ef2b",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-680"
     }
   },
   {
@@ -2094,14 +2161,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635837+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274319+00:00",
+    "ingested_at": "2026-05-17T15:19:03.736888+00:00",
+    "local_path": "data/3gpp/raw/29061-670.zip",
+    "sha256": "09369c513f8b39528d777ddd88d3cdae6ef9fed58409a7e3ec48e9208160f047",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-670"
     }
   },
   {
@@ -2116,14 +2184,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635844+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274340+00:00",
+    "ingested_at": "2026-05-17T15:19:06.005944+00:00",
+    "local_path": "data/3gpp/raw/29061-660.zip",
+    "sha256": "fa299a176ba7801ded87589e5a56eaf267374e84c9270a0f5f77e5a65e574b4a",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-660"
     }
   },
   {
@@ -2138,14 +2207,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635851+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274363+00:00",
+    "ingested_at": "2026-05-17T15:19:05.991737+00:00",
+    "local_path": "data/3gpp/raw/29061-650.zip",
+    "sha256": "cfb13342b65043986df33a1e1db23ade3818c4ac088e1ef34b5ddfb8af0d257a",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-650"
     }
   },
   {
@@ -2160,14 +2230,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635858+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274385+00:00",
+    "ingested_at": "2026-05-17T15:19:06.142688+00:00",
+    "local_path": "data/3gpp/raw/29061-640.zip",
+    "sha256": "c4163d37874a82d407b273ecd79fafb4376e3fc10aed2a793f40fea434ce8e2a",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-640"
     }
   },
   {
@@ -2182,14 +2253,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635865+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274406+00:00",
+    "ingested_at": "2026-05-17T15:19:06.480986+00:00",
+    "local_path": "data/3gpp/raw/29061-631.zip",
+    "sha256": "c9afb97e14271124dd43ca6f50c0b1f413907cb12e2a7f2af73e5c4b07ad92c3",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-631"
     }
   },
   {
@@ -2204,14 +2276,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635872+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274426+00:00",
+    "ingested_at": "2026-05-17T15:19:08.519872+00:00",
+    "local_path": "data/3gpp/raw/29061-630.zip",
+    "sha256": "0a9c8c315f0a342c0c0bf38298b4ff08e4bdfa2f27c4d92121534a82e03524ce",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-630"
     }
   },
   {
@@ -2226,14 +2299,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635893+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274461+00:00",
+    "ingested_at": "2026-05-17T15:19:08.480596+00:00",
+    "local_path": "data/3gpp/raw/29061-620.zip",
+    "sha256": "77ffff27a5c50d60739d2ac078408b2fefc2cba9242e65d27c127d73d1dfcae9",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-620"
     }
   },
   {
@@ -2248,14 +2322,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635900+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274501+00:00",
+    "ingested_at": "2026-05-17T15:19:08.680595+00:00",
+    "local_path": "data/3gpp/raw/29061-610.zip",
+    "sha256": "2edf593881034fba4b5b54f19c1cf253e7a1ad36f58967be187339bf0f97049c",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-610"
     }
   },
   {
@@ -2270,14 +2345,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635908+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274524+00:00",
+    "ingested_at": "2026-05-17T15:19:08.841588+00:00",
+    "local_path": "data/3gpp/raw/29061-600.zip",
+    "sha256": "c88387e46bb5bfad440ebccad39c587ac0ecb01c5fb9eb75cda7465beec564b5",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-600"
     }
   },
   {
@@ -2292,14 +2368,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635916+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274548+00:00",
+    "ingested_at": "2026-05-17T15:19:11.638424+00:00",
+    "local_path": "data/3gpp/raw/29061-591.zip",
+    "sha256": "a437345bbfd2c9d081b5ec3cf5ed618e3aebe8bcc8da46c30df7a129bc0c40ab",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-591"
     }
   },
   {
@@ -2314,14 +2391,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635922+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274569+00:00",
+    "ingested_at": "2026-05-17T15:19:11.547815+00:00",
+    "local_path": "data/3gpp/raw/29061-590.zip",
+    "sha256": "926fb2b601f89d1585f5f5c510249896e7bd1492b4797d56b20a78f7b0fa188e",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-590"
     }
   },
   {
@@ -2336,14 +2414,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635930+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274590+00:00",
+    "ingested_at": "2026-05-17T15:19:11.703660+00:00",
+    "local_path": "data/3gpp/raw/29061-580.zip",
+    "sha256": "a5fb119e936cb81361460bd60ce1bbf20e60f767934de03c887ee93866d97d9d",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-580"
     }
   },
   {
@@ -2358,14 +2437,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635938+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274613+00:00",
+    "ingested_at": "2026-05-17T15:19:11.912282+00:00",
+    "local_path": "data/3gpp/raw/29061-570.zip",
+    "sha256": "1cd56c4b2e7685d7364eceab8698d1384d3aff9af26d6c97f77014b0d7fdc53b",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-570"
     }
   },
   {
@@ -2380,14 +2460,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635949+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274636+00:00",
+    "ingested_at": "2026-05-17T15:19:14.195834+00:00",
+    "local_path": "data/3gpp/raw/29061-560.zip",
+    "sha256": "f80a081d0a2154239e2d45edba7d822189f1bdb455acf43433b644383e5ad4dd",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-560"
     }
   },
   {
@@ -2402,14 +2483,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635957+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274656+00:00",
+    "ingested_at": "2026-05-17T15:19:14.292120+00:00",
+    "local_path": "data/3gpp/raw/29061-550.zip",
+    "sha256": "cf1a02faed7f11db46f3de9da13603b2a323c51701ef58f528e8fb1a748fc6f8",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-550"
     }
   },
   {
@@ -2424,14 +2506,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635963+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274678+00:00",
+    "ingested_at": "2026-05-17T15:19:14.242568+00:00",
+    "local_path": "data/3gpp/raw/29061-540.zip",
+    "sha256": "08e1edc209107a67869ab1c945d8ea791efcf088bff17a13ccbcfb5657fbfe0b",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-540"
     }
   },
   {
@@ -2446,14 +2529,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635970+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274735+00:00",
+    "ingested_at": "2026-05-17T15:19:14.527437+00:00",
+    "local_path": "data/3gpp/raw/29061-530.zip",
+    "sha256": "5a02b1476c6f91b8043422162bd75aecb0eb129c760865ace81e233f3de760a3",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-530"
     }
   },
   {
@@ -2468,14 +2552,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635977+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274767+00:00",
+    "ingested_at": "2026-05-17T15:19:16.555245+00:00",
+    "local_path": "data/3gpp/raw/29061-521.zip",
+    "sha256": "9431db4d78ae083d59f8bb385bdad14cbeb2ba1b70878dc72242789a254ead36",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-521"
     }
   },
   {
@@ -2490,14 +2575,15 @@
     "category": "Transport",
     "tier": "transport-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:40.635984+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:23:26.274789+00:00",
+    "ingested_at": "2026-05-17T15:19:16.752874+00:00",
+    "local_path": "data/3gpp/raw/29061-520.zip",
+    "sha256": "664feeea4a3b70cb0d90cb13629f3b2efc366021a4e8b5efa4dadeb7e5dbdeaa",
     "metadata": {
       "series": "29-series",
-      "ftp_path": "/Specs/archive/29_series/29.061/"
+      "ftp_path": "/Specs/archive/29_series/29.061/",
+      "extracted_to": "data/3gpp/raw/29061-520"
     }
   },
   {
@@ -2513,7 +2599,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:00.753042+00:00",
+    "discovered_at": "2026-05-17T15:22:48.344231+00:00",
     "ingested_at": "2026-05-17T08:42:50.318333+00:00",
     "local_path": "data/github_aomediacodec/raw/AOMediaCodec_av1-spec_master_archive.zip",
     "sha256": "ce2ee22823bee105e395d83824bd9f9be925c20a2bee797d8fb56a03089a685d",
@@ -2521,27 +2607,6 @@
       "stars": 362,
       "ingest_archive_url": "https://github.com/AOMediaCodec/av1-spec/archive/refs/heads/master.zip",
       "extracted_to": "data/github_aomediacodec/raw/AOMediaCodec_av1-spec_master_archive_extracted"
-    }
-  },
-  {
-    "source": "github",
-    "authority": "GitHub/w3c",
-    "title": "WebVTT Standard",
-    "external_id": "w3c/webvtt",
-    "version": "main",
-    "published": "2026-05-14T09:52:37Z",
-    "remote_url": "https://github.com/w3c/webvtt",
-    "file_type": "repository",
-    "category": "Transport",
-    "tier": "transport-level",
-    "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:00.762144+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
-    "metadata": {
-      "stars": 116
     }
   },
   {
@@ -2557,7 +2622,7 @@
     "tier": "transport-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:00.951737+00:00",
+    "discovered_at": "2026-05-17T15:22:48.535799+00:00",
     "ingested_at": "2026-05-17T09:10:52.906884+00:00",
     "local_path": "data/github_w3c/raw/w3c_ttml1_main_archive.zip",
     "sha256": "4285532b41b3aa9fb360ac85c231a47b372d774548c31ae02b91cd2d9bd787c8",
@@ -2565,6 +2630,30 @@
       "stars": 13,
       "ingest_archive_url": "https://github.com/w3c/ttml1/archive/refs/heads/main.zip",
       "extracted_to": "data/github_w3c/raw/w3c_ttml1_main_archive_extracted"
+    }
+  },
+  {
+    "source": "github",
+    "authority": "GitHub/w3c",
+    "title": "WebVTT Standard",
+    "external_id": "w3c/webvtt",
+    "version": "main",
+    "published": "2026-05-14T09:52:37Z",
+    "remote_url": "https://github.com/w3c/webvtt",
+    "file_type": "repository",
+    "category": "Transport",
+    "tier": "transport-level",
+    "publication_status": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:22:48.596994+00:00",
+    "ingested_at": "2026-05-17T15:19:15.927913+00:00",
+    "local_path": "data/github_w3c/raw/w3c_webvtt_main_archive.zip",
+    "sha256": "8f8d07fbfd162efa88054c21840b449bd8a61dd7031f814dd5d4870c86c883ac",
+    "metadata": {
+      "stars": 116,
+      "ingest_kind": "repository_archive",
+      "ingest_archive_url": "https://github.com/w3c/webvtt/archive/refs/heads/main.zip",
+      "extracted_to": "data/github_w3c/raw/w3c_webvtt_main_archive_extracted"
     }
   },
   {
@@ -2580,7 +2669,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:00.678618+00:00",
+    "discovered_at": "2026-05-17T15:22:48.302327+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -2605,7 +2694,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:00.986852+00:00",
+    "discovered_at": "2026-05-17T15:22:48.615995+00:00",
     "ingested_at": "2026-05-17T08:42:49.977913+00:00",
     "local_path": "data/iso_iec/raw/MPEGGroup_isobmff_master_archive.zip",
     "sha256": "f43c24c97ee70ff7f32629905e7380d9481c826bdb7ad6ac8b89e7d32d0359b7",
@@ -2632,7 +2721,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.300626+00:00",
+    "discovered_at": "2026-05-17T15:22:49.325125+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -2657,7 +2746,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.798187+00:00",
+    "discovered_at": "2026-05-17T15:22:49.717737+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -2683,19 +2772,19 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:02.112794+00:00",
-    "ingested_at": "2026-05-17T09:10:51.419324+00:00",
-    "local_path": "data/iso_iec/raw/MPEGGroup_FileFormatConformance.pdf",
-    "sha256": "8b5b94ecca27388bcc8bd37a42fb39f7387c12a80c71dc5b9e6b3bd8fe9b4825",
+    "discovered_at": "2026-05-17T15:22:50.089139+00:00",
     "metadata": {
       "discovery_profile": "structural_system",
       "iso_standard": "iso-iec-14496-15",
       "artifact_role": "reference_implementation",
-      "artifact_url": "https://github.com/MPEGGroup/FileFormatConformance",
       "core_structural_syntax": true,
-      "ingest_kind": "pdf_artifact",
-      "resolved_at_ingest": true
-    }
+      "ingest_archive_url": "https://github.com/MPEGGroup/FileFormatConformance/archive/refs/heads/main.zip",
+      "ingest_kind": "repository_archive",
+      "extracted_to": "data/iso_iec/raw/MPEGGroup_FileFormatConformance_main_archive_extracted"
+    },
+    "ingested_at": "2026-05-17T15:23:35.380338+00:00",
+    "local_path": "data/iso_iec/raw/MPEGGroup_FileFormatConformance_main_archive.zip",
+    "sha256": "a7771e87254d4f6ba9428ef4334637ea623679c50ddc4feb46071b1f5195d34c"
   },
   {
     "source": "iso",
@@ -2710,7 +2799,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:02.236548+00:00",
+    "discovered_at": "2026-05-17T15:22:50.777789+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -2726,27 +2815,28 @@
   {
     "source": "etsi",
     "authority": "ETSI/DVB",
-    "title": "DVB-DASH (TS 103 168 / A168 family): Technology hub",
+    "title": "DVB-DASH (TS 103 168 / A168 family)",
     "external_id": "etsi-dvb-dash-ts103168",
     "version": null,
-    "published": "1 June 2026",
-    "remote_url": "https://www.etsi.org/technologies/",
-    "file_type": "standard-page",
+    "published": null,
+    "remote_url": "https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/ts_103285v010301p.pdf",
+    "file_type": "pdf",
     "category": "Structural/System",
     "tier": "system-level",
-    "publication_status": "Published",
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.275891+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "publication_status": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:22:49.255014+00:00",
     "metadata": {
       "discovery_profile": "structural_system",
-      "liaison_or_attachment_links": [],
+      "portal_url": "https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/",
       "core_structural_syntax": true,
-      "note": "deliver_page_no_pdf_resolved",
-      "original_file_type": "standard-page"
-    }
+      "ingest_kind": "pdf_artifact",
+      "artifact_url": "https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/ts_103285v010301p.pdf",
+      "resolved_at_ingest": true
+    },
+    "ingested_at": "2026-05-17T15:23:28.643942+00:00",
+    "local_path": "data/etsi_dvb/raw/etsi-dvb-dash-ts103168.pdf",
+    "sha256": "e846e683816b1edb7645c63b4012f6919b3050ffb00a6d5cd6a53088a14a0abc"
   },
   {
     "source": "etsi",
@@ -2760,11 +2850,8 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.412319+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:22:50.263331+00:00",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
@@ -2781,8 +2868,14 @@
         "https://www.etsi.org/deliver/etsi_en/300700_300799/300743/01.06.01_60/"
       ],
       "core_structural_syntax": true,
-      "note": "deliver_page_no_pdf_resolved"
-    }
+      "note": "deliver_page_no_pdf_resolved",
+      "ingest_kind": "pdf_artifact",
+      "artifact_url": "https://www.etsi.org/deliver/etsi_en/300700_300799/300743/01.02.01_40/en_300743v010201o.pdf",
+      "resolved_at_ingest": true
+    },
+    "ingested_at": "2026-05-17T15:38:49.761210+00:00",
+    "local_path": "data/etsi_dvb/raw/etsi-en-300-743-dvb-sub.pdf",
+    "sha256": "dc6123230745403244157a5c98e3316e09db2865b8f016f276e609a578c261cc"
   },
   {
     "source": "etsi",
@@ -2796,11 +2889,8 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.546088+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:22:50.622965+00:00",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
@@ -2840,8 +2930,15 @@
         "https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.19.00_20/",
         "https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.19.01_60/"
       ],
-      "note": "deliver_page_no_pdf_resolved"
-    }
+      "core_structural_syntax": true,
+      "note": "deliver_page_no_pdf_resolved",
+      "ingest_kind": "pdf_artifact",
+      "artifact_url": "https://www.etsi.org/deliver/etsi_en/300400_300499/300468/01.03.01_40/en_300468v010301o.pdf",
+      "resolved_at_ingest": true
+    },
+    "ingested_at": "2026-05-17T15:38:49.781214+00:00",
+    "local_path": "data/etsi_dvb/raw/etsi-en-300-468-dvb-si.pdf",
+    "sha256": "a3f1ff57a5d298f4bb6cfc4e4cbff2565966260e00a4bc4aebb15338bee7f328"
   },
   {
     "source": "etsi",
@@ -2855,11 +2952,11 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:05.665136+00:00",
-    "ingested_at": "2026-05-17T09:11:57.632861+00:00",
-    "local_path": "data/etsi_dvb/raw/etsi-dvb-s2-en302307.pdf",
-    "sha256": "99db23eb67c250ef250999c37d29b93225eab46accc7ccfa8acc44225a3f8d53",
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:50.856737+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
@@ -2873,10 +2970,7 @@
         "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.03.01_20/",
         "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.03.01_60/"
       ],
-      "note": "deliver_page_no_pdf_resolved",
-      "ingest_kind": "pdf_artifact",
-      "artifact_url": "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.01.01_20/en_302307v010101c.pdf",
-      "resolved_at_ingest": true
+      "note": "deliver_page_no_pdf_resolved"
     }
   },
   {
@@ -2892,7 +2986,10 @@
     "tier": "system-level",
     "publication_status": "Published",
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:01.200039+00:00",
+    "discovered_at": "2026-05-17T15:22:48.819848+00:00",
+    "ingested_at": "2026-05-17T09:24:22.627096+00:00",
+    "local_path": "data/w3c/raw/w3c-tr-imsc11.html",
+    "sha256": "fbd08b223ae8e467ba06742e33c38f1c80bfe6a7ddc105529339957858504b29",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
@@ -2900,12 +2997,8 @@
         "https://tech.ebu.ch/files/live/sites/tech/files/shared/tech/tech3390.pdf",
         "http://standards.iso.org/ittf/PubliclyAvailableStandards/c065274_ISO_IEC_23009-1_2014.zip"
       ],
-      "ingest_kind": "page_snapshot",
-      "original_file_type": "standard-page"
-    },
-    "ingested_at": "2026-05-17T09:24:22.627096+00:00",
-    "local_path": "data/w3c/raw/w3c-tr-imsc11.html",
-    "sha256": "fbd08b223ae8e467ba06742e33c38f1c80bfe6a7ddc105529339957858504b29"
+      "ingest_kind": "page_snapshot"
+    }
   },
   {
     "source": "w3c",
@@ -2919,17 +3012,18 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": "Published",
-    "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.961298+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
+    "status": "ingested",
+    "discovered_at": "2026-05-17T15:22:50.959397+00:00",
+    "ingested_at": "2026-05-17T15:19:14.666865+00:00",
+    "local_path": "data/w3c/raw/w3c-tr-imsc13.html",
+    "sha256": "2c63858f970ebadb2f3228f8ccce62c5f0c83405e97ed41a1b8e8c2ed70f7fa0",
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
         "https://tech.ebu.ch/docs/tech/tech3380v1_0_1.pdf",
         "https://tech.ebu.ch/docs/tech/tech3390v1_0.pdf"
-      ]
+      ],
+      "ingest_kind": "page_snapshot"
     }
   },
   {
@@ -2944,19 +3038,16 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": "Published",
-    "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:01.869131+00:00",
-    "ingested_at": "2026-05-17T09:10:52.962890+00:00",
-    "local_path": "data/smpte/raw/smpte-st-2110.pdf",
-    "sha256": "0ce0b25bacc702109b9ace991bcf44e556a66b2b8863ad5b6024559f26d5b403",
+    "status": "discovered",
+    "discovered_at": "2026-05-17T15:22:51.049597+00:00",
+    "ingested_at": null,
+    "local_path": null,
+    "sha256": null,
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
         "https://www.smpte.org/technology-reports-downloads?hsLang=en"
-      ],
-      "ingest_kind": "pdf_artifact",
-      "artifact_url": "https://www.smpte.org/hubfs/er1009-2023.pdf?hsLang=en",
-      "resolved_at_ingest": true
+      ]
     }
   },
   {
@@ -2972,7 +3063,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.869174+00:00",
+    "discovered_at": "2026-05-17T15:22:51.049648+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -2994,7 +3085,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:01.979338+00:00",
+    "discovered_at": "2026-05-17T15:22:49.562261+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -3021,7 +3112,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:02.253145+00:00",
+    "discovered_at": "2026-05-17T15:22:51.064654+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -3048,7 +3139,7 @@
     "tier": "system-level",
     "publication_status": "Published",
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:04.485824+00:00",
+    "discovered_at": "2026-05-17T15:22:53.181061+00:00",
     "ingested_at": "2026-05-17T09:10:58.691293+00:00",
     "local_path": "data/dvb/raw/dvb-bluebook-001.html",
     "sha256": "f95cbf4bd700563eac0f83b7c0f3f3dfe9f30196a44abaab8bb4ed200d14437f",
@@ -3058,8 +3149,7 @@
         "https://dvb.org/membership/liaisons/"
       ],
       "dvb_crawler": "bluebook_suite",
-      "ingest_kind": "page_snapshot",
-      "original_file_type": "standard-page"
+      "ingest_kind": "page_snapshot"
     }
   },
   {
@@ -3075,7 +3165,7 @@
     "tier": "system-level",
     "publication_status": "Published",
     "status": "discovered",
-    "discovered_at": "2026-05-17T08:42:05.445276+00:00",
+    "discovered_at": "2026-05-17T15:22:54.205189+00:00",
     "ingested_at": null,
     "local_path": null,
     "sha256": null,
@@ -3100,7 +3190,7 @@
     "tier": "system-level",
     "publication_status": null,
     "status": "ingested",
-    "discovered_at": "2026-05-17T08:42:01.070012+00:00",
+    "discovered_at": "2026-05-17T15:22:48.649241+00:00",
     "ingested_at": "2026-05-17T08:42:50.676794+00:00",
     "local_path": "data/github_w3c/raw/w3c_imsc_main_archive.zip",
     "sha256": "2368e7e92c2712ee7e14b0552dec58b0712d579e5caf3ca072976ce43033d667",

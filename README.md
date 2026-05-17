@@ -79,6 +79,18 @@ Normalization behavior:
 3. Trigger `ingest.py` only for requested authorities/specs.
 4. Run `normalize.py` before chunking/indexing for RAG.
 
+## Chunking and retrieval
+
+```bash
+python chunk.py
+python embed.py
+python eval_retrieval.py
+```
+
+- `chunk.py` writes `data/chunks/chunks.jsonl` (paragraph-aware packs).
+- `embed.py` builds `data/embeddings/vectors.npy` and `chunk_index.jsonl` (MiniLM).
+- `eval_retrieval.py` runs queries from `data/eval/queries.jsonl`.
+
 ## GitHub
 
 Published as: [github.com/GaliDev/vspp-rag](https://github.com/GaliDev/vspp-rag)

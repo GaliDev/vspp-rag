@@ -61,11 +61,11 @@ ETSI_TARGETS: list[dict[str, Any]] = [
         "external_id": "etsi-dvb-dash-ts103168",
         "title_hint": "DVB-DASH (TS 103 168 / A168 family)",
         "urls": [
-            "https://www.etsi.org/deliver/etsi_ts/103100_103199/103285/",
+            "https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/",
+            "https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/",
             "https://www.etsi.org/deliver/etsi_ts/103100_103199/103168/",
-            "https://www.etsi.org/deliver/etsi_ts/103100_103199/103168_01/",
         ],
-        "search_queries": ["TS 103 168 DVB", "DVB-DASH TS 103 285"],
+        "search_queries": ["TS 103 285 DVB-DASH", "TS 103 168 DVB", "MPEG-DASH DVB"],
         "core_structural_syntax": True,
     },
     {
@@ -85,6 +85,7 @@ ETSI_TARGETS: list[dict[str, Any]] = [
             "https://www.etsi.org/deliver/etsi_en/300400_300499/300468/",
         ],
         "search_queries": ["EN 300 468", "DVB-SI 300 468"],
+        "core_structural_syntax": True,
     },
     {
         "external_id": "etsi-dvb-s2-en302307",
@@ -394,24 +395,45 @@ def _parse_generic_portal(
     )
 
 
-def _etsi_search_first_hit(query: str) -> str | None:
+def _etsi_url_matches_spec(url: str, external_id: str) -> bool:
+    low = url.lower()
+    if ".pdf" in low:
+        return False
+    if external_id == "etsi-dvb-dash-ts103168":
+        return any(t in low for t in ("103168", "103285", "103200_103299"))
+    if external_id == "etsi-en-300-468-dvb-si":
+        return "300468" in low
+    if external_id == "etsi-en-300-743-dvb-sub":
+        return "300743" in low
+    if external_id == "etsi-dvb-s2-en302307":
+        return "302307" in low
+    return True
+
+
+def _etsi_search_first_hit(query: str, *, external_id: str) -> str | None:
     q = requests.utils.quote(query)
     url = f"https://www.etsi.org/search/site/{q}"
     html = _fetch(url)
     if not html:
         return None
     soup = BeautifulSoup(html, "lxml")
-    for a in soup.select("a[href*='/deliver/'], a[href*='/standard/'], a[href*='/technologies/']"):
+    deliver_hits: list[str] = []
+    for a in soup.select("a[href*='/deliver/'], a[href*='/standard/']"):
         href = a.get("href")
         if not href:
             continue
         full = urljoin(url, href)
-        if urlparse(full).netloc.endswith("etsi.org"):
-            return full
+        if urlparse(full).netloc.endswith("etsi.org") and "/deliver/" in full.lower():
+            deliver_hits.append(full)
+    for hit in deliver_hits:
+        if _etsi_url_matches_spec(hit, external_id):
+            return hit
     for a in soup.find_all("a", href=True):
         href = a.get("href", "")
         if "/deliver/" in href:
-            return urljoin(url, href)
+            full = urljoin(url, href)
+            if _etsi_url_matches_spec(full, external_id):
+                return full
     return None
 
 
@@ -423,7 +445,8 @@ def _discover_etsi() -> list[DiscoveryRecord]:
         landed_url: str | None = None
         html: str | None = None
         candidates: list[tuple[str, str]] = []
-        for u in spec["urls"]:
+        seed_urls = [u for u in spec["urls"] if _etsi_url_matches_spec(u, ext_id)]
+        for u in seed_urls:
             h = _fetch(u)
             if h:
                 candidates.append((u, h))
@@ -434,14 +457,14 @@ def _discover_etsi() -> list[DiscoveryRecord]:
             )
         if not html:
             for q in spec["search_queries"]:
-                hit = _etsi_search_first_hit(q)
+                hit = _etsi_search_first_hit(q, external_id=ext_id)
                 if hit:
                     h = _fetch(hit)
                     if h:
                         landed_url, html = hit, h
                         break
             if not html:
-                fallback = "https://www.etsi.org/technologies#DVB"
+                fallback = spec["urls"][0] if spec.get("urls") else "https://www.etsi.org/deliver/"
                 fm: dict[str, Any] = {
                     "discovery_profile": "structural_system",
                     "search_queries": spec["search_queries"],
@@ -483,10 +506,13 @@ def _discover_etsi() -> list[DiscoveryRecord]:
         else:
             portal_meta = dict(em_etsi)
             portal_meta["note"] = "deliver_page_no_pdf_resolved"
+            portal_url = landed_url or (seed_urls[0] if seed_urls else "")
+            if portal_url.lower().endswith(".pdf"):
+                portal_url = seed_urls[0] if seed_urls else spec["urls"][0]
             records.append(
                 _parse_generic_portal(
                     html,
-                    landed_url or "",
+                    portal_url,
                     source="etsi",
                     authority="ETSI/DVB",
                     external_id=ext_id,

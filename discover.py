@@ -14,7 +14,7 @@ from src.collectors import (
     discover_webdrafts,
 )
 from src.core.catalog import write_pm_catalog
-from src.core.io import save_manifest
+from src.core.io import load_manifest, merge_discovery_preserving_ingest, save_manifest
 
 
 ROOT = Path(__file__).parent
@@ -44,6 +44,9 @@ def main() -> None:
     parser = argparse.ArgumentParser(description="Run standards discovery phase.")
     parser.parse_args()
     records = asyncio.run(run_discovery())
+    if MANIFEST_PATH.exists():
+        existing = load_manifest(MANIFEST_PATH)
+        records = merge_discovery_preserving_ingest(records, existing)
     save_manifest(MANIFEST_PATH, records)
     write_pm_catalog(records, CATALOG_PATH)
     unique_ids = {r.get("external_id") for r in records if r.get("external_id")}

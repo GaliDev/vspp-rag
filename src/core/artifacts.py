@@ -131,10 +131,14 @@ def resolve_pdf_from_urls(
 
 
 def should_skip_runtime_pdf_resolution(record: dict[str, Any]) -> bool:
-    """W3C TR pages should be ingested as HTML, not liaison PDFs from related specs."""
+    """Skip PDF crawl for rows with a dedicated ingest path (W3C TR HTML, GitHub archives)."""
     source = str(record.get("source") or "").lower()
     remote = str(record.get("remote_url") or "").lower()
-    return source == "w3c" and "/tr/" in remote
+    if source == "w3c" and "/tr/" in remote:
+        return True
+    if source == "github" and record.get("file_type") == "repository":
+        return True
+    return False
 
 
 def pdf_url_matches_record(url: str, record: dict[str, Any]) -> bool:
@@ -154,10 +158,16 @@ def pdf_url_matches_record(url: str, record: dict[str, Any]) -> bool:
         return False
 
     if ext.startswith("etsi-dvb-dash"):
-        return any(token in low for token in ("103168", "103285", "dash", "etsi_ts"))
+        return any(token in low for token in ("103168", "103285", "ts_103168", "ts_103285"))
+
+    if "300-468" in ext or ext.startswith("etsi-en-300-468"):
+        return "300468" in low or "en_300468" in low
+
+    if "300-743" in ext or ext.startswith("etsi-en-300-743"):
+        return "300743" in low or "en_300743" in low
 
     if "en302307" in ext or ext.startswith("etsi-dvb-s2"):
-        return any(token in low for token in ("302307", "en_302307", "s2", "dvb-s2"))
+        return any(token in low for token in ("302307", "en_302307"))
 
     if "ebu.ch" in low and source == "w3c":
         return False

@@ -14,7 +14,10 @@ build/
 .ruff_cache/
 
 # Local discovery / ingest artifacts (regenerate with discover.py / ingest.py)
-data/
+data/*
+!data/eval/
+data/eval/*
+!data/eval/queries.jsonl
 
 # Environment
 .env

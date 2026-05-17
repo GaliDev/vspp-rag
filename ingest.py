@@ -221,10 +221,35 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     ):
         return record
 
+    gh_url = _github_archive_url(record)
+    if gh_url:
+        ext = record["external_id"].replace("/", "_")
+        branch = (record.get("version") or "main").replace("/", "_")
+        target_path = raw_dir / safe_filename(f"{ext}_{branch}_archive.zip")
+        downloaded_path = download_file(gh_url, target_path, opts.max_bytes)
+        metadata = record.setdefault("metadata", {})
+        metadata.pop("ingest_error", None)
+        record["status"] = "ingested"
+        record["ingested_at"] = utc_now_iso()
+        record["local_path"] = str(downloaded_path.relative_to(ROOT))
+        record["sha256"] = sha256_file(downloaded_path)
+        metadata["ingest_archive_url"] = gh_url
+        metadata["ingest_kind"] = "repository_archive"
+        extract_dir = downloaded_path.parent / (downloaded_path.stem + "_extracted")
+        try:
+            safe_unzip(downloaded_path, extract_dir)
+            metadata["extracted_to"] = str(extract_dir.relative_to(ROOT))
+        except Exception as exc:
+            metadata["extract_unzip_error"] = str(exc)
+        return record
+
     runtime_pdf = _resolve_runtime_pdf(record, opts)
     if runtime_pdf:
         target_path = raw_dir / safe_filename(f"{record['external_id']}.pdf")
         downloaded_path = download_file(runtime_pdf, target_path, opts.max_bytes)
+        if not downloaded_path.read_bytes()[:5].startswith(b"%PDF"):
+            downloaded_path.unlink(missing_ok=True)
+            raise ValueError(f"resolved URL is not a PDF: {runtime_pdf}")
         metadata = record.setdefault("metadata", {})
         metadata.pop("ingest_error", None)
         record["status"] = "ingested"
@@ -261,27 +286,6 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
         record["local_path"] = str(downloaded_path.relative_to(ROOT))
         record["sha256"] = sha256_file(downloaded_path)
         metadata["ingest_kind"] = "text_artifact"
-        return record
-
-    gh_url = _github_archive_url(record)
-    if gh_url:
-        ext = record["external_id"].replace("/", "_")
-        branch = (record.get("version") or "main").replace("/", "_")
-        target_path = raw_dir / safe_filename(f"{ext}_{branch}_archive.zip")
-        downloaded_path = download_file(gh_url, target_path, opts.max_bytes)
-        metadata = record.setdefault("metadata", {})
-        metadata.pop("ingest_error", None)
-        record["status"] = "ingested"
-        record["ingested_at"] = utc_now_iso()
-        record["local_path"] = str(downloaded_path.relative_to(ROOT))
-        record["sha256"] = sha256_file(downloaded_path)
-        metadata["ingest_archive_url"] = gh_url
-        extract_dir = downloaded_path.parent / (downloaded_path.stem + "_extracted")
-        try:
-            safe_unzip(downloaded_path, extract_dir)
-            metadata["extracted_to"] = str(extract_dir.relative_to(ROOT))
-        except Exception as exc:
-            metadata["extract_unzip_error"] = str(exc)
         return record
 
     parsed = urlparse(remote)

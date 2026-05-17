@@ -1,0 +1,7 @@
+{"id": "dash-mpd", "query": "DVB-DASH MPD segment template and Period element", "expect_external_ids": ["etsi-dvb-dash-ts103168"]}
+{"id": "isobmff-moof", "query": "ISO BMFF movie fragment moof trun box structure", "expect_external_ids": ["MPEGGroup/isobmff"]}
+{"id": "imsc-profile", "query": "IMSC text profile ttml styling requirements", "expect_external_ids": ["w3c-tr-imsc11", "w3c-tr-imsc13", "w3c/imsc"]}
+{"id": "av1-obu", "query": "AV1 OBU sequence header and tile group syntax", "expect_external_ids": ["AOMediaCodec/av1-spec"]}
+{"id": "dvb-s2", "query": "DVB-S2 FEC frame structure and MODCOD", "expect_external_ids": ["etsi-dvb-s2-en302307"]}
+{"id": "dvb-si", "query": "DVB service information PSI/SI PAT PMT NIT", "expect_external_ids": ["etsi-en-300-468-dvb-si"]}
+{"id": "dvb-sub", "query": "DVB subtitling EN 300 743 segment display", "expect_external_ids": ["etsi-en-300-743-dvb-sub"]}
