@@ -43,7 +43,7 @@ New pieces:
 |---|------|--------|--------|-------|
 | 1 | Confluence deployment | **Done** | **Data Center / Server** | `http://10.65.130.11:8090` (HTTP, port 8090). Internal network / VPN only — not reachable from public CI. |
 | 2 | Confluence scope | **Done** | **Option A — allowlist only** | Spaces: **DevOps**, **NG GUI**, **QA Automation** (not all spaces). CQL in v1: **no**. No `CONFLUENCE_SPACES=*`; revisit denylist only if scope widens later. |
-| 3 | ADO scope | Pending | Org: `___`, projects: `___` | Wiki-only v1 |
+| 3 | ADO scope | **Done** | Org **`tm-vspp`**, project **`MK-VSPP`** | [Azure DevOps](https://dev.azure.com/tm-vspp/MK-VSPP). Wiki-only v1; allowlist (single project). |
 | 4 | Auth | Pending | Service account + API token / PAT | Env vars only; never commit secrets |
 | 5 | Manifest `category` | Pending | `Internal` (recommended) | Prefer new `Internal` for router |
 | 6 | Corpus partition | Pending | Single index + metadata filters | Split indexes later if needed |
@@ -87,6 +87,27 @@ export CONFLUENCE_SPACES="DEVOPS,NGGUI,QAAUTOMATION"   # placeholder — replace
 ```
 
 Optional: `GET /rest/api/space` once to map display name → key if keys differ from guesses above. Do **not** discover pages outside this allowlist.
+
+### Decision 3 — ADO scope (locked: single project)
+
+From project URL `https://dev.azure.com/tm-vspp/MK-VSPP`:
+
+| Field | Value |
+|-------|--------|
+| Organization | `tm-vspp` |
+| Project(s) | `MK-VSPP` (only project in v1) |
+| API base | `https://dev.azure.com/tm-vspp` |
+| Wiki API example | `GET https://dev.azure.com/tm-vspp/MK-VSPP/_apis/wiki/wikis?api-version=7.1` |
+
+**Scope:** project wiki pages only (not work items, repos, or other org projects unless added later).
+
+**Planned env:**
+
+```bash
+export ADO_ORG="tm-vspp"
+export ADO_WIKI_PROJECTS="MK-VSPP"
+export ADO_PAT="..."   # Wiki (Read) + Project and team (Read)
+```
 
 ## Phase 1 — ADO wiki (recommended first)
 
@@ -133,10 +154,10 @@ export CONFLUENCE_USER="..."                 # DC: username (or email if configu
 export CONFLUENCE_PASSWORD="..."             # or PAT from Confluence profile
 export CONFLUENCE_SPACES="DEVOPS,NGGUI,QA"   # space keys — verify in Space settings
 
-# Azure DevOps (TBD)
-export ADO_ORG="yourorg"
-export ADO_PAT="..."                         # Wiki (Read) + Project (Read)
-export ADO_WIKI_PROJECTS="VSPP-Platform"   # comma-separated project names
+# Azure DevOps
+export ADO_ORG="tm-vspp"
+export ADO_PAT="..."                         # Wiki (Read) + Project and team (Read)
+export ADO_WIKI_PROJECTS="MK-VSPP"
 ```
 
 Copy to `.env` locally; add `.env` to `.gitignore` if not already covered.

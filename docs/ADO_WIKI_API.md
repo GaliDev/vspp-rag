@@ -6,6 +6,8 @@
 https://dev.azure.com/{organization}
 ```
 
+**This project (planned):** `https://dev.azure.com/tm-vspp`, project `MK-VSPP` ([project home](https://dev.azure.com/tm-vspp/MK-VSPP)).
+
 ## Authentication
 
 Personal Access Token (PAT) with scopes:
