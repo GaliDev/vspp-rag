@@ -4,11 +4,12 @@
 
 | | Cloud | Data Center / Server |
 |---|--------|----------------------|
-| Base | `https://{site}.atlassian.net/wiki` | `https://{host}/` |
-| Auth | Email + API token (Basic) | PAT or Basic |
-| List content | REST v1 `/rest/api/content/search` + CQL | Same pattern under `/rest/api/` |
+| Base | `https://{site}.atlassian.net/wiki` | `http(s)://{host}:{port}/` e.g. `http://10.65.130.11:8090` |
+| Auth | Email + API token (Basic) | Username + password or PAT (Basic) |
+| List content | REST `/rest/api/content/search` + CQL | Same under `/rest/api/` |
+| Network | Public internet | Often VPN / internal IP only |
 
-Confirm deployment before coding base URLs.
+**This project (planned):** Data Center at `http://10.65.130.11:8090`, spaces DevOps / NG GUI / QA Automation (confirm space keys in Space settings).
 
 ## Authentication (Cloud)
 

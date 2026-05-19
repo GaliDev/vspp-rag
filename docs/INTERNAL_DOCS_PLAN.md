@@ -37,17 +37,49 @@ New pieces:
 | Normalize | Markdown (ADO), HTML/storage (Confluence) |
 | Retrieval | filters in `src/core/retrieval.py` (`source`, `space_key`, `ado_project`) |
 
-## Phase 0 — Decisions (fill before implementation)
+## Phase 0 — Decisions
 
-| Item | Choice | Notes |
-|------|--------|-------|
-| Confluence deployment | Cloud / Data Center | API base URL differs |
-| Confluence scope | Space keys: `___` | CQL optional for date/label filters |
-| ADO scope | Org: `___`, projects: `___` | Wiki-only v1 |
-| Auth | Service account + API token / PAT | Env vars only; never commit secrets |
-| Manifest `category` | `Internal` (new) or reuse `Structural/System` | Prefer new `Internal` for router |
-| Corpus partition | Single index + metadata filters | Split indexes later if needed |
-| Incremental sync | `metadata.content_version` / ADO etag | Full re-embed OK for POC scale |
+| # | Item | Status | Choice | Notes |
+|---|------|--------|--------|-------|
+| 1 | Confluence deployment | **Done** | **Data Center / Server** | `http://10.65.130.11:8090` (HTTP, port 8090). Internal network / VPN only — not reachable from public CI. |
+| 2 | Confluence scope | **Done** | Spaces: **DevOps**, **NG GUI**, **QA Automation** | See [space keys](#confluence-space-keys) below. CQL in v1: **no** (space list only). Denylist: **TBD**. |
+| 3 | ADO scope | Pending | Org: `___`, projects: `___` | Wiki-only v1 |
+| 4 | Auth | Pending | Service account + API token / PAT | Env vars only; never commit secrets |
+| 5 | Manifest `category` | Pending | `Internal` (recommended) | Prefer new `Internal` for router |
+| 6 | Corpus partition | Pending | Single index + metadata filters | Split indexes later if needed |
+| 7 | Incremental sync | Pending | Version skip on discover; full re-embed OK for POC | Schedule: TBD |
+
+### Decision 1 — Confluence host (locked)
+
+| Field | Value |
+|-------|--------|
+| Deployment | Data Center / Server (self-hosted) |
+| Base URL | `http://10.65.130.11:8090` |
+| Context path | `/` (root; re-check if REST returns 404) |
+| REST prefix | `http://10.65.130.11:8090/rest/api/` |
+
+Ingest must run on a machine with route access to `10.65.130.11` (office LAN or VPN).
+
+### Confluence space keys
+
+You named three **spaces** (likely display names). The REST API and `CONFLUENCE_SPACES` env var use **space keys** (short codes in URLs), not display names.
+
+| Display name (you provided) | Space key (verify in UI or API) |
+|-----------------------------|----------------------------------|
+| DevOps | Often `DEVOPS` or `DevOps` — check URL: `/display/DEVOPS/` or Space settings → Key |
+| NG GUI | Often `NGGUI`, `NG`, or `NGGUI` — keys rarely contain spaces |
+| QA Automation | Often `QA`, `QAA`, or `QAAUTOMATION` |
+
+**How to verify:** open each space → **Space settings** → **Space details** → **Key**, or read the URL when browsing the space home page.
+
+**Planned env (after keys confirmed):**
+
+```bash
+export CONFLUENCE_BASE_URL="http://10.65.130.11:8090"
+export CONFLUENCE_SPACES="DEVOPS,NGGUI,QAAUTOMATION"   # placeholder — replace with real keys
+```
+
+Collector should call `GET /rest/api/space` once at setup to map display name → key if keys differ from guesses above.
 
 ## Phase 1 — ADO wiki (recommended first)
 
@@ -88,13 +120,13 @@ See [CONFLUENCE_API.md](./CONFLUENCE_API.md).
 ## Environment variables (template)
 
 ```bash
-# Confluence Cloud
-export CONFLUENCE_BASE_URL="https://YOURCO.atlassian.net"
-export CONFLUENCE_EMAIL="bot@yourco.com"
-export CONFLUENCE_API_TOKEN="..."          # from Atlassian account settings
-export CONFLUENCE_SPACES="VSPP,ARCH"       # comma-separated space keys
+# Confluence Data Center (internal)
+export CONFLUENCE_BASE_URL="http://10.65.130.11:8090"
+export CONFLUENCE_USER="..."                 # DC: username (or email if configured)
+export CONFLUENCE_PASSWORD="..."             # or PAT from Confluence profile
+export CONFLUENCE_SPACES="DEVOPS,NGGUI,QA"   # space keys — verify in Space settings
 
-# Azure DevOps
+# Azure DevOps (TBD)
 export ADO_ORG="yourorg"
 export ADO_PAT="..."                         # Wiki (Read) + Project (Read)
 export ADO_WIKI_PROJECTS="VSPP-Platform"   # comma-separated project names
