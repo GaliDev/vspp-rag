@@ -45,7 +45,7 @@ New pieces:
 | 2 | Confluence scope | **Done** | **Option A — allowlist only** | Spaces: **DevOps**, **NG GUI**, **QA Automation** (not all spaces). CQL in v1: **no**. No `CONFLUENCE_SPACES=*`; revisit denylist only if scope widens later. |
 | 3 | ADO scope | **Done** | Org **`tm-vspp`**, project **`MK-VSPP`** | [Azure DevOps](https://dev.azure.com/tm-vspp/MK-VSPP). Wiki-only v1; allowlist (single project). |
 | 4 | Auth | **Done** | **Option A — personal credentials (POC)** | Your Confluence user/password (or PAT) + your ADO PAT in `.env`. Bot/service account later for production. |
-| 5 | Manifest `category` | Pending | `Internal` (recommended) | Prefer new `Internal` for router |
+| 5 | Manifest `category` | **Done** | **`Internal`** | Confluence + ADO wiki chunks; `tier=system-level`. Router/filter excludes or includes vs Transport / Structural/System. |
 | 6 | Corpus partition | Pending | Single index + metadata filters | Split indexes later if needed |
 | 7 | Incremental sync | Pending | Version skip on discover; full re-embed OK for POC | Schedule: TBD |
 
@@ -121,6 +121,18 @@ export ADO_PAT="..."   # Wiki (Read) + Project and team (Read)
 **Rules:** store only in `.env` (gitignored); read-only PAT/scopes; token sees only what your user can read in the three Confluence spaces + MK-VSPP wiki.
 
 **Not required for POC:** security sign-off, shared bot account, SSO integration.
+
+### Decision 5 — Manifest category (locked)
+
+**Chosen:** new category **`Internal`** (not mixed into `Structural/System`).
+
+| Field | Value |
+|-------|--------|
+| `category` | `Internal` |
+| `tier` | `system-level` (same as other system docs) |
+| `source` | `confluence` or `ado_wiki` |
+
+Collectors set this on manifest rows; `normalize` → `chunk` → `embed` propagate it. Retrieval: `--category Internal` or router hints; standards queries should not default to Internal (see Decision 6).
 
 ## Phase 1 — ADO wiki (recommended first)
 
