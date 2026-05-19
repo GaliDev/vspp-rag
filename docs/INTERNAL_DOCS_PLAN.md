@@ -47,7 +47,7 @@ New pieces:
 | 4 | Auth | **Done** | **Option A — personal credentials (POC)** | Your Confluence user/password (or PAT) + your ADO PAT in `.env`. Bot/service account later for production. |
 | 5 | Manifest `category` | **Done** | **`Internal`** | Confluence + ADO wiki chunks; `tier=system-level`. Router/filter excludes or includes vs Transport / Structural/System. |
 | 6 | Corpus partition | **Done** | **Single index**; default retrieval **standards only** | One `vectors.npy`; exclude `category=Internal` by default. `--category Internal` or `--include-internal` for wiki docs. |
-| 7 | Incremental sync | Pending | Version skip on discover; full re-embed OK for POC | Schedule: TBD |
+| 7 | Incremental sync | **Done** | **Incremental discover; full re-embed; manual runs** | Skip unchanged pages on discover; full `embed.py` each pipeline run; no cron until Phase 3. |
 
 ### Decision 1 — Confluence host (locked)
 
@@ -147,6 +147,27 @@ Collectors set this on manifest rows; `normalize` → `chunk` → `embed` propag
 | Both corpora | `python retrieve.py "..." --include-internal` |
 
 Implementation: extend `RetrievalFilters` with `exclude_categories` or default denylist `Internal` when no `--include-internal`. Split vector DB deferred until corpus is large.
+
+### Decision 7 — Incremental sync (locked)
+
+| Aspect | POC choice |
+|--------|------------|
+| **Discover** | **Yes** — skip Confluence pages when `version.number` unchanged; track ADO page version/etag in manifest metadata |
+| **Re-embed** | **Full rebuild** — run `embed.py` over all chunks after each ingest cycle (fine until internal corpus is large) |
+| **Schedule** | **Manual** — run discover → ingest → normalize → sync → chunk → embed when you choose; automated cron in Phase 3 |
+
+**Typical manual refresh:**
+
+```bash
+python discover.py          # includes ado_wiki + confluence when implemented
+python ingest.py ...
+python normalize.py && python sync_corpus.py --prune
+python chunk.py && python embed.py
+```
+
+---
+
+**Phase 0 complete.** All seven decisions locked; ready for Phase 1 (ADO wiki collector) implementation.
 
 ## Phase 1 — ADO wiki (recommended first)
 
