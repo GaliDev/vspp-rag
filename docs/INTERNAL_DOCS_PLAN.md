@@ -46,7 +46,7 @@ New pieces:
 | 3 | ADO scope | **Done** | Org **`tm-vspp`**, project **`MK-VSPP`** | [Azure DevOps](https://dev.azure.com/tm-vspp/MK-VSPP). Wiki-only v1; allowlist (single project). |
 | 4 | Auth | **Done** | **Option A — personal credentials (POC)** | Your Confluence user/password (or PAT) + your ADO PAT in `.env`. Bot/service account later for production. |
 | 5 | Manifest `category` | **Done** | **`Internal`** | Confluence + ADO wiki chunks; `tier=system-level`. Router/filter excludes or includes vs Transport / Structural/System. |
-| 6 | Corpus partition | Pending | Single index + metadata filters | Split indexes later if needed |
+| 6 | Corpus partition | **Done** | **Single index**; default retrieval **standards only** | One `vectors.npy`; exclude `category=Internal` by default. `--category Internal` or `--include-internal` for wiki docs. |
 | 7 | Incremental sync | Pending | Version skip on discover; full re-embed OK for POC | Schedule: TBD |
 
 ### Decision 1 — Confluence host (locked)
@@ -132,7 +132,21 @@ export ADO_PAT="..."   # Wiki (Read) + Project and team (Read)
 | `tier` | `system-level` (same as other system docs) |
 | `source` | `confluence` or `ado_wiki` |
 
-Collectors set this on manifest rows; `normalize` → `chunk` → `embed` propagate it. Retrieval: `--category Internal` or router hints; standards queries should not default to Internal (see Decision 6).
+Collectors set this on manifest rows; `normalize` → `chunk` → `embed` propagate it.
+
+### Decision 6 — Corpus & default retrieval (locked)
+
+**Index:** single embedding index (same as today — one `vectors.npy` + metadata).
+
+**Default retrieval — Option A:** search **standards only**; **exclude** chunks with `category=Internal` unless the user opts in.
+
+| User intent | CLI (planned) |
+|-------------|----------------|
+| Normative / standards (default) | `python retrieve.py "DASH MPD"` — masks out `Internal` |
+| Internal wiki only | `python retrieve.py "deploy MK-VSPP" --category Internal` |
+| Both corpora | `python retrieve.py "..." --include-internal` |
+
+Implementation: extend `RetrievalFilters` with `exclude_categories` or default denylist `Internal` when no `--include-internal`. Split vector DB deferred until corpus is large.
 
 ## Phase 1 — ADO wiki (recommended first)
 
