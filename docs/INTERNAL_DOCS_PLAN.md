@@ -44,7 +44,7 @@ New pieces:
 | 1 | Confluence deployment | **Done** | **Data Center / Server** | `http://10.65.130.11:8090` (HTTP, port 8090). Internal network / VPN only — not reachable from public CI. |
 | 2 | Confluence scope | **Done** | **Option A — allowlist only** | Spaces: **DevOps**, **NG GUI**, **QA Automation** (not all spaces). CQL in v1: **no**. No `CONFLUENCE_SPACES=*`; revisit denylist only if scope widens later. |
 | 3 | ADO scope | **Done** | Org **`tm-vspp`**, project **`MK-VSPP`** | [Azure DevOps](https://dev.azure.com/tm-vspp/MK-VSPP). Wiki-only v1; allowlist (single project). |
-| 4 | Auth | Pending | Service account + API token / PAT | Env vars only; never commit secrets |
+| 4 | Auth | **Done** | **Option A — personal credentials (POC)** | Your Confluence user/password (or PAT) + your ADO PAT in `.env`. Bot/service account later for production. |
 | 5 | Manifest `category` | Pending | `Internal` (recommended) | Prefer new `Internal` for router |
 | 6 | Corpus partition | Pending | Single index + metadata filters | Split indexes later if needed |
 | 7 | Incremental sync | Pending | Version skip on discover; full re-embed OK for POC | Schedule: TBD |
@@ -108,6 +108,19 @@ export ADO_ORG="tm-vspp"
 export ADO_WIKI_PROJECTS="MK-VSPP"
 export ADO_PAT="..."   # Wiki (Read) + Project and team (Read)
 ```
+
+### Decision 4 — Auth (locked: personal POC)
+
+**Chosen:** **Option A** — use **your own** credentials for the first end-to-end test on a VPN-connected machine.
+
+| System | POC (now) | Production (later) |
+|--------|-----------|---------------------|
+| Confluence | `CONFLUENCE_USER` + `CONFLUENCE_PASSWORD` (or PAT as password) | Dedicated read-only bot user |
+| ADO | Personal PAT (`ADO_PAT`) with Wiki Read + Project Read | Service account PAT with same scopes |
+
+**Rules:** store only in `.env` (gitignored); read-only PAT/scopes; token sees only what your user can read in the three Confluence spaces + MK-VSPP wiki.
+
+**Not required for POC:** security sign-off, shared bot account, SSO integration.
 
 ## Phase 1 — ADO wiki (recommended first)
 
