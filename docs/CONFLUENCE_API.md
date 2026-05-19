@@ -9,7 +9,7 @@
 | List content | REST `/rest/api/content/search` + CQL | Same under `/rest/api/` |
 | Network | Public internet | Often VPN / internal IP only |
 
-**This project (planned):** Data Center at `http://10.65.130.11:8090`, spaces DevOps / NG GUI / QA Automation (confirm space keys in Space settings).
+**This project (planned):** Data Center at `http://10.65.130.11:8090`, allowlisted space keys `NGGUI`, `VP`, `PM` (NextGen GUI, VSPP Product, Product Manager).
 
 ## Authentication (Cloud)
 

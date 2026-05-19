@@ -42,7 +42,7 @@ New pieces:
 | # | Item | Status | Choice | Notes |
 |---|------|--------|--------|-------|
 | 1 | Confluence deployment | **Done** | **Data Center / Server** | `http://10.65.130.11:8090` (HTTP, port 8090). Internal network / VPN only — not reachable from public CI. |
-| 2 | Confluence scope | **Done** | **Option A — allowlist only** | Spaces: **DevOps**, **NG GUI**, **QA Automation** (not all spaces). CQL in v1: **no**. No `CONFLUENCE_SPACES=*`; revisit denylist only if scope widens later. |
+| 2 | Confluence scope | **Done** | **Option A — allowlist only** | Space keys: **`NGGUI`**, **`VP`**, **`PM`** (not DevOps / QA Automation). CQL in v1: **no**. |
 | 3 | ADO scope | **Done** | Org **`tm-vspp`**, project **`MK-VSPP`** | [Azure DevOps](https://dev.azure.com/tm-vspp/MK-VSPP). Wiki-only v1; allowlist (single project). |
 | 4 | Auth | **Done** | **Option A — personal credentials (POC)** | Your Confluence user/password (or PAT) + your ADO PAT in `.env`. Bot/service account later for production. |
 | 5 | Manifest `category` | **Done** | **`Internal`** | Confluence + ADO wiki chunks; `tier=system-level`. Router/filter excludes or includes vs Transport / Structural/System. |
@@ -67,26 +67,24 @@ Ingest must run on a machine with route access to `10.65.130.11` (office LAN or 
 
 **Rationale:** smaller corpus, clearer security story, less risk of drowning standards retrieval.
 
-### Confluence space keys
+### Confluence space keys (confirmed)
 
-Allowlisted spaces (display names). The REST API and `CONFLUENCE_SPACES` env var use **space keys** (short codes in URLs), not display names.
+| Space key | Display name (Confluence UI) |
+|-----------|----------------------------|
+| `NGGUI` | NextGen GUI |
+| `VP` | VSPP Product |
+| `PM` | Product Manager |
 
-| Display name (you provided) | Space key (verify in UI or API) |
-|-----------------------------|----------------------------------|
-| DevOps | Often `DEVOPS` or `DevOps` — check URL: `/display/DEVOPS/` or Space settings → Key |
-| NG GUI | Often `NGGUI`, `NG`, or `NGGUI` — keys rarely contain spaces |
-| QA Automation | Often `QA`, `QAA`, or `QAAUTOMATION` |
+**Out of scope:** DevOps, QA Automation (removed from allowlist).
 
-**How to verify:** open each space → **Space settings** → **Space details** → **Key**, or read the URL when browsing the space home page.
-
-**Planned env (after keys confirmed):**
+**Env:**
 
 ```bash
 export CONFLUENCE_BASE_URL="http://10.65.130.11:8090"
-export CONFLUENCE_SPACES="DEVOPS,NGGUI,QAAUTOMATION"   # placeholder — replace with real keys
+export CONFLUENCE_SPACES="NGGUI,VP,PM"
 ```
 
-Optional: `GET /rest/api/space` once to map display name → key if keys differ from guesses above. Do **not** discover pages outside this allowlist.
+Collector must only discover pages in these three keys. URLs often look like `/display/NGGUI/...`, `/display/VP/...`, `/display/PM/...`.
 
 ### Decision 3 — ADO scope (locked: single project)
 
@@ -212,7 +210,7 @@ See [CONFLUENCE_API.md](./CONFLUENCE_API.md).
 export CONFLUENCE_BASE_URL="http://10.65.130.11:8090"
 export CONFLUENCE_USER="..."                 # DC: username (or email if configured)
 export CONFLUENCE_PASSWORD="..."             # or PAT from Confluence profile
-export CONFLUENCE_SPACES="DEVOPS,NGGUI,QA"   # space keys — verify in Space settings
+export CONFLUENCE_SPACES="NGGUI,VP,PM"
 
 # Azure DevOps
 export ADO_ORG="tm-vspp"
