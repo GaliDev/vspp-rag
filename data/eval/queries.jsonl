@@ -5,3 +5,6 @@
 {"id": "dvb-s2", "query": "DVB-S2 FEC frame structure and MODCOD", "expect_external_ids": ["etsi-dvb-s2-en302307"]}
 {"id": "dvb-si", "query": "DVB service information PSI/SI PAT PMT NIT", "expect_external_ids": ["etsi-en-300-468-dvb-si"]}
 {"id": "dvb-sub", "query": "DVB subtitling EN 300 743 segment display", "expect_external_ids": ["etsi-en-300-743-dvb-sub"]}
+{"id": "isobmff-normative", "query": "ISO/IEC 14496-12 file type box ftyp brand compatibility", "expect_external_ids": ["MPEGGroup/isobmff"], "filter_hints": {"exclude_external_ids": ["MPEGGroup/FileFormatConformance"]}}
+{"id": "imsc11-explicit", "query": "IMSC1.1 document profile constraints", "expect_external_ids": ["w3c-tr-imsc11"], "filter_hints": {"external_ids": ["w3c-tr-imsc11"]}}
+{"id": "conformance-negative", "query": "ISOBMFF conformance test vectors JSON fixtures", "expect_external_ids": ["MPEGGroup/FileFormatConformance"]}

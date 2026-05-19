@@ -169,6 +169,9 @@ def pdf_url_matches_record(url: str, record: dict[str, Any]) -> bool:
     if "en302307" in ext or ext.startswith("etsi-dvb-s2"):
         return any(token in low for token in ("302307", "en_302307"))
 
+    if ext.startswith("dvb-bluebook") or (source == "dvb" and "bluebook" in ext):
+        return "dvb.org" in low and ".pdf" in low
+
     if "ebu.ch" in low and source == "w3c":
         return False
 

@@ -22,18 +22,22 @@ Goal: discover standards metadata → download artifacts on demand → normalize
 | 1. Discover | `discover.py` | `discovery_manifest.json`, `PM_Catalog.md` | New rows default `status: "discovered"`; **merges** prior ingest when discovery fingerprint unchanged |
 | 2. Ingest | `ingest.py` | `data/{authority}/raw/` + updates manifest | Selective; use `--reingest` after discovery changes |
 | 3. Normalize | `normalize.py` | `data/{authority}/normalized/*.txt`, `data/normalized/records.jsonl` | Does **not** mutate manifest |
-| 4. Chunk | `chunk.py` | `data/chunks/chunks.jsonl` | Paragraph-aware; reads `records.jsonl` |
-| 5. Embed | `embed.py` | `data/embeddings/vectors.npy`, `chunk_index.jsonl`, `meta.json` | `sentence-transformers/all-MiniLM-L6-v2` (384-d) |
-| 6. Eval (optional) | `eval_retrieval.py` | stdout | Queries in `data/eval/queries.jsonl` |
+| 4. Sync (optional) | `sync_corpus.py` | pruned `records.jsonl` | Run after normalize; drops rows not `ingested` in manifest |
+| 5. Chunk | `chunk.py` | `data/chunks/chunks.jsonl` | Paragraph-aware; metadata includes `core_structural_syntax` |
+| 6. Embed | `embed.py` | `data/embeddings/vectors.npy`, `chunk_index.jsonl`, `meta.json` | MiniLM 384-d; index includes `category`, `tier`, `core_structural_syntax` |
+| 7. Retrieve | `retrieve.py` | stdout | Metadata filters + keyword router (`src/core/retrieval.py`) |
+| 8. Eval (optional) | `eval_retrieval.py` | stdout | `data/eval/queries.jsonl`; modes: `baseline`, `router`, `structural` |
 
 ```bash
 source .venv/bin/activate
 python discover.py
 python ingest.py --all --one-per-authority --max-mb 500   # or targeted --reingest IDs
 python normalize.py
+python sync_corpus.py --prune
 python chunk.py
 python embed.py
-python eval_retrieval.py
+python retrieve.py "your question"
+python eval_retrieval.py --mode router
 ```
 
 ---
@@ -68,7 +72,8 @@ ingest.py ──► src/core/artifacts.py (PDF resolve, pick_best_per_authority,
 normalize.py ──► pypdf, docx XML, BS4 HTML, repo zip bundles
 chunk.py ──► src/core/text_prep.py
 embed.py ──► sentence-transformers → vectors.npy
-eval_retrieval.py ──► cosine search over embeddings
+sync_corpus.py ──► prune records.jsonl vs manifest ingested
+retrieve.py / eval_retrieval.py ──► src/core/retrieval.py (masked cosine + router)
 ```
 
 **Core modules**
@@ -79,7 +84,7 @@ eval_retrieval.py ──► cosine search over embeddings
 - `src/core/artifacts.py` — ingest priority, ETSI deliver PDF crawl, strict `pdf_url_matches_record`, skip PDF crawl for W3C TR + GitHub `repository`
 - `src/core/text_prep.py` — `content_with_header`, `strip_manifest_preamble`
 
-**Top-level scripts:** `discover.py`, `ingest.py`, `normalize.py`, `chunk.py`, `embed.py`, `eval_retrieval.py`
+**Top-level scripts:** `discover.py`, `ingest.py`, `normalize.py`, `chunk.py`, `embed.py`, `sync_corpus.py`, `retrieve.py`, `eval_retrieval.py`
 
 ---
 
@@ -145,7 +150,7 @@ Each row in `discovery_manifest.json` has roughly:
 | `data/embeddings/meta.json` | Model id, dimensions, chunk count |
 | `data/eval/queries.jsonl` | Eval queries with `expect_external_ids` |
 
-Baseline eval (`eval_retrieval.py`, top-5): **6/7** pass — ISOBMFF query often ranks `MPEGGroup/FileFormatConformance` before `MPEGGroup/isobmff` (conformance repo is large in corpus).
+Baseline eval (`eval_retrieval.py --mode baseline`, top-5): **8/10** on expanded `queries.jsonl` — ISOBMFF still loses to conformance without filters. **Router mode** (`--mode router`, default): **10/10** by `external_id` routing and excluding conformance for normative BMFF queries.
 
 ---
 
@@ -212,12 +217,55 @@ Setup: `python -m venv .venv && pip install -r requirements.txt`
 
 ---
 
+## Phase 3: Metadata-aware retrieval (implemented)
+
+**Scripts:** `sync_corpus.py`, `retrieve.py`, `src/core/retrieval.py`; updated `eval_retrieval.py`.
+
+### Rebuild pipeline (after discover / reingest)
+
+```bash
+source .venv/bin/activate
+python discover.py
+python ingest.py --reingest <ids>   # as needed
+python normalize.py
+python sync_corpus.py --prune --delete-orphan-txt
+python chunk.py
+python embed.py
+```
+
+### Retrieval CLI
+
+```bash
+python retrieve.py "DVB SI PAT PMT" --top-k 5
+python retrieve.py "moof trun box" --core-structural-only
+python retrieve.py "moof trun box" --exclude-external-id MPEGGroup/FileFormatConformance
+```
+
+Keyword router runs by default; use `--no-router` for unfiltered search.
+
+### Eval modes
+
+```bash
+python eval_retrieval.py --mode router      # default; keyword filters
+python eval_retrieval.py --mode structural  # core_structural_syntax chunks only
+python eval_retrieval.py --mode baseline    # all chunks (regression; ISOBMFF often 6/7)
+```
+
+Chunk / index fields: `category`, `tier`, `core_structural_syntax` (from manifest via normalize → chunk → embed).
+
+### Paywalled / admin ingest
+
+```bash
+python ingest.py --external-id cta-cea-608 --local-artifact /path/to/CEA-608.pdf
+```
+
+---
+
 ## Suggested next work
 
-1. **Manifest/corpus sync** — script or doc step to drop stale `records.jsonl` / re-chunk / re-embed after discover.
-2. **Retrieval quality** — authority/`external_id` filters; fix ISOBMFF vs conformance ranking; optional Chroma/FAISS instead of flat `vectors.npy`.
-3. **Remaining core structural** — ISO PDFs (paid), CTA captions (paywalled), optional DVB BlueBook PDFs from dvb.org.
-4. Optional: sentence-aware chunking, portal chrome filtering, 3GPP bulk ingest strategy.
+1. **Ask path** — grounded LLM answers + citations on top of `retrieve.py`.
+2. **Remaining core structural** — ISO PDFs (paid), CTA captions (paywalled unless `--local-artifact`), DVB BlueBook PDF reingest.
+3. Optional: Chroma/FAISS/BM25, sentence-aware chunking, 3GPP bulk ingest strategy.
 
 ---
 
@@ -236,7 +284,10 @@ Setup: `python -m venv .venv && pip install -r requirements.txt`
 | `discover.py` | Discovery + ingest merge |
 | `ingest.py` | Download + manifest updates |
 | `embed.py` | Build embeddings |
-| `eval_retrieval.py` | Run eval queries |
+| `sync_corpus.py` | Prune stale normalized index rows |
+| `retrieve.py` | Metadata-aware retrieval CLI |
+| `eval_retrieval.py` | Run eval queries (baseline / router / structural) |
+| `src/core/retrieval.py` | Filters, router, masked search |
 | `src/core/artifacts.py` | PDF/authority selection logic |
 | `src/core/io.py` | Manifest I/O + ingest merge |
 | `src/collectors/structural_system.py` | ETSI/ISO/DVB/W3C/SMPTE/CTA discovery |

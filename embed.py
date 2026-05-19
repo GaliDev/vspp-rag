@@ -62,6 +62,9 @@ def main() -> None:
                 "external_id": chunk.get("external_id"),
                 "authority": chunk.get("authority"),
                 "title": chunk.get("title"),
+                "category": chunk.get("category"),
+                "tier": chunk.get("tier"),
+                "core_structural_syntax": chunk.get("core_structural_syntax"),
             }
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 

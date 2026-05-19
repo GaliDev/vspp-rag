@@ -2952,11 +2952,8 @@
     "category": "Structural/System",
     "tier": "system-level",
     "publication_status": null,
-    "status": "discovered",
+    "status": "ingested",
     "discovered_at": "2026-05-17T15:22:50.856737+00:00",
-    "ingested_at": null,
-    "local_path": null,
-    "sha256": null,
     "metadata": {
       "discovery_profile": "structural_system",
       "liaison_or_attachment_links": [
@@ -2970,8 +2967,14 @@
         "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.03.01_20/",
         "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.03.01_60/"
       ],
-      "note": "deliver_page_no_pdf_resolved"
-    }
+      "note": "deliver_page_no_pdf_resolved",
+      "ingest_kind": "pdf_artifact",
+      "artifact_url": "https://www.etsi.org/deliver/etsi_en/302300_302399/302307/01.01.01_20/en_302307v010101c.pdf",
+      "resolved_at_ingest": true
+    },
+    "ingested_at": "2026-05-18T07:43:59.657749+00:00",
+    "local_path": "data/etsi_dvb/raw/etsi-dvb-s2-en302307.pdf",
+    "sha256": "99db23eb67c250ef250999c37d29b93225eab46accc7ccfa8acc44225a3f8d53"
   },
   {
     "source": "w3c",

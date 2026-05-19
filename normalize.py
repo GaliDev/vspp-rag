@@ -454,6 +454,7 @@ def normalize_record(
     output_path.parent.mkdir(parents=True, exist_ok=True)
     output_path.write_text(content, encoding="utf-8")
 
+    meta_record = record.get("metadata") or {}
     return {
         "external_id": record.get("external_id"),
         "source": record.get("source"),
@@ -461,6 +462,8 @@ def normalize_record(
         "title": record.get("title"),
         "category": record.get("category"),
         "tier": record.get("tier"),
+        "core_structural_syntax": bool(meta_record.get("core_structural_syntax")),
+        "ingest_kind": meta_record.get("ingest_kind"),
         "raw_path": record.get("local_path"),
         "normalized_path": str(output_path.relative_to(ROOT)),
         "content_type": "text/plain",

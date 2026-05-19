@@ -204,6 +204,44 @@ def _should_skip_file_type(
     return False
 
 
+def ingest_local_artifact(record: dict, local_path: Path, options: IngestOptions | None = None) -> dict:
+    """Copy a local PDF/zip/html file into raw storage for paywalled or admin-provided specs."""
+    opts = options or IngestOptions()
+    path = Path(local_path).resolve()
+    if not path.is_file():
+        raise FileNotFoundError(path)
+
+    authority_dir = record["authority"].lower().replace("/", "_")
+    raw_dir = DATA_DIR / authority_dir / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    suffix = path.suffix.lower() or ".bin"
+    target_path = raw_dir / safe_filename(f"{record['external_id']}{suffix}")
+    shutil.copy2(path, target_path)
+
+    metadata = record.setdefault("metadata", {})
+    metadata.pop("ingest_error", None)
+    record["status"] = "ingested"
+    record["ingested_at"] = utc_now_iso()
+    record["local_path"] = str(target_path.relative_to(ROOT))
+    record["sha256"] = sha256_file(target_path)
+    metadata["ingest_kind"] = "local_upload"
+    metadata["local_artifact_source"] = str(path)
+
+    if suffix == ".pdf":
+        metadata["artifact_url"] = f"file://{path}"
+        if not target_path.read_bytes()[:5].startswith(b"%PDF"):
+            raise ValueError(f"local file is not a PDF: {path}")
+    elif suffix == ".zip":
+        extract_dir = target_path.parent / target_path.stem
+        try:
+            safe_unzip(target_path, extract_dir)
+            metadata["extracted_to"] = str(extract_dir.relative_to(ROOT))
+        except Exception as exc:
+            metadata["extract_unzip_error"] = str(exc)
+
+    return record
+
+
 def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     opts = options or IngestOptions()
     source = record["source"]
@@ -433,12 +471,37 @@ def main() -> None:
         metavar="EXTERNAL_ID",
         help="Reset ingest state and re-download for these manifest external_ids.",
     )
+    parser.add_argument(
+        "--local-artifact",
+        type=Path,
+        default=None,
+        help="Copy a local PDF/zip file into raw storage (requires --external-id).",
+    )
+    parser.add_argument(
+        "--external-id",
+        default=None,
+        help="Manifest external_id for --local-artifact upload.",
+    )
     args = parser.parse_args()
 
     include_pages = args.include_pages
 
     if not MANIFEST_PATH.exists():
         raise SystemExit("discovery_manifest.json not found. Run discover.py first.")
+
+    if args.local_artifact is not None:
+        if not args.external_id:
+            raise SystemExit("--local-artifact requires --external-id")
+        records = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
+        match = next((r for r in records if r.get("external_id") == args.external_id), None)
+        if not match:
+            raise SystemExit(f"No manifest row with external_id={args.external_id!r}")
+        max_bytes = int(args.max_mb * 1024 * 1024) if args.max_mb is not None else None
+        opts = IngestOptions(max_bytes=max_bytes)
+        ingest_local_artifact(match, args.local_artifact, opts)
+        MANIFEST_PATH.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+        print(f"Local artifact ingested for {args.external_id} -> {match.get('local_path')}")
+        return
 
     max_bytes = int(args.max_mb * 1024 * 1024) if args.max_mb is not None else None
     options = IngestOptions(

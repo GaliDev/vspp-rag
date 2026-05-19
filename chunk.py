@@ -144,6 +144,8 @@ def chunk_record(
                 "title": record.get("title"),
                 "category": record.get("category"),
                 "tier": record.get("tier"),
+                "core_structural_syntax": record.get("core_structural_syntax"),
+                "ingest_kind": record.get("ingest_kind"),
                 "normalized_path": norm_rel,
                 "chunker": "paragraph_pack_v1",
                 "chunk_chars": chunk_chars,

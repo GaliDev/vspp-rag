@@ -4,28 +4,45 @@ import argparse
 import json
 from pathlib import Path
 
-import numpy as np
+from src.core.retrieval import RetrievalFilters, load_index, route_query, search
 
 ROOT = Path(__file__).parent
 QUERIES_PATH = ROOT / "data" / "eval" / "queries.jsonl"
 EMBED_DIR = ROOT / "data" / "embeddings"
-VECTORS_PATH = EMBED_DIR / "vectors.npy"
-INDEX_PATH = EMBED_DIR / "chunk_index.jsonl"
 CHUNKS_PATH = ROOT / "data" / "chunks" / "chunks.jsonl"
-DEFAULT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
 
 
 def load_jsonl(path: Path) -> list[dict]:
     return [json.loads(line) for line in path.read_text(encoding="utf-8").splitlines() if line.strip()]
 
 
+def filters_for_mode(mode: str, query_row: dict) -> RetrievalFilters | None:
+    if mode == "baseline":
+        return None
+    if mode == "structural":
+        return RetrievalFilters(core_structural_only=True)
+    if mode == "router":
+        return route_query(
+            query_row["query"],
+            filter_hints=query_row.get("filter_hints"),
+        )
+    raise ValueError(f"Unknown mode: {mode}")
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run retrieval eval queries against chunk embeddings.")
     parser.add_argument("--top-k", type=int, default=5)
-    parser.add_argument("--model", default=DEFAULT_MODEL)
+    parser.add_argument(
+        "--mode",
+        choices=("baseline", "router", "structural"),
+        default="router",
+        help="baseline=all chunks; router=keyword filters; structural=core_structural_syntax only",
+    )
+    parser.add_argument("--embed-dir", type=Path, default=EMBED_DIR)
+    parser.add_argument("--chunks", type=Path, default=CHUNKS_PATH)
     args = parser.parse_args()
 
-    for path in (QUERIES_PATH, VECTORS_PATH, INDEX_PATH, CHUNKS_PATH):
+    for path in (QUERIES_PATH, args.embed_dir / "vectors.npy", args.embed_dir / "chunk_index.jsonl", args.chunks):
         if not path.is_file():
             raise SystemExit(f"Missing required file: {path}")
 
@@ -35,35 +52,36 @@ def main() -> None:
         raise SystemExit("pip install sentence-transformers") from exc
 
     queries = load_jsonl(QUERIES_PATH)
-    index = load_jsonl(INDEX_PATH)
-    chunks = load_jsonl(CHUNKS_PATH)
-    vectors = np.load(VECTORS_PATH)
-    chunk_by_id = {c["chunk_id"]: c for c in chunks}
+    index = load_index(args.embed_dir, args.chunks)
+    model = SentenceTransformer(index.model_name)
 
-    model = SentenceTransformer(args.model)
-    hits = 0
+    hits_count = 0
     total = len(queries)
 
-    print(f"Retrieval eval: {total} queries, top_k={args.top_k}\n")
+    print(f"Retrieval eval: {total} queries, top_k={args.top_k}, mode={args.mode}\n")
     for q in queries:
         qid = q.get("id", "?")
         text = q["query"]
         expect = set(q.get("expect_external_ids") or [])
-        qvec = model.encode([text], normalize_embeddings=True)[0]
-        scores = vectors @ qvec
-        top_idx = np.argsort(scores)[::-1][: args.top_k]
-        got_ids = {index[i]["external_id"] for i in top_idx}
+        filters = filters_for_mode(args.mode, q)
+        results = search(index, text, top_k=args.top_k, filters=filters, model=model)
+        got_ids = {h.external_id for h in results if h.external_id}
         ok = bool(expect & got_ids) if expect else True
-        hits += int(ok)
+        hits_count += int(ok)
         status = "PASS" if ok else "FAIL"
         print(f"[{status}] {qid}: {text[:72]}")
         print(f"  expect any of: {sorted(expect)}")
         print(f"  got: {sorted(got_ids)}")
-        best = top_idx[0]
-        preview = chunk_by_id.get(index[best]["chunk_id"], {}).get("text", "")[:160].replace("\n", " ")
-        print(f"  top hit ({index[best]['external_id']}): {preview}...\n")
+        if filters and not filters.is_empty():
+            print(f"  filters: {filters}")
+        if results:
+            best = results[0]
+            preview = best.text[:160].replace("\n", " ")
+            print(f"  top hit ({best.external_id}): {preview}...\n")
+        else:
+            print("  top hit: (none)\n")
 
-    print(f"Summary: {hits}/{total} queries matched expected external_id in top-{args.top_k}")
+    print(f"Summary: {hits_count}/{total} queries matched expected external_id in top-{args.top_k}")
 
 
 if __name__ == "__main__":
