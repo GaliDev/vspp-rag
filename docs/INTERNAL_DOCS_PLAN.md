@@ -1,7 +1,7 @@
 # Internal docs ingestion — Confluence & Azure DevOps
 
 Epic branch: `feature/internal-docs-confluence-ado`  
-Status: **Planning** (no collectors implemented yet)
+Status: **In progress** (Phase 1 ADO wiki collector implemented)
 
 ## Goal
 
@@ -173,13 +173,13 @@ python chunk.py && python embed.py
 
 ### Tasks
 
-- [ ] `discover_ado_wiki()` — list wikis and pages per configured project
-- [ ] Manifest rows: `source=ado_wiki`, `external_id=ado:{project}:{wikiId}:{path}`
-- [ ] Ingest: save `.md` under `data/ado_wiki/raw/`
-- [ ] Normalize: markdown → plain text
-- [ ] Chunk metadata: `ado_org`, `ado_project`, `wiki_path`
-- [ ] Eval: 3–5 queries in `data/eval/queries.jsonl` with `filter_hints`
-- [ ] CLI: `retrieve.py --source ado_wiki` (or router keywords)
+- [x] `discover_ado_wiki()` — list wikis and pages per configured project
+- [x] Manifest rows: `source=ado_wiki`, `external_id=ado:{project}:{wikiId}:{path}`
+- [x] Ingest: save `.md` under `data/ado_mk-vspp/raw/` (authority `ADO/MK-VSPP`)
+- [x] Normalize: markdown → plain text
+- [x] Chunk metadata: `ado_org`, `ado_project`, `wiki_path`
+- [x] Eval: 3 queries in `data/eval/queries.jsonl` with `filter_hints` / prefix match
+- [x] CLI: `retrieve.py --source ado_wiki` (or router keywords)
 
 See [ADO_WIKI_API.md](./ADO_WIKI_API.md).
 

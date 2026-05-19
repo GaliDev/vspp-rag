@@ -13,6 +13,8 @@ RECORDS_PATH = ROOT / "data" / "normalized" / "records.jsonl"
 CHUNKS_DIR = ROOT / "data" / "chunks"
 CHUNKS_PATH = CHUNKS_DIR / "chunks.jsonl"
 
+ADO_CHUNK_META_KEYS = ("ado_org", "ado_project", "wiki_path", "wiki_id", "wiki_name")
+
 
 def naive_char_chunks(text: str, chunk_chars: int, overlap_chars: int) -> Iterator[tuple[int, int, str]]:
     """Fixed-size windows with stride (chunk_chars - overlap_chars)."""
@@ -131,27 +133,29 @@ def chunk_record(
         paragraph_aware_chunks(text, chunk_chars, overlap_chars)
     ):
         chunk_id = f"{source}:{ext}:{idx:05d}"
-        out.append(
-            {
-                "chunk_id": chunk_id,
-                "chunk_index": idx,
-                "char_start": start,
-                "char_end": end,
-                "text": chunk_text,
-                "source": record.get("source"),
-                "external_id": record.get("external_id"),
-                "authority": record.get("authority"),
-                "title": record.get("title"),
-                "category": record.get("category"),
-                "tier": record.get("tier"),
-                "core_structural_syntax": record.get("core_structural_syntax"),
-                "ingest_kind": record.get("ingest_kind"),
-                "normalized_path": norm_rel,
-                "chunker": "paragraph_pack_v1",
-                "chunk_chars": chunk_chars,
-                "overlap_chars": overlap_chars,
-            }
-        )
+        chunk_row: dict[str, Any] = {
+            "chunk_id": chunk_id,
+            "chunk_index": idx,
+            "char_start": start,
+            "char_end": end,
+            "text": chunk_text,
+            "source": record.get("source"),
+            "external_id": record.get("external_id"),
+            "authority": record.get("authority"),
+            "title": record.get("title"),
+            "category": record.get("category"),
+            "tier": record.get("tier"),
+            "core_structural_syntax": record.get("core_structural_syntax"),
+            "ingest_kind": record.get("ingest_kind"),
+            "normalized_path": norm_rel,
+            "chunker": "paragraph_pack_v1",
+            "chunk_chars": chunk_chars,
+            "overlap_chars": overlap_chars,
+        }
+        for key in ADO_CHUNK_META_KEYS:
+            if key in record:
+                chunk_row[key] = record[key]
+        out.append(chunk_row)
     return out
 
 

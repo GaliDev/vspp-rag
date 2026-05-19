@@ -66,11 +66,20 @@ def main() -> None:
         filters = filters_for_mode(args.mode, q)
         results = search(index, text, top_k=args.top_k, filters=filters, model=model)
         got_ids = {h.external_id for h in results if h.external_id}
-        ok = bool(expect & got_ids) if expect else True
+        prefix = q.get("expect_external_id_prefix")
+        if expect:
+            ok = bool(expect & got_ids)
+        elif prefix:
+            ok = any(str(gid).startswith(prefix) for gid in got_ids)
+        else:
+            ok = True
         hits_count += int(ok)
         status = "PASS" if ok else "FAIL"
         print(f"[{status}] {qid}: {text[:72]}")
-        print(f"  expect any of: {sorted(expect)}")
+        if expect:
+            print(f"  expect any of: {sorted(expect)}")
+        elif prefix:
+            print(f"  expect prefix: {prefix!r}")
         print(f"  got: {sorted(got_ids)}")
         if filters and not filters.is_empty():
             print(f"  filters: {filters}")

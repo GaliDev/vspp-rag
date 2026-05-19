@@ -20,11 +20,14 @@ def save_manifest(path: Path, records: Iterable[DiscoveryRecord | dict]) -> None
 
 def _discovery_fingerprint(record: dict) -> tuple:
     meta = record.get("metadata") or {}
-    return (
+    base = (
         record.get("remote_url"),
         record.get("file_type"),
         meta.get("artifact_url"),
     )
+    if record.get("source") == "ado_wiki":
+        return base + (meta.get("ado_wiki_etag"),)
+    return base
 
 
 def merge_discovery_preserving_ingest(
@@ -42,6 +45,7 @@ def merge_discovery_preserving_ingest(
         "extracted_to",
         "extract_unzip_error",
         "ingest_error",
+        "ado_wiki_etag",
     )
     merged: list[dict] = []
     for rec in new_records:

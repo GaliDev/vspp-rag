@@ -20,16 +20,20 @@ class RetrievalFilters:
     authorities: frozenset[str] = field(default_factory=frozenset)
     external_ids: frozenset[str] = field(default_factory=frozenset)
     categories: frozenset[str] = field(default_factory=frozenset)
+    sources: frozenset[str] = field(default_factory=frozenset)
     core_structural_only: bool = False
     exclude_external_ids: frozenset[str] = field(default_factory=frozenset)
+    exclude_categories: frozenset[str] = field(default_factory=frozenset)
 
     def is_empty(self) -> bool:
         return (
             not self.authorities
             and not self.external_ids
             and not self.categories
+            and not self.sources
             and not self.core_structural_only
             and not self.exclude_external_ids
+            and not self.exclude_categories
         )
 
 
@@ -114,7 +118,12 @@ def _row_matches(row: dict[str, Any], filters: RetrievalFilters) -> bool:
     if filters.authorities and not _authority_matches(auth, filters.authorities):
         return False
     cat = str(row.get("category") or "")
+    if filters.exclude_categories and cat in filters.exclude_categories:
+        return False
     if filters.categories and cat not in filters.categories:
+        return False
+    src = str(row.get("source") or "")
+    if filters.sources and src not in filters.sources:
         return False
     if filters.core_structural_only and not row.get("core_structural_syntax"):
         return False
@@ -138,7 +147,9 @@ def route_query(query: str, *, filter_hints: dict[str, Any] | None = None) -> Re
     authorities: set[str] = set(hints.get("authorities") or [])
     external_ids: set[str] = set(hints.get("external_ids") or [])
     categories: set[str] = set(hints.get("categories") or [])
+    sources: set[str] = set(hints.get("sources") or [])
     exclude: set[str] = set(hints.get("exclude_external_ids") or [])
+    exclude_categories: set[str] = set(hints.get("exclude_categories") or [])
     core_only = bool(hints.get("core_structural_only"))
 
     if _query_has_any(
@@ -179,12 +190,28 @@ def route_query(query: str, *, filter_hints: dict[str, Any] | None = None) -> Re
     if _query_has_any(query, [r"\bstructural\b", r"\bcontainer syntax\b", r"\bsystem-level\b"]):
         core_only = True
 
+    if _query_has_any(
+        query,
+        [
+            r"\bmk-vspp\b",
+            r"\bado\b",
+            r"\bazure devops\b",
+            r"\bproject wiki\b",
+            r"\binternal wiki\b",
+            r"\bwiki page\b",
+        ],
+    ):
+        sources.add("ado_wiki")
+        categories.add("Internal")
+
     return RetrievalFilters(
         authorities=frozenset(authorities),
         external_ids=frozenset(external_ids),
         categories=frozenset(categories),
+        sources=frozenset(sources),
         core_structural_only=core_only,
         exclude_external_ids=frozenset(exclude),
+        exclude_categories=frozenset(exclude_categories),
     )
 
 

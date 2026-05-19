@@ -59,12 +59,16 @@ def main() -> None:
             row = {
                 "index": i,
                 "chunk_id": chunk.get("chunk_id"),
+                "source": chunk.get("source"),
                 "external_id": chunk.get("external_id"),
                 "authority": chunk.get("authority"),
                 "title": chunk.get("title"),
                 "category": chunk.get("category"),
                 "tier": chunk.get("tier"),
                 "core_structural_syntax": chunk.get("core_structural_syntax"),
+                "ado_org": chunk.get("ado_org"),
+                "ado_project": chunk.get("ado_project"),
+                "wiki_path": chunk.get("wiki_path"),
             }
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 

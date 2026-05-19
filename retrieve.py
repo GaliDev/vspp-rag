@@ -22,6 +22,13 @@ def main() -> None:
     parser.add_argument("--external-id", action="append", default=[], dest="external_ids")
     parser.add_argument("--category", action="append", default=[], dest="categories")
     parser.add_argument(
+        "--source",
+        action="append",
+        default=[],
+        dest="sources",
+        help="Restrict to manifest source(s), e.g. ado_wiki",
+    )
+    parser.add_argument(
         "--exclude-external-id",
         action="append",
         default=[],
@@ -36,6 +43,7 @@ def main() -> None:
             authorities=frozenset(args.authorities),
             external_ids=frozenset(args.external_ids),
             categories=frozenset(args.categories),
+            sources=frozenset(args.sources),
             core_structural_only=args.core_structural_only,
             exclude_external_ids=frozenset(args.exclude_external_ids),
         )
@@ -46,42 +54,62 @@ def main() -> None:
                 authorities=frozenset(set(filters.authorities) | set(args.authorities)),
                 external_ids=filters.external_ids,
                 categories=filters.categories,
+                sources=filters.sources,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
+                exclude_categories=filters.exclude_categories,
             )
         if args.external_ids:
             filters = RetrievalFilters(
                 authorities=filters.authorities,
                 external_ids=frozenset(set(filters.external_ids) | set(args.external_ids)),
                 categories=filters.categories,
+                sources=filters.sources,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
+                exclude_categories=filters.exclude_categories,
             )
         if args.categories:
             filters = RetrievalFilters(
                 authorities=filters.authorities,
                 external_ids=filters.external_ids,
                 categories=frozenset(set(filters.categories) | set(args.categories)),
+                sources=filters.sources,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
+                exclude_categories=filters.exclude_categories,
+            )
+        if args.sources:
+            filters = RetrievalFilters(
+                authorities=filters.authorities,
+                external_ids=filters.external_ids,
+                categories=filters.categories,
+                sources=frozenset(set(filters.sources) | set(args.sources)),
+                core_structural_only=filters.core_structural_only or args.core_structural_only,
+                exclude_external_ids=filters.exclude_external_ids,
+                exclude_categories=filters.exclude_categories,
             )
         if args.exclude_external_ids:
             filters = RetrievalFilters(
                 authorities=filters.authorities,
                 external_ids=filters.external_ids,
                 categories=filters.categories,
+                sources=filters.sources,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=frozenset(
                     set(filters.exclude_external_ids) | set(args.exclude_external_ids)
                 ),
+                exclude_categories=filters.exclude_categories,
             )
         if args.core_structural_only:
             filters = RetrievalFilters(
                 authorities=filters.authorities,
                 external_ids=filters.external_ids,
                 categories=filters.categories,
+                sources=filters.sources,
                 core_structural_only=True,
                 exclude_external_ids=filters.exclude_external_ids,
+                exclude_categories=filters.exclude_categories,
             )
 
     hits = search(index, args.query, top_k=args.top_k, filters=filters)

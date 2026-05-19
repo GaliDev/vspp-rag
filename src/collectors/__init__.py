@@ -1,3 +1,4 @@
+from .ado_wiki import discover_ado_wiki
 from .github_specs import discover_github
 from .ietf import discover_ietf
 from .structural_system import discover_structural_system
@@ -10,5 +11,6 @@ __all__ = [
     "discover_github",
     "discover_webdrafts",
     "discover_structural_system",
+    "discover_ado_wiki",
 ]
 

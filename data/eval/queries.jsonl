@@ -8,3 +8,6 @@
 {"id": "isobmff-normative", "query": "ISO/IEC 14496-12 file type box ftyp brand compatibility", "expect_external_ids": ["MPEGGroup/isobmff"], "filter_hints": {"exclude_external_ids": ["MPEGGroup/FileFormatConformance"]}}
 {"id": "imsc11-explicit", "query": "IMSC1.1 document profile constraints", "expect_external_ids": ["w3c-tr-imsc11"], "filter_hints": {"external_ids": ["w3c-tr-imsc11"]}}
 {"id": "conformance-negative", "query": "ISOBMFF conformance test vectors JSON fixtures", "expect_external_ids": ["MPEGGroup/FileFormatConformance"]}
+{"id": "ado-wiki-deploy", "query": "MK-VSPP deployment environment setup wiki", "expect_external_id_prefix": "ado:MK-VSPP:", "filter_hints": {"sources": ["ado_wiki"]}}
+{"id": "ado-wiki-build", "query": "MK-VSPP build pipeline configuration internal wiki", "expect_external_id_prefix": "ado:MK-VSPP:", "filter_hints": {"sources": ["ado_wiki"]}}
+{"id": "ado-wiki-router", "query": "Azure DevOps project wiki onboarding", "expect_external_id_prefix": "ado:MK-VSPP:"}

@@ -12,6 +12,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
+from src.collectors.ado_wiki import fetch_page_markdown
 from src.core.artifacts import (
     PAGE_FILE_TYPES,
     download_url,
@@ -42,6 +43,7 @@ class IngestOptions:
     page_fallback: bool = True
     resolve_pdfs: bool = True
     reingest_ids: frozenset[str] = frozenset()
+    only_external_ids: frozenset[str] = frozenset()
 
 
 def utc_now_iso() -> str:
@@ -242,11 +244,34 @@ def ingest_local_artifact(record: dict, local_path: Path, options: IngestOptions
     return record
 
 
+def ingest_ado_wiki_record(record: dict) -> dict:
+    content, etag = fetch_page_markdown(record)
+    authority_dir = record["authority"].lower().replace("/", "_")
+    raw_dir = DATA_DIR / authority_dir / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    target_path = raw_dir / safe_filename(f"{record['external_id']}.md")
+    target_path.write_text(content, encoding="utf-8")
+
+    metadata = record.setdefault("metadata", {})
+    metadata.pop("ingest_error", None)
+    if etag:
+        metadata["ado_wiki_etag"] = etag
+    record["status"] = "ingested"
+    record["ingested_at"] = utc_now_iso()
+    record["local_path"] = str(target_path.relative_to(ROOT))
+    record["sha256"] = sha256_file(target_path)
+    metadata["ingest_kind"] = "ado_wiki_markdown"
+    return record
+
+
 def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     opts = options or IngestOptions()
     source = record["source"]
     authority_dir = record["authority"].lower().replace("/", "_")
     raw_dir = DATA_DIR / authority_dir / "raw"
+
+    if source == "ado_wiki" and record.get("file_type") == "markdown":
+        return ingest_ado_wiki_record(record)
 
     ext = str(record.get("external_id") or "")
     allow_page_fallback = opts.page_fallback and (
@@ -378,7 +403,12 @@ async def ingest(
     if source and source != "all":
         selected = [r for r in records if r["source"] == source]
 
-    if opts.one_per_authority:
+    if opts.only_external_ids:
+        selected = [r for r in selected if str(r.get("external_id") or "") in opts.only_external_ids]
+        to_process = list(selected)
+        if opts.limit is not None:
+            to_process = to_process[: opts.limit]
+    elif opts.one_per_authority:
         to_process = pick_best_per_authority(
             selected,
             include_pages=opts.include_pages,
@@ -429,7 +459,11 @@ async def ingest(
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Targeted ingestion for discovered records.")
-    parser.add_argument("--source", default="all", help="Source filter (ietf|3gpp|github|etsi|iso|dvb|cta|w3c|all)")
+    parser.add_argument(
+        "--source",
+        default="all",
+        help="Source filter (ietf|3gpp|github|etsi|iso|dvb|cta|w3c|ado_wiki|all)",
+    )
     parser.add_argument("--all", action="store_true", help="Ingest all sources")
     parser.add_argument(
         "--max-mb",
@@ -480,7 +514,7 @@ def main() -> None:
     parser.add_argument(
         "--external-id",
         default=None,
-        help="Manifest external_id for --local-artifact upload.",
+        help="Manifest external_id: ingest only this row, or pair with --local-artifact.",
     )
     args = parser.parse_args()
 
@@ -504,6 +538,9 @@ def main() -> None:
         return
 
     max_bytes = int(args.max_mb * 1024 * 1024) if args.max_mb is not None else None
+    only_external_ids: frozenset[str] = frozenset()
+    if args.external_id:
+        only_external_ids = frozenset([args.external_id])
     options = IngestOptions(
         max_bytes=max_bytes,
         limit=args.limit,
@@ -513,14 +550,16 @@ def main() -> None:
         page_fallback=not args.no_page_fallback,
         resolve_pdfs=not args.no_resolve_pdfs,
         reingest_ids=frozenset(args.reingest or ()),
+        only_external_ids=only_external_ids,
     )
 
     records = json.loads(MANIFEST_PATH.read_text(encoding="utf-8"))
     source = "all" if args.all else args.source
     records = asyncio.run(ingest(records, source, options))
     MANIFEST_PATH.write_text(json.dumps(records, indent=2, ensure_ascii=False), encoding="utf-8")
+    target_msg = f", external_id={args.external_id!r}" if args.external_id else ""
     print(
-        f"Ingestion complete for source={source} "
+        f"Ingestion complete for source={source}{target_msg} "
         f"(limit={args.limit}, max_mb={args.max_mb}, include_pages={include_pages}, "
         f"one_per_authority={args.one_per_authority}, page_fallback={not args.no_page_fallback}, "
         f"resolve_pdfs={not args.no_resolve_pdfs})."

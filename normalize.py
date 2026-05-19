@@ -20,6 +20,8 @@ MANIFEST_PATH = ROOT / "discovery_manifest.json"
 NORMALIZED_DIR = ROOT / "data" / "normalized"
 RECORDS_PATH = NORMALIZED_DIR / "records.jsonl"
 
+ADO_CHUNK_META_KEYS = ("ado_org", "ado_project", "wiki_path", "wiki_id", "wiki_name")
+
 TEXT_EXTENSIONS = {
     ".css",
     ".html",
@@ -85,13 +87,25 @@ def html_to_text(html: str) -> str:
     return collapse_blank_lines(text)
 
 
-def read_text_file(path: Path) -> str:
+def markdown_to_text(md: str) -> str:
+    text = md.replace("\r\n", "\n").replace("\r", "\n")
+    text = re.sub(r"```[^\n]*\n(.*?)```", r"\1", text, flags=re.S)
+    text = re.sub(r"`([^`]+)`", r"\1", text)
+    text = re.sub(r"^#{1,6}\s+", "", text, flags=re.M)
+    text = re.sub(r"^\s*[-*+]\s+", "", text, flags=re.M)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    return collapse_blank_lines(text)
+
+
+def read_text_file(path: Path, *, source: str | None = None) -> str:
     raw = path.read_text(encoding="utf-8", errors="replace")
     if path.suffix.lower() in {".html", ".htm"}:
         return html_to_text(raw)
     if path.suffix.lower() in {".rng", ".ttml", ".xml", ".xsd"}:
         soup = BeautifulSoup(raw, "xml")
         return collapse_blank_lines(soup.get_text("\n", strip=True))
+    if path.suffix.lower() == ".md" and source == "ado_wiki":
+        return markdown_to_text(raw)
     return collapse_blank_lines(raw)
 
 
@@ -252,7 +266,7 @@ def normalize_page(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[st
 
 
 def normalize_text_file(record: dict[str, Any], raw_path: Path) -> tuple[str, dict[str, Any]]:
-    text = read_text_file(raw_path)
+    text = read_text_file(raw_path, source=str(record.get("source") or ""))
     content = content_with_header(record, text)
     return content, {
         "normalizer": "single_text_v1",
@@ -455,7 +469,7 @@ def normalize_record(
     output_path.write_text(content, encoding="utf-8")
 
     meta_record = record.get("metadata") or {}
-    return {
+    row: dict[str, Any] = {
         "external_id": record.get("external_id"),
         "source": record.get("source"),
         "authority": record.get("authority"),
@@ -474,6 +488,10 @@ def normalize_record(
         "char_count": len(content),
         **meta,
     }
+    for key in ADO_CHUNK_META_KEYS:
+        if key in meta_record:
+            row[key] = meta_record[key]
+    return row
 
 
 def load_existing_records(path: Path) -> dict[tuple[str | None, str | None], dict[str, Any]]:

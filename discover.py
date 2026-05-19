@@ -8,6 +8,7 @@ import logging
 
 from src.collectors import (
     discover_3gpp,
+    discover_ado_wiki,
     discover_github,
     discover_ietf,
     discover_structural_system,
@@ -22,7 +23,7 @@ MANIFEST_PATH = ROOT / "discovery_manifest.json"
 CATALOG_PATH = ROOT / "PM_Catalog.md"
 
 
-async def run_discovery() -> list[dict]:
+async def run_discovery(existing_by_id: dict[str, dict] | None = None) -> list[dict]:
     logging.basicConfig(level=logging.INFO, format="%(levelname)s %(name)s: %(message)s")
     results = await asyncio.gather(
         discover_ietf(),
@@ -30,6 +31,7 @@ async def run_discovery() -> list[dict]:
         discover_github(),
         discover_webdrafts(),
         discover_structural_system(),
+        discover_ado_wiki(existing_by_id),
     )
     records = []
     for bucket in results:
@@ -43,17 +45,20 @@ async def run_discovery() -> list[dict]:
 def main() -> None:
     parser = argparse.ArgumentParser(description="Run standards discovery phase.")
     parser.parse_args()
-    records = asyncio.run(run_discovery())
-    if MANIFEST_PATH.exists():
-        existing = load_manifest(MANIFEST_PATH)
+    existing = load_manifest(MANIFEST_PATH) if MANIFEST_PATH.exists() else []
+    existing_by_id = {str(r.get("external_id")): r for r in existing if r.get("external_id")}
+    records = asyncio.run(run_discovery(existing_by_id))
+    if existing:
         records = merge_discovery_preserving_ingest(records, existing)
     save_manifest(MANIFEST_PATH, records)
     write_pm_catalog(records, CATALOG_PATH)
     unique_ids = {r.get("external_id") for r in records if r.get("external_id")}
     core_n = sum(1 for r in records if r.get("metadata", {}).get("core_structural_syntax"))
+    ado_n = sum(1 for r in records if r.get("source") == "ado_wiki")
     print(f"Discovery completed: {len(records)} records written to {MANIFEST_PATH}")
     print(f"Unique standards (by external_id): {len(unique_ids)}")
     print(f"Core Structural Syntax entries: {core_n}")
+    print(f"ADO wiki pages: {ado_n}")
     print(f"Catalog generated at {CATALOG_PATH}")
 
 
