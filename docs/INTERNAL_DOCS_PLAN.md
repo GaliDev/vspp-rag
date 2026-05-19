@@ -42,7 +42,7 @@ New pieces:
 | # | Item | Status | Choice | Notes |
 |---|------|--------|--------|-------|
 | 1 | Confluence deployment | **Done** | **Data Center / Server** | `http://10.65.130.11:8090` (HTTP, port 8090). Internal network / VPN only — not reachable from public CI. |
-| 2 | Confluence scope | **Done** | Spaces: **DevOps**, **NG GUI**, **QA Automation** | See [space keys](#confluence-space-keys) below. CQL in v1: **no** (space list only). Denylist: **TBD**. |
+| 2 | Confluence scope | **Done** | **Option A — allowlist only** | Spaces: **DevOps**, **NG GUI**, **QA Automation** (not all spaces). CQL in v1: **no**. No `CONFLUENCE_SPACES=*`; revisit denylist only if scope widens later. |
 | 3 | ADO scope | Pending | Org: `___`, projects: `___` | Wiki-only v1 |
 | 4 | Auth | Pending | Service account + API token / PAT | Env vars only; never commit secrets |
 | 5 | Manifest `category` | Pending | `Internal` (recommended) | Prefer new `Internal` for router |
@@ -60,9 +60,16 @@ New pieces:
 
 Ingest must run on a machine with route access to `10.65.130.11` (office LAN or VPN).
 
+### Decision 2 — Confluence scope (locked: allowlist)
+
+**Chosen:** **Option A** — ingest only the three spaces below.  
+**Not chosen:** all spaces (B) or all spaces minus denylist (C).
+
+**Rationale:** smaller corpus, clearer security story, less risk of drowning standards retrieval.
+
 ### Confluence space keys
 
-You named three **spaces** (likely display names). The REST API and `CONFLUENCE_SPACES` env var use **space keys** (short codes in URLs), not display names.
+Allowlisted spaces (display names). The REST API and `CONFLUENCE_SPACES` env var use **space keys** (short codes in URLs), not display names.
 
 | Display name (you provided) | Space key (verify in UI or API) |
 |-----------------------------|----------------------------------|
@@ -79,7 +86,7 @@ export CONFLUENCE_BASE_URL="http://10.65.130.11:8090"
 export CONFLUENCE_SPACES="DEVOPS,NGGUI,QAAUTOMATION"   # placeholder — replace with real keys
 ```
 
-Collector should call `GET /rest/api/space` once at setup to map display name → key if keys differ from guesses above.
+Optional: `GET /rest/api/space` once to map display name → key if keys differ from guesses above. Do **not** discover pages outside this allowlist.
 
 ## Phase 1 — ADO wiki (recommended first)
 
