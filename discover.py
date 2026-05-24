@@ -9,6 +9,7 @@ import logging
 from src.collectors import (
     discover_3gpp,
     discover_ado_wiki,
+    discover_confluence,
     discover_github,
     discover_ietf,
     discover_structural_system,
@@ -32,6 +33,7 @@ async def run_discovery(existing_by_id: dict[str, dict] | None = None) -> list[d
         discover_webdrafts(),
         discover_structural_system(),
         discover_ado_wiki(existing_by_id),
+        discover_confluence(existing_by_id),
     )
     records = []
     for bucket in results:
@@ -55,10 +57,12 @@ def main() -> None:
     unique_ids = {r.get("external_id") for r in records if r.get("external_id")}
     core_n = sum(1 for r in records if r.get("metadata", {}).get("core_structural_syntax"))
     ado_n = sum(1 for r in records if r.get("source") == "ado_wiki")
+    confluence_n = sum(1 for r in records if r.get("source") == "confluence")
     print(f"Discovery completed: {len(records)} records written to {MANIFEST_PATH}")
     print(f"Unique standards (by external_id): {len(unique_ids)}")
     print(f"Core Structural Syntax entries: {core_n}")
     print(f"ADO wiki pages: {ado_n}")
+    print(f"Confluence pages: {confluence_n}")
     print(f"Catalog generated at {CATALOG_PATH}")
 
 

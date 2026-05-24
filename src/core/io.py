@@ -27,6 +27,8 @@ def _discovery_fingerprint(record: dict) -> tuple:
     )
     if record.get("source") == "ado_wiki":
         return base + (meta.get("ado_wiki_etag"),)
+    if record.get("source") == "confluence":
+        return base + (meta.get("content_version"),)
     return base
 
 
@@ -46,6 +48,7 @@ def merge_discovery_preserving_ingest(
         "extract_unzip_error",
         "ingest_error",
         "ado_wiki_etag",
+        "content_version",
     )
     merged: list[dict] = []
     for rec in new_records:

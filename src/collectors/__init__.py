@@ -1,4 +1,5 @@
 from .ado_wiki import discover_ado_wiki
+from .confluence import discover_confluence
 from .github_specs import discover_github
 from .ietf import discover_ietf
 from .structural_system import discover_structural_system
@@ -12,5 +13,6 @@ __all__ = [
     "discover_webdrafts",
     "discover_structural_system",
     "discover_ado_wiki",
+    "discover_confluence",
 ]
 

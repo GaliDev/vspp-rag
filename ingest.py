@@ -13,6 +13,7 @@ from urllib.parse import urlparse
 from urllib.request import Request, urlopen
 
 from src.collectors.ado_wiki import fetch_page_markdown
+from src.collectors.confluence import fetch_page_storage
 from src.core.artifacts import (
     PAGE_FILE_TYPES,
     download_url,
@@ -264,6 +265,27 @@ def ingest_ado_wiki_record(record: dict) -> dict:
     return record
 
 
+def ingest_confluence_record(record: dict) -> dict:
+    content, version_number = fetch_page_storage(record)
+    authority_dir = record["authority"].lower().replace("/", "_")
+    raw_dir = DATA_DIR / authority_dir / "raw"
+    raw_dir.mkdir(parents=True, exist_ok=True)
+    target_path = raw_dir / safe_filename(f"{record['external_id']}.html")
+    target_path.write_text(content, encoding="utf-8")
+
+    metadata = record.setdefault("metadata", {})
+    metadata.pop("ingest_error", None)
+    if version_number is not None:
+        metadata["content_version"] = version_number
+        record["version"] = str(version_number)
+    record["status"] = "ingested"
+    record["ingested_at"] = utc_now_iso()
+    record["local_path"] = str(target_path.relative_to(ROOT))
+    record["sha256"] = sha256_file(target_path)
+    metadata["ingest_kind"] = "confluence_storage_html"
+    return record
+
+
 def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
     opts = options or IngestOptions()
     source = record["source"]
@@ -272,6 +294,8 @@ def ingest_record(record: dict, options: IngestOptions | None = None) -> dict:
 
     if source == "ado_wiki" and record.get("file_type") == "markdown":
         return ingest_ado_wiki_record(record)
+    if source == "confluence" and record.get("file_type") == "html":
+        return ingest_confluence_record(record)
 
     ext = str(record.get("external_id") or "")
     allow_page_fallback = opts.page_fallback and (
@@ -462,7 +486,7 @@ def main() -> None:
     parser.add_argument(
         "--source",
         default="all",
-        help="Source filter (ietf|3gpp|github|etsi|iso|dvb|cta|w3c|ado_wiki|all)",
+        help="Source filter (ietf|3gpp|github|etsi|iso|dvb|cta|w3c|ado_wiki|confluence|all)",
     )
     parser.add_argument("--all", action="store_true", help="Ingest all sources")
     parser.add_argument(

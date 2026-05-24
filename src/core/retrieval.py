@@ -204,6 +204,13 @@ def route_query(query: str, *, filter_hints: dict[str, Any] | None = None) -> Re
         sources.add("ado_wiki")
         categories.add("Internal")
 
+    if _query_has_any(
+        query,
+        [r"\bconfluence\b", r"\bnggui\b", r"\bsetup developer environment\b", r"\bcode conventions\b"],
+    ):
+        sources.add("confluence")
+        categories.add("Internal")
+
     return RetrievalFilters(
         authorities=frozenset(authorities),
         external_ids=frozenset(external_ids),

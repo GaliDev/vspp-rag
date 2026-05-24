@@ -13,7 +13,16 @@ RECORDS_PATH = ROOT / "data" / "normalized" / "records.jsonl"
 CHUNKS_DIR = ROOT / "data" / "chunks"
 CHUNKS_PATH = CHUNKS_DIR / "chunks.jsonl"
 
-ADO_CHUNK_META_KEYS = ("ado_org", "ado_project", "wiki_path", "wiki_id", "wiki_name")
+INTERNAL_CHUNK_META_KEYS = (
+    "ado_org",
+    "ado_project",
+    "wiki_path",
+    "wiki_id",
+    "wiki_name",
+    "space_key",
+    "page_id",
+    "content_version",
+)
 
 
 def naive_char_chunks(text: str, chunk_chars: int, overlap_chars: int) -> Iterator[tuple[int, int, str]]:
@@ -152,7 +161,7 @@ def chunk_record(
             "chunk_chars": chunk_chars,
             "overlap_chars": overlap_chars,
         }
-        for key in ADO_CHUNK_META_KEYS:
+        for key in INTERNAL_CHUNK_META_KEYS:
             if key in record:
                 chunk_row[key] = record[key]
         out.append(chunk_row)

@@ -69,6 +69,9 @@ def main() -> None:
                 "ado_org": chunk.get("ado_org"),
                 "ado_project": chunk.get("ado_project"),
                 "wiki_path": chunk.get("wiki_path"),
+                "space_key": chunk.get("space_key"),
+                "page_id": chunk.get("page_id"),
+                "content_version": chunk.get("content_version"),
             }
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 

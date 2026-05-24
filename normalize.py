@@ -20,7 +20,16 @@ MANIFEST_PATH = ROOT / "discovery_manifest.json"
 NORMALIZED_DIR = ROOT / "data" / "normalized"
 RECORDS_PATH = NORMALIZED_DIR / "records.jsonl"
 
-ADO_CHUNK_META_KEYS = ("ado_org", "ado_project", "wiki_path", "wiki_id", "wiki_name")
+INTERNAL_CHUNK_META_KEYS = (
+    "ado_org",
+    "ado_project",
+    "wiki_path",
+    "wiki_id",
+    "wiki_name",
+    "space_key",
+    "page_id",
+    "content_version",
+)
 
 TEXT_EXTENSIONS = {
     ".css",
@@ -488,7 +497,7 @@ def normalize_record(
         "char_count": len(content),
         **meta,
     }
-    for key in ADO_CHUNK_META_KEYS:
+    for key in INTERNAL_CHUNK_META_KEYS:
         if key in meta_record:
             row[key] = meta_record[key]
     return row
@@ -516,7 +525,11 @@ def write_records(path: Path, records: dict[tuple[str | None, str | None], dict[
 
 def main() -> None:
     parser = argparse.ArgumentParser(description="Normalize ingested standards artifacts into text for RAG indexing.")
-    parser.add_argument("--source", default="all", help="Source filter (iso|etsi|dvb|github|w3c|ietf|3gpp|all)")
+    parser.add_argument(
+        "--source",
+        default="all",
+        help="Source filter (iso|etsi|dvb|github|w3c|ietf|3gpp|ado_wiki|confluence|all)",
+    )
     parser.add_argument("--limit", type=int, default=None, help="Maximum ingested rows to process this run.")
     parser.add_argument("--max-files", type=int, default=200, help="Max text files to include from an extracted repo.")
     parser.add_argument("--max-file-kb", type=int, default=512, help="Max size per text file included from a repo.")

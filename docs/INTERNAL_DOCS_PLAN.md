@@ -187,11 +187,11 @@ See [ADO_WIKI_API.md](./ADO_WIKI_API.md).
 
 ### Tasks
 
-- [ ] `discover_confluence()` — CQL search per space, paginated
-- [ ] Manifest: `external_id=confluence:{spaceKey}:{pageId}`
-- [ ] Ingest: `body.storage` or export HTML → raw
-- [ ] Normalize: BS4 (reuse existing HTML path)
-- [ ] Incremental: skip if `version.number` unchanged
+- [x] `discover_confluence()` — CQL search per space, paginated
+- [x] Manifest: `external_id=confluence:{spaceKey}:{pageId}`
+- [x] Ingest: `body.storage` or export HTML → raw
+- [x] Normalize: BS4 (reuse existing HTML path)
+- [x] Incremental: skip if `version.number` unchanged
 - [ ] Optional: attachment PDFs via child attachment API
 
 See [CONFLUENCE_API.md](./CONFLUENCE_API.md).

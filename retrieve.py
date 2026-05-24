@@ -26,7 +26,7 @@ def main() -> None:
         action="append",
         default=[],
         dest="sources",
-        help="Restrict to manifest source(s), e.g. ado_wiki",
+        help="Restrict to manifest source(s), e.g. ado_wiki or confluence",
     )
     parser.add_argument(
         "--exclude-external-id",

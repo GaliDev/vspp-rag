@@ -6,6 +6,7 @@
 |---|---:|
 | 3gpp | 60 |
 | ado_wiki | 88 |
+| confluence | 80 |
 | cta | 2 |
 | dvb | 2 |
 | etsi | 4 |
@@ -14,24 +15,24 @@
 | iso | 4 |
 | smpte | 2 |
 | w3c | 2 |
-| **Total** | **219** |
+| **Total** | **299** |
 
 ## Summary by category
 
 | Category | Items |
 |---|---:|
-| Internal | 88 |
+| Internal | 168 |
 | Structural/System | 19 |
 | Transport | 112 |
-| **Total** | **219** |
+| **Total** | **299** |
 
 ## Summary by tier
 
 | Tier | Items |
 |---|---:|
-| system-level | 107 |
+| system-level | 187 |
 | transport-level | 112 |
-| **Total** | **219** |
+| **Total** | **299** |
 
 ### Core Structural Syntax (PM highlights)
 
@@ -45,16 +46,16 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 
 | Source | Category | Tier | Authority | ID | Title | Version | Publication (portal) | Status | URL |
 |---|---|---|---|---|---|---|---|---|---|
-| cta | Structural/System | system-level | CTA/CEA | cta-cea-608 | CEA-608 (Line 21 closed captions): Collection: Standards | - | - | discovered (2026-05-19) | https://shop.cta.tech/collections/standards |
-| cta | Structural/System | system-level | CTA/CEA | cta-cea-708 | CEA-708 (Digital closed captions): Collection: Standards | - | - | discovered (2026-05-19) | https://shop.cta.tech/collections/standards |
-| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-dash-ts103168 | DVB-DASH (TS 103 168 / A168 family) | - | - | ingested (discovered 2026-05-19) | https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/ts_103285v010301p.pdf |
-| etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-468-dvb-si | DVB-SI (EN 300 468): www.etsi.org - /deliver/etsi_en/300400_300499/300468/ | - | - | discovered (2026-05-19) | https://www.etsi.org/deliver/etsi_en/300400_300499/300468/ |
-| etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-743-dvb-sub | DVB Subtitling (EN 300 743): www.etsi.org - /deliver/etsi_en/300700_300799/300743/ | - | - | discovered (2026-05-19) | https://www.etsi.org/deliver/etsi_en/300700_300799/300743/ |
-| github | Structural/System | system-level | ISO/IEC | MPEGGroup/FileFormatConformance | MPEG file-format conformance resources (14496-15 / related) | main | 2026-01-22T05:45:55Z | discovered (2026-05-19) | https://github.com/MPEGGroup/FileFormatConformance |
-| github | Structural/System | system-level | ISO/IEC | MPEGGroup/isobmff | MPEG ISOBMFF reference software (ISO/IEC 14496-12) | master | 2026-04-18T18:59:17Z | ingested (discovered 2026-05-19) | https://github.com/MPEGGroup/isobmff |
-| iso | Structural/System | system-level | ISO/IEC | iso-iec-13818-1 | ISO/IEC 13818-1:2025 Information technology — Generic coding of moving pictures and associated audio information Part 1: Systems | - | - | discovered (2026-05-19) | https://www.iso.org/standard/91403.html |
-| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-12 | ISO/IEC 14496-12:2022 Information technology — Coding of audio-visual objects Part 12: ISO base media file format | - | - | discovered (2026-05-19) | https://www.iso.org/standard/83102.html |
-| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-15 | ISO/IEC 14496-15:2024 Information technology — Coding of audio-visual objects Part 15: Carriage of network abstraction layer (NAL) unit structured video in the ISO base media file format | - | - | discovered (2026-05-19) | https://www.iso.org/standard/89118.html |
+| cta | Structural/System | system-level | CTA/CEA | cta-cea-608 | CEA-608 (Line 21 closed captions): Collection: Standards | - | - | discovered (2026-05-24) | https://shop.cta.tech/collections/standards |
+| cta | Structural/System | system-level | CTA/CEA | cta-cea-708 | CEA-708 (Digital closed captions): Collection: Standards | - | - | discovered (2026-05-24) | https://shop.cta.tech/collections/standards |
+| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-dash-ts103168 | DVB-DASH (TS 103 168 / A168 family) | - | - | ingested (discovered 2026-05-24) | https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/ts_103285v010301p.pdf |
+| etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-468-dvb-si | DVB-SI (EN 300 468): www.etsi.org - /deliver/etsi_en/300400_300499/300468/ | - | - | discovered (2026-05-24) | https://www.etsi.org/deliver/etsi_en/300400_300499/300468/ |
+| etsi | Structural/System | system-level | ETSI/DVB | etsi-en-300-743-dvb-sub | DVB Subtitling (EN 300 743): www.etsi.org - /deliver/etsi_en/300700_300799/300743/ | - | - | discovered (2026-05-24) | https://www.etsi.org/deliver/etsi_en/300700_300799/300743/ |
+| github | Structural/System | system-level | ISO/IEC | MPEGGroup/FileFormatConformance | MPEG file-format conformance resources (14496-15 / related) | main | 2026-01-22T05:45:55Z | discovered (2026-05-24) | https://github.com/MPEGGroup/FileFormatConformance |
+| github | Structural/System | system-level | ISO/IEC | MPEGGroup/isobmff | MPEG ISOBMFF reference software (ISO/IEC 14496-12) | master | 2026-04-18T18:59:17Z | ingested (discovered 2026-05-24) | https://github.com/MPEGGroup/isobmff |
+| iso | Structural/System | system-level | ISO/IEC | iso-iec-13818-1 | ISO/IEC 13818-1:2025 Information technology — Generic coding of moving pictures and associated audio information Part 1: Systems | - | - | discovered (2026-05-24) | https://www.iso.org/standard/91403.html |
+| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-12 | ISO/IEC 14496-12:2022 Information technology — Coding of audio-visual objects Part 12: ISO base media file format | - | - | discovered (2026-05-24) | https://www.iso.org/standard/83102.html |
+| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-15 | ISO/IEC 14496-15:2024 Information technology — Coding of audio-visual objects Part 15: Carriage of network abstraction layer (NAL) unit structured video in the ISO base media file format | - | - | discovered (2026-05-24) | https://www.iso.org/standard/89118.html |
 
 ## Other system-level standards (Structural/System)
 
@@ -90,7 +91,7 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/12. NGINX Ingress Controller | 12. NGINX Ingress Controller | "b1918a43a9666bbaa4bdea260b47b1aad92ad1ff" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F12.%20NGINX%20Ingress%20Controller |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/13. Adding On-Demand Assets | 13. Adding On-Demand Assets | "f2f0e739961b6ac372cde2c17d06195a2d6ddfd2" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F13.%20Adding%20On-Demand%20Assets |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/2. Download the aquila-aas Repository | 2. Download the aquila-aas Repository | "71218d0fc1a4e2990b1486552056b4622dc1e00b" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F2.%20Download%20the%20aquila-aas%20Repository |
-| ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/3. VM Prereqs | 3. VM Prereqs | "9e64c7dcd50808ba3ba170b2952d4ab14dd8a596" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F3.%20VM%20Prereqs |
+| ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/3. VM Prereqs | 3. VM Prereqs | "9e64c7dcd50808ba3ba170b2952d4ab14dd8a596" | - | ingested (discovered 2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F3.%20VM%20Prereqs |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/4. GCP Service Account Key | 4. GCP Service Account Key | "fca800fd7d08db564b895771a8b1af0b38c6a08e" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F4.%20GCP%20Service%20Account%20Key |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/5. Create a Bucket in GCP | 5. Create a Bucket in GCP | "a64c7fda878635e65d80393ddf6454567cfbe57a" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F5.%20Create%20a%20Bucket%20in%20GCP |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/6. Create the Cluster | 6. Create the Cluster | "fd4410d0afd5008b3212606d0cbfaa533ab178d6" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FVSPP%20Storage%2FCloud%20Storage%20Proxy%2FKubernetes%20Deployment%2F6.%20Create%20the%20Cluster |
@@ -148,137 +149,218 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/WoW/Timetracking/How to - France | How to - France | "67138b707a6e5e7d3eafcccbd6665fe45a983643" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FWoW%2FTimetracking%2FHow%20to%20-%20France |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/WoW/Timetracking/Importing time entries from Excel | Importing time entries from Excel | "96029b69d102cd60a0942730951dd8d878e195a9" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FWoW%2FTimetracking%2FImporting%20time%20entries%20from%20Excel |
 | ado_wiki | Internal | system-level | ADO/MK-VSPP | ado:MK-VSPP:145521f6-5639-4e32-9763-ef2717078324:/CoE Israel/WoW/Timetracking/Quick User Guide - France | Quick User Guide - France | "f65949d251ed5100769c11eb927f921f0962da74" | - | discovered (2026-05-19) | https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FWoW%2FTimetracking%2FQuick%20User%20Guide%20-%20France |
-| dvb | Structural/System | system-level | DVB | dvb-bluebook-001 | DVB BlueBook / related: Standards & BlueBooks: Specifications | - | Published | ingested (discovered 2026-05-19) | https://dvb.org/specifications/ |
-| dvb | Structural/System | system-level | DVB | dvb-bluebook-002 | DVB BlueBook / related: Read more about the process and the document types here: Standards & BlueBooks | - | Published | discovered (2026-05-19) | https://dvb.org/specifications/standards-bluebooks/ |
-| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-s2-en302307 | DVB-S2 (EN 302 307 family): www.etsi.org - /deliver/etsi_en/302300_302399/302307/ | - | - | discovered (2026-05-19) | https://www.etsi.org/deliver/etsi_en/302300_302399/302307/ |
-| github | Structural/System | system-level | GitHub/w3c | w3c/imsc | TTML Profiles for Internet Media Subtitles and Captions (IMSC) | main | 2026-04-03T20:24:34Z | ingested (discovered 2026-05-19) | https://github.com/w3c/imsc |
-| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-14 | ISO/IEC 14496-14:2020 Information technology — Coding of audio-visual objects Part 14: MP4 file format | - | - | discovered (2026-05-19) | https://www.iso.org/standard/79110.html |
-| smpte | Structural/System | system-level | SMPTE | smpte-st-2022 | SMPTE ST 2022 (video over IP) (no detail link from listing) | - | - | discovered (2026-05-19) | https://www.smpte.org/standards |
-| smpte | Structural/System | system-level | SMPTE | smpte-st-2110 | SMPTE ST 2110 (professional media over IP): ST 2110 Suite of Standards | - | Published | discovered (2026-05-19) | https://www.smpte.org/standards/st2110?hsLang=en#SMPTE-2110-FAQs |
-| w3c | Structural/System | system-level | W3C | w3c-tr-imsc11 | TTML Profiles for Internet Media Subtitles and Captions 1.1 | - | Published | ingested (discovered 2026-05-19) | https://www.w3.org/TR/ttml-imsc1.1/ |
-| w3c | Structural/System | system-level | W3C | w3c-tr-imsc13 | IMSC Text Profile 1.3 | - | Published | ingested (discovered 2026-05-19) | https://www.w3.org/TR/ttml-imsc1.3/ |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:111380820 | NG GUI Config file | 2 | 2025-05-04T10:42:59.039+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+Config+file |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:133530332 | ESAM Profiles | 5 | 2025-06-05T10:46:00.972+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/ESAM+Profiles |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:133530335 | Features | 1 | 2025-05-04T10:47:37.583+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Features |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:138248204 | NG GUI Jenkins - Build RPMS and Run Automation Tests | 1 | 2025-06-30T15:17:45.179+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+Jenkins+-+Build+RPMS+and+Run+Automation+Tests |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:141132602 | DRM Add / Edit Page | 8 | 2025-11-14T07:53:02.119+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=141132602 |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:144114569 | Setup developer environment - update | 11 | 2026-05-04T14:20:27.073+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Setup+developer+environment+-+update |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250409 | NextGen GUI | 10 | 2021-06-06T17:39:30.591+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NextGen+GUI |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250419 | NG GUI Installation | 14 | 2020-08-24T11:28:58.141+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+Installation |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250422 | Architecture - High Level Design | 8 | 2020-11-15T10:29:01.924+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Architecture+-+High+Level+Design |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250424 | Technologies | 3 | 2020-04-04T19:47:44.547+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Technologies |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250426 | NG UI Configuration on Prod | 12 | 2023-02-15T11:15:21.887+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+UI+Configuration+on+Prod |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250432 | Development Knowledge sharing | 4 | 2020-06-25T16:03:19.730+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Development+Knowledge+sharing |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250434 | Environments & Links | 12 | 2022-11-30T11:08:13.198+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=53250434 |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250436 | Code structure - Low Level Design | 8 | 2021-06-07T17:50:19.296+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Code+structure+-+Low+Level+Design |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250440 | Git Flow | 5 | 2020-10-04T11:58:41.819+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Git+Flow |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:53250444 | Next Gen GUI - Project Overview | 8 | 2024-02-04T22:50:49.000+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Next+Gen+GUI+-+Project+Overview |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:55476284 | NG GUI build process | 14 | 2022-11-10T10:10:04.506+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+build+process |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:55476519 | Logs | 1 | 2020-04-04T20:05:27.357+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Logs |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:55476668 | Security Vulnerabilities | 3 | 2020-05-05T20:57:28.934+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Security+Vulnerabilities |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:55476670 | Preexist security fixes | 9 | 2022-07-03T06:45:44.414+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Preexist+security+fixes |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:56754397 | 3rd Party Libraries Upgrades | 3 | 2023-10-30T12:12:44.183+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/3rd+Party+Libraries+Upgrades |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:56754593 | LDAP support | 5 | 2020-05-10T09:03:11.723+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/LDAP+support |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:58327070 | Setup Local Development Env | 13 | 2023-10-30T12:09:36.556+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Setup+Local+Development+Env |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704221 | UX guidelines and standard | 10 | 2021-02-09T17:12:09.660+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/UX+guidelines+and+standard |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704233 | NG GUI Automation | 5 | 2020-10-01T19:28:09.554+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+Automation |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704234 | Authentication - log in | 1 | 2020-06-25T16:34:46.130+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Authentication+-+log+in |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704238 | VOD | 1 | 2020-06-25T16:56:23.206+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/VOD |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704240 | To Do - All rout to views for regression | 2 | 2020-06-25T16:41:34.301+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/To+Do+-+All+rout+to+views+for+regression |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704243 | To Do - TSB Form | 1 | 2020-06-25T16:41:57.531+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/To+Do+-+TSB+Form |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704245 | Channel Suite | 10 | 2020-09-09T10:32:00.182+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Channel+Suite |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704256 | Configuration change | 1 | 2020-06-25T16:46:24.961+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Configuration+change |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704258 | To Do - Video Encoding Profile Suite | 4 | 2020-11-24T01:02:22.210+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/To+Do+-+Video+Encoding+Profile+Suite |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704266 | To Do - VOD Suite | 2 | 2020-08-25T15:41:59.524+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/To+Do+-+VOD+Suite |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704268 | Time Shift (Channel, RB, Inner assets, TSB config) | 1 | 2020-06-25T16:54:08.003+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=59704268 |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704271 | Profiles | 3 | 2020-09-08T15:09:21.677+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Profiles |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704274 | NG GUI E2E testing | 5 | 2020-08-18T13:20:58.845+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+GUI+E2E+testing |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59704836 | Deploying the classic UI on our team env | 2 | 2020-10-02T11:38:31.314+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Deploying+the+classic+UI+on+our+team+env |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:59705395 | Update Demo system | 13 | 2022-11-10T09:48:47.432+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Update+Demo+system |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:62521542 | Navigation Bar | 2 | 2020-09-13T17:05:09.905+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Navigation+Bar |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:62522706 | Basic Training Topics | 10 | 2021-06-07T17:49:27.860+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Basic+Training+Topics |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:62522710 | Code conventions | 4 | 2020-12-08T15:01:28.994+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Code+conventions |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:62522724 | New Developer - Getting Started | 11 | 2022-08-04T10:51:52.866+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/New+Developer+-+Getting+Started |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65864127 | Region Area Code Design | 6 | 2022-09-08T09:23:56.672+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Region+Area+Code+Design |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65864626 | NG CI - ADO Pipeline and Reports | 1 | 2020-11-26T16:45:20.206+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/NG+CI+-+ADO+Pipeline+and+Reports |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65867420 | Region Data sync | 2 | 2021-01-20T13:10:11.478+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Region+Data+sync |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65867871 | FOSS Process | 13 | 2021-02-08T17:22:20.720+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/FOSS+Process |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65868488 | Manually Creation of the CSV | 2 | 2021-02-08T17:14:51.036+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Manually+Creation+of+the+CSV |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65868603 | UI Translation | 4 | 2021-02-02T16:18:21.769+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/UI+Translation |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:65868836 | Prerequisites & Known Limitations | 7 | 2021-03-16T11:24:48.591+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=65868836 |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:71828706 | Classic UI Debugging | 2 | 2021-06-07T10:17:26.671+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Classic+UI+Debugging |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:92798994 | UI / UX Design | 1 | 2022-09-08T09:20:28.799+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=92798994 |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:92798997 | Region Area | 2 | 2022-09-08T09:23:03.765+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Region+Area |
+| confluence | Internal | system-level | Confluence/NGGUI | confluence:NGGUI:92800852 | Automation test env pre-requisites | 1 | 2023-01-17T12:12:51.393+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/NGGUI/Automation+test+env+pre-requisites |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133529879 | Product Manager | 2 | 2025-04-01T11:39:50.503+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/Product+Manager |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530025 | StreamGate Integration & Project Plan (VSPP) | 2 | 2025-04-14T11:09:21.652+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530025 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530027 | StreamGate Product Strategy | 1 | 2025-04-07T03:08:26.313+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+Product+Strategy |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530029 | StreamGate Product Integration Requirements | 1 | 2025-04-07T03:10:35.679+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+Product+Integration+Requirements |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530031 | StreamGate System Architecture & Design Spec | 1 | 2025-04-07T03:11:33.814+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530031 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530033 | StreamGate Solution Architecture (Customer-Facing) | 1 | 2025-04-07T03:12:21.327+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530033 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530035 | StreamGate Configuration Specification (Working Draft) | 2 | 2025-04-14T11:09:49.505+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530035 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530037 | StreamGate SYSU Integration Guide | 3 | 2025-04-14T12:33:11.079+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+SYSU+Integration+Guide |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530039 | StreamGate Monitoring & Metrics Guide | 2 | 2025-04-14T12:15:12.169+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530039 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530041 | StreamGate Security Checklist | 1 | 2025-04-07T03:15:21.858+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+Security+Checklist |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530043 | StreamGate Upgrade & Backward Compatibility Strategy | 1 | 2025-04-07T03:16:01.704+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530043 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530045 | StreamGate QA & Automation Test Plan | 1 | 2025-04-07T03:16:37.700+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530045 |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530047 | StreamGate Grafana Dashboard Specification | 1 | 2025-04-07T03:19:28.887+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+Grafana+Dashboard+Specification |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530049 | StreamGate Developer Component Guidelines | 3 | 2025-04-14T11:56:59.673+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/PM/StreamGate+Developer+Component+Guidelines |
+| confluence | Internal | system-level | Confluence/PM | confluence:PM:133530051 | StreamGate Customer Brief (1-Pager) | 1 | 2025-04-07T03:24:59.378+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/pages/viewpage.action?pageId=133530051 |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224826 | VSPP 3rd party certified hardware support matrix | 7 | 2024-07-20T02:40:27.833+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/VSPP+3rd+party+certified+hardware+support+matrix |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224828 | HPE Gen10 - certified | 6 | 2024-07-20T02:42:00.338+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/HPE+Gen10+-+certified |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224833 | HPE Gen11 - under certification process | 6 | 2024-07-20T02:44:11.100+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/HPE+Gen11+-+under+certification+process |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224839 | HPE Hardware OS support Matrix | 8 | 2024-07-20T01:51:43.442+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/HPE+Hardware+OS+support+Matrix |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224860 | BoM Gen11 - HW (Bill of Materials) list for generation 11 servers | 5 | 2024-07-21T19:00:43.409+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/BoM+Gen11+-+HW+%28Bill+of+Materials%29+list+for+generation+11+servers |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224867 | BoM Gen10 - HW (Build of Materials) list for generation 10 servers | 2 | 2024-07-20T02:12:19.169+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/BoM+Gen10+-+HW+%28Build+of+Materials%29+list+for+generation+10+servers |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224872 | Server customer intent buiding document | 4 | 2024-07-20T02:33:36.336+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/Server+customer+intent+buiding+document |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224882 | HPE network interface adapters | 3 | 2024-07-20T02:39:06.190+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/HPE+network+interface+adapters |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224891 | Gen11 - Fine tunning guide | 2 | 2024-07-20T02:47:55.168+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/Gen11+-+Fine+tunning+guide |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:122224894 | Gen10 - Fine tunning guide | 2 | 2024-07-20T02:48:11.651+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/Gen10+-+Fine+tunning+guide |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:71828856 | VSPP Product | 2 | 2021-06-17T17:06:22.940+03:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/VSPP+Product |
+| confluence | Internal | system-level | Confluence/VP | confluence:VP:71828859 | VSPP OS Support Matrix | 3 | 2023-02-08T09:08:33.102+02:00 | discovered (2026-05-24) | http://10.65.130.11:8090/display/VP/VSPP+OS+Support+Matrix |
+| dvb | Structural/System | system-level | DVB | dvb-bluebook-001 | DVB BlueBook / related: Standards & BlueBooks: Specifications | - | Published | ingested (discovered 2026-05-24) | https://dvb.org/specifications/ |
+| dvb | Structural/System | system-level | DVB | dvb-bluebook-002 | DVB BlueBook / related: Read more about the process and the document types here: Standards & BlueBooks | - | Published | discovered (2026-05-24) | https://dvb.org/specifications/standards-bluebooks/ |
+| etsi | Structural/System | system-level | ETSI/DVB | etsi-dvb-s2-en302307 | DVB-S2 (EN 302 307 family): www.etsi.org - /deliver/etsi_en/302300_302399/302307/ | - | - | discovered (2026-05-24) | https://www.etsi.org/deliver/etsi_en/302300_302399/302307/ |
+| github | Structural/System | system-level | GitHub/w3c | w3c/imsc | TTML Profiles for Internet Media Subtitles and Captions (IMSC) | main | 2026-05-21T14:41:40Z | ingested (discovered 2026-05-24) | https://github.com/w3c/imsc |
+| iso | Structural/System | system-level | ISO/IEC | iso-iec-14496-14 | ISO/IEC 14496-14:2020 Information technology — Coding of audio-visual objects Part 14: MP4 file format | - | - | discovered (2026-05-24) | https://www.iso.org/standard/79110.html |
+| smpte | Structural/System | system-level | SMPTE | smpte-st-2022 | SMPTE ST 2022 (video over IP) (no detail link from listing) | - | - | discovered (2026-05-24) | https://www.smpte.org/standards |
+| smpte | Structural/System | system-level | SMPTE | smpte-st-2110 | SMPTE ST 2110 (professional media over IP): ST 2110 Suite of Standards | - | Published | discovered (2026-05-24) | https://www.smpte.org/standards/st2110?hsLang=en#SMPTE-2110-FAQs |
+| w3c | Structural/System | system-level | W3C | w3c-tr-imsc11 | TTML Profiles for Internet Media Subtitles and Captions 1.1 | - | Published | ingested (discovered 2026-05-24) | https://www.w3.org/TR/ttml-imsc1.1/ |
+| w3c | Structural/System | system-level | W3C | w3c-tr-imsc13 | IMSC Text Profile 1.3 | - | Published | ingested (discovered 2026-05-24) | https://www.w3.org/TR/ttml-imsc1.3/ |
 
 ## Transport-Level standards
 
 | Source | Category | Tier | Authority | ID | Title | Version | Publication (portal) | Status | URL |
 |---|---|---|---|---|---|---|---|---|---|
-| 3gpp | Transport | transport-level | 3GPP | 26102-020 | 26-series spec package 26102-020.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-020.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-330 | 26-series spec package 26102-330.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-330.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-340 | 26-series spec package 26102-340.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-340.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-400 | 26-series spec package 26102-400.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-400.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-410 | 26-series spec package 26102-410.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-410.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-500 | 26-series spec package 26102-500.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-500.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-510 | 26-series spec package 26102-510.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-510.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-520 | 26-series spec package 26102-520.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-520.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-600 | 26-series spec package 26102-600.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-600.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-700 | 26-series spec package 26102-700.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-700.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-710 | 26-series spec package 26102-710.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-710.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-800 | 26-series spec package 26102-800.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-800.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-810 | 26-series spec package 26102-810.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-810.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-820 | 26-series spec package 26102-820.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-820.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-830 | 26-series spec package 26102-830.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-830.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-840 | 26-series spec package 26102-840.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-840.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-850 | 26-series spec package 26102-850.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-850.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-900 | 26-series spec package 26102-900.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-900.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-910 | 26-series spec package 26102-910.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-910.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-920 | 26-series spec package 26102-920.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-920.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-a00 | 26-series spec package 26102-a00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-a00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-b00 | 26-series spec package 26102-b00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-b00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-c00 | 26-series spec package 26102-c00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-c00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-d00 | 26-series spec package 26102-d00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-d00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-e00 | 26-series spec package 26102-e00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-e00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-f00 | 26-series spec package 26102-f00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-f00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-g00 | 26-series spec package 26102-g00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-g00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-h00 | 26-series spec package 26102-h00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-h00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-i00 | 26-series spec package 26102-i00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-i00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 26102-j00 | 26-series spec package 26102-j00.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-j00.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-520 | 29-series spec package 29061-520.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-520.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-521 | 29-series spec package 29061-521.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-521.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-530 | 29-series spec package 29061-530.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-530.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-540 | 29-series spec package 29061-540.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-540.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-550 | 29-series spec package 29061-550.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-550.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-560 | 29-series spec package 29061-560.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-560.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-570 | 29-series spec package 29061-570.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-570.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-580 | 29-series spec package 29061-580.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-580.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-590 | 29-series spec package 29061-590.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-590.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-591 | 29-series spec package 29061-591.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-591.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-600 | 29-series spec package 29061-600.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-600.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-610 | 29-series spec package 29061-610.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-610.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-620 | 29-series spec package 29061-620.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-620.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-630 | 29-series spec package 29061-630.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-630.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-631 | 29-series spec package 29061-631.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-631.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-640 | 29-series spec package 29061-640.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-640.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-650 | 29-series spec package 29061-650.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-650.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-660 | 29-series spec package 29061-660.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-660.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-670 | 29-series spec package 29061-670.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-670.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-680 | 29-series spec package 29061-680.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-680.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-690 | 29-series spec package 29061-690.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-690.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6a0 | 29-series spec package 29061-6a0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6a0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6b0 | 29-series spec package 29061-6b0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6b0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6c0 | 29-series spec package 29061-6c0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6c0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6d0 | 29-series spec package 29061-6d0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6d0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6e0 | 29-series spec package 29061-6e0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6e0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-6f0 | 29-series spec package 29061-6f0.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6f0.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-700 | 29-series spec package 29061-700.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-700.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-710 | 29-series spec package 29061-710.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-710.zip |
-| 3gpp | Transport | transport-level | 3GPP | 29061-720 | 29-series spec package 29061-720.zip | - | - | ingested (discovered 2026-05-19) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-720.zip |
-| github | Transport | transport-level | GitHub/AOMediaCodec | AOMediaCodec/av1-spec | AV1 Bitstream & Decoding Process Specification | master | 2026-05-14T10:59:45Z | ingested (discovered 2026-05-19) | https://github.com/AOMediaCodec/av1-spec |
-| github | Transport | transport-level | GitHub/w3c | w3c/ttml1 | Timed Text Markup Language 1 (TTML1) | main | 2023-09-09T09:36:44Z | ingested (discovered 2026-05-19) | https://github.com/w3c/ttml1 |
-| github | Transport | transport-level | GitHub/w3c | w3c/webvtt | WebVTT Standard | main | 2026-05-14T09:52:37Z | ingested (discovered 2026-05-19) | https://github.com/w3c/webvtt |
-| ietf | Transport | transport-level | IETF | agenda-96-quic | Agenda for QUIC at IETF-96 | 2 | 2016-07-11T19:33:41Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/agenda-96-quic/ |
-| ietf | Transport | transport-level | IETF | bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol | Intrgtation of SW103K protocol with HLS protocol | 00 | 2024-09-27T19:08:28Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol/ |
-| ietf | Transport | transport-level | IETF | conflict-review-pantos-hls-rfc8216bis | IETF conflict review for draft-pantos-hls-rfc8216bis | 00 | 2026-04-16T18:57:52Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/conflict-review-pantos-hls-rfc8216bis/ |
-| ietf | Transport | transport-level | IETF | draft-bergeron-payload-rtpfec-rs | RTP Payload Format for Reed-Solomon FEC | 00 | 2011-02-25T08:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-bergeron-payload-rtpfec-rs-00.txt |
-| ietf | Transport | transport-level | IETF | draft-boucadair-pcp-rtp-rtcp | Reserving N and N+1 Ports with PCP | 05 | 2013-04-15T17:36:23Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-boucadair-pcp-rtp-rtcp-05.txt |
-| ietf | Transport | transport-level | IETF | draft-dbenham-webrtc-videomti | H.264/AVC as Mandatory-to-Implement Video Codec for RTCweb | 02 | 2014-03-03T08:11:14Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-dbenham-webrtc-videomti-02.txt |
-| ietf | Transport | transport-level | IETF | draft-ejzak-dispatch-webrtc-data-channel-sdpneg | SDP-based WebRTC data channel negotiation | 00 | 2014-02-17T23:47:17Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ejzak-dispatch-webrtc-data-channel-sdpneg-00.txt |
-| ietf | Transport | transport-level | IETF | draft-garcia-simulcast-and-layered-video-webrtc | Simulcast and layered video coding support in WebRTC | 00 | 2014-02-06T08:08:21Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-garcia-simulcast-and-layered-video-webrtc-00.txt |
-| ietf | Transport | transport-level | IETF | draft-gharai-avtcore-rtp-tfrc | RTP with TCP Friendly Rate Control | 01 | 2012-03-26T07:27:06Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-gharai-avtcore-rtp-tfrc-01.txt |
-| ietf | Transport | transport-level | IETF | draft-hamilton-early-deployment-quic | QUIC: A UDP-Based Secure and Reliable Transport for HTTP/2 | 00 | 2017-01-09T08:08:14Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-hamilton-early-deployment-quic-00.txt |
-| ietf | Transport | transport-level | IETF | draft-hamilton-quic-transport-protocol | QUIC: A UDP-Based Multiplexed and Secure Transport | 01 | 2016-11-23T08:04:48Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-hamilton-quic-transport-protocol-01.txt |
-| ietf | Transport | transport-level | IETF | draft-huang-ppsp-p2p-webrtc-survey | Survey of WebRTC based P2P Streaming | 00 | 2014-08-17T07:08:38Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-huang-ppsp-p2p-webrtc-survey-00.txt |
-| ietf | Transport | transport-level | IETF | draft-ietf-appsawg-xdash | Deprecating the "X-" Prefix and Similar Constructs in Application Protocols | 05 | 2015-10-14T20:52:32Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ietf-appsawg-xdash-05.txt |
-| ietf | Transport | transport-level | IETF | draft-ietf-avtcore-srtp-encrypted-header-ext | Encryption of Header Extensions in the Secure Real-time Transport Protocol (SRTP) | 05 | 2018-12-20T08:27:08Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ietf-avtcore-srtp-encrypted-header-ext-05.txt |
-| ietf | Transport | transport-level | IETF | draft-ietf-avtext-splicing-for-rtp | Content Splicing for RTP Sessions | 13 | 2018-12-20T08:26:57Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ietf-avtext-splicing-for-rtp-13.txt |
-| ietf | Transport | transport-level | IETF | draft-ietf-rtcweb-rtp-usage | Media Transport and Use of RTP in WebRTC | 26 | 2021-01-18T23:32:35Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ietf-rtcweb-rtp-usage-26.txt |
-| ietf | Transport | transport-level | IETF | draft-iyengar-quic-loss-recovery | QUIC Congestion Control And Loss Recovery | 01 | 2016-11-23T08:05:11Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-iyengar-quic-loss-recovery-01.txt |
-| ietf | Transport | transport-level | IETF | draft-lennox-avtcore-srtp-encrypted-header-ext | Encryption of Header Extensions in the Secure Real-Time Transport Protocol (SRTP) | 00 | 2011-06-20T07:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-lennox-avtcore-srtp-encrypted-header-ext-00.txt |
-| ietf | Transport | transport-level | IETF | draft-marcon-msrp-over-webrtc-data-channels | MSRP over WebRTC data channels | 00 | 2014-01-09T08:08:58Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-marcon-msrp-over-webrtc-data-channels-00.txt |
-| ietf | Transport | transport-level | IETF | draft-margaria-pce-pcep-hlsp-extension | PCEP Procedures for Hierarchical Label Switched Paths | 00 | 2016-09-22T07:08:20Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt |
-| ietf | Transport | transport-level | IETF | draft-ohlsson-rtcweb-sdes-support | Support of SDES in WebRTC | 01 | 2013-02-21T08:23:56Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt |
-| ietf | Transport | transport-level | IETF | draft-pantos-hls-rfc8216bis | HTTP Live Streaming 2nd Edition | 22 | 2026-05-18T21:06:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt |
-| ietf | Transport | transport-level | IETF | draft-pd-msrp-webrtc | The WebRTC Data Channel as a Transport for the Message Session Relay Protocol (MSRP) | 00 | 2013-11-11T08:12:15Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-pd-msrp-webrtc-00.txt |
-| ietf | Transport | transport-level | IETF | draft-peck-suiteb-dtls-srtp | Suite B Profile for Datagram Transport Layer Security / Secure Real-time Transport Protocol (DTLS-SRTP) | 04 | 2014-06-29T07:09:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-peck-suiteb-dtls-srtp-04.txt |
-| ietf | Transport | transport-level | IETF | draft-perkins-rtcweb-rtp-usage | RTP Requirements for RTC-Web | 03 | 2011-10-25T07:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-perkins-rtcweb-rtp-usage-03.txt |
-| ietf | Transport | transport-level | IETF | draft-raymond-rtcweb-webrtc-js-obj-api-rationale | WebRTC JavaScript Object API Rationale | 01 | 2014-01-07T08:08:37Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt |
-| ietf | Transport | transport-level | IETF | draft-rea-avt-rtp-aptx | RTP Payload Format for Standard apt-X and Enhanced apt-X Codecs | 00 | 2011-04-15T07:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-rea-avt-rtp-aptx-00.txt |
-| ietf | Transport | transport-level | IETF | draft-saintandre-xdash | Deprecating Use of the "X-" Prefix in Application Protocols | 03 | 2011-09-14T07:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt |
-| ietf | Transport | transport-level | IETF | draft-saintandre-xdash-considered-harmful | "X-" Considered Harmful | 01 | 2014-07-02T13:38:10Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt |
-| ietf | Transport | transport-level | IETF | draft-shade-quic-http2-mapping | HTTP/2 Semantics Using The QUIC Transport Protocol | 00 | 2016-11-23T08:05:33Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-shade-quic-http2-mapping-00.txt |
-| ietf | Transport | transport-level | IETF | draft-singh-xrblock-webrtc-additional-stats | Additional RTP Control Protocol (RTCP) Extended Report (XR) Metrics for WebRTC Statistics API | 02 | 2014-08-18T07:08:52Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-singh-xrblock-webrtc-additional-stats-02.txt |
-| ietf | Transport | transport-level | IETF | draft-sodder-ppvpn-vhls | Virtual Hierarchical LAN Services | 02 | 2003-04-29T07:00:00Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt |
-| ietf | Transport | transport-level | IETF | draft-thomson-mmusic-ice-webrtc | Using Interactive Connectivity Establishment (ICE) in Web Real-Time Communications (WebRTC) | 01 | 2014-04-21T07:06:59Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-thomson-mmusic-ice-webrtc-01.txt |
-| ietf | Transport | transport-level | IETF | draft-thomson-quic-tls | Using Transport Layer Security (TLS) to Secure QUIC | 01 | 2016-11-23T08:05:50Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-thomson-quic-tls-01.txt |
-| ietf | Transport | transport-level | IETF | draft-wahlstroem-ace-cbor-web-token | CBOR Web Token (CWT) | 00 | 2015-12-14T14:43:52Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt |
-| ietf | Transport | transport-level | IETF | draft-wahlstroem-ace-oauth-introspection | OAuth 2.0 Introspection over the Constrained Application Protocol (CoAP) | 01 | 2015-09-10T07:09:57Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt |
-| ietf | Transport | transport-level | IETF | draft-wahlstroem-oauth-cbor-web-token | CBOR Web Token (CWT) | 00 | 2015-11-12T15:58:38Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt |
-| ietf | Transport | transport-level | IETF | draft-westerlund-perc-webrtc-use-case | WebRTC Use Case and Framework for Privacy Enhanced RTP Conferencing (PERC) | 01 | 2016-04-21T07:10:50Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-westerlund-perc-webrtc-use-case-01.txt |
-| ietf | Transport | transport-level | IETF | draft-wing-quic-network-req | Network Path Requirements for QUIC | 00 | 2016-12-17T08:07:16Z | discovered (2026-05-19) | https://www.ietf.org/archive/id/draft-wing-quic-network-req-00.txt |
-| ietf | Transport | transport-level | IETF | liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1 | Liaison Statement on Dynamic Adaptive Streaming over HTTP (DASH) | - | 2010-08-10T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/ |
-| ietf | Transport | transport-level | IETF | liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-2 | Liaison Letter on Multimedia Service Platform Technologies | - | 2010-08-10T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/ |
-| ietf | Transport | transport-level | IETF | liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-1 | Liaison Statement from SC 29/WG 11 on Dynamic adaptive streaming over HTTP (DASH)  [SC 29/WG 11 N 11973, Attachment: WG 11 N 11951]  | - | 2011-04-08T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-1/ |
-| ietf | Transport | transport-level | IETF | liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-2 | Liaison on Dynamic Adaptive Streaming over HTTP (DASH) | - | 2011-04-08T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-2/ |
-| ietf | Transport | transport-level | IETF | liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-3 | DASH Profiles under consideration | - | 2011-04-08T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-3/ |
-| ietf | Transport | transport-level | IETF | liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1 | Liaison on Dynamic Adaptive Streaming over HTTP (DASH) | - | 2011-07-27T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/ |
-| ietf | Transport | transport-level | IETF | liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2 | Liaison Statement from SC 29/WG 11 on Dynamic adaptive streaming over HTTP (DASH)  [SC 29/WG 11 N 12064]  | - | 2011-07-27T07:00:00Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/ |
-| ietf | Transport | transport-level | IETF | review-ietf-quic-transport-33-intdir-telechat-volz-2021-01-04 | Telechat Review of draft-ietf-quic-transport-33 | 00 | 2021-01-04T18:57:12Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/review-ietf-quic-transport-33-intdir-telechat-volz-2021-01-04/ |
-| ietf | Transport | transport-level | IETF | slides-96-quic-0 | 0 - Introduction and Agenda | 1 | 2016-07-18T12:21:58Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/slides-96-quic-0/ |
-| ietf | Transport | transport-level | IETF | slides-96-quic-1 | 5 - Using TLS for QUIC | 1 | 2016-07-18T12:22:19Z | discovered (2026-05-19) | https://datatracker.ietf.org/doc/slides-96-quic-1/ |
+| 3gpp | Transport | transport-level | 3GPP | 26102-020 | 26-series spec package 26102-020.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-020.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-330 | 26-series spec package 26102-330.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-330.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-340 | 26-series spec package 26102-340.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-340.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-400 | 26-series spec package 26102-400.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-400.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-410 | 26-series spec package 26102-410.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-410.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-500 | 26-series spec package 26102-500.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-500.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-510 | 26-series spec package 26102-510.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-510.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-520 | 26-series spec package 26102-520.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-520.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-600 | 26-series spec package 26102-600.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-600.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-700 | 26-series spec package 26102-700.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-700.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-710 | 26-series spec package 26102-710.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-710.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-800 | 26-series spec package 26102-800.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-800.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-810 | 26-series spec package 26102-810.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-810.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-820 | 26-series spec package 26102-820.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-820.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-830 | 26-series spec package 26102-830.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-830.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-840 | 26-series spec package 26102-840.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-840.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-850 | 26-series spec package 26102-850.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-850.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-900 | 26-series spec package 26102-900.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-900.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-910 | 26-series spec package 26102-910.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-910.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-920 | 26-series spec package 26102-920.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-920.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-a00 | 26-series spec package 26102-a00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-a00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-b00 | 26-series spec package 26102-b00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-b00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-c00 | 26-series spec package 26102-c00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-c00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-d00 | 26-series spec package 26102-d00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-d00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-e00 | 26-series spec package 26102-e00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-e00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-f00 | 26-series spec package 26102-f00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-f00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-g00 | 26-series spec package 26102-g00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-g00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-h00 | 26-series spec package 26102-h00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-h00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-i00 | 26-series spec package 26102-i00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-i00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 26102-j00 | 26-series spec package 26102-j00.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/26_series/26.102/26102-j00.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-520 | 29-series spec package 29061-520.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-520.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-521 | 29-series spec package 29061-521.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-521.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-530 | 29-series spec package 29061-530.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-530.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-540 | 29-series spec package 29061-540.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-540.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-550 | 29-series spec package 29061-550.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-550.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-560 | 29-series spec package 29061-560.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-560.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-570 | 29-series spec package 29061-570.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-570.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-580 | 29-series spec package 29061-580.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-580.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-590 | 29-series spec package 29061-590.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-590.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-591 | 29-series spec package 29061-591.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-591.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-600 | 29-series spec package 29061-600.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-600.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-610 | 29-series spec package 29061-610.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-610.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-620 | 29-series spec package 29061-620.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-620.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-630 | 29-series spec package 29061-630.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-630.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-631 | 29-series spec package 29061-631.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-631.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-640 | 29-series spec package 29061-640.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-640.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-650 | 29-series spec package 29061-650.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-650.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-660 | 29-series spec package 29061-660.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-660.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-670 | 29-series spec package 29061-670.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-670.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-680 | 29-series spec package 29061-680.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-680.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-690 | 29-series spec package 29061-690.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-690.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6a0 | 29-series spec package 29061-6a0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6a0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6b0 | 29-series spec package 29061-6b0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6b0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6c0 | 29-series spec package 29061-6c0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6c0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6d0 | 29-series spec package 29061-6d0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6d0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6e0 | 29-series spec package 29061-6e0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6e0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-6f0 | 29-series spec package 29061-6f0.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-6f0.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-700 | 29-series spec package 29061-700.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-700.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-710 | 29-series spec package 29061-710.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-710.zip |
+| 3gpp | Transport | transport-level | 3GPP | 29061-720 | 29-series spec package 29061-720.zip | - | - | ingested (discovered 2026-05-24) | ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-720.zip |
+| github | Transport | transport-level | GitHub/AOMediaCodec | AOMediaCodec/av1-spec | AV1 Bitstream & Decoding Process Specification | master | 2026-05-19T11:23:24Z | ingested (discovered 2026-05-24) | https://github.com/AOMediaCodec/av1-spec |
+| github | Transport | transport-level | GitHub/w3c | w3c/ttml1 | Timed Text Markup Language 1 (TTML1) | main | 2023-09-09T09:36:44Z | ingested (discovered 2026-05-24) | https://github.com/w3c/ttml1 |
+| github | Transport | transport-level | GitHub/w3c | w3c/webvtt | WebVTT Standard | main | 2026-05-20T14:59:53Z | ingested (discovered 2026-05-24) | https://github.com/w3c/webvtt |
+| ietf | Transport | transport-level | IETF | bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol | Intrgtation of SW103K protocol with HLS protocol | 00 | 2024-09-27T19:08:28Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol/ |
+| ietf | Transport | transport-level | IETF | conflict-review-pantos-hls-rfc8216bis | IETF conflict review for draft-pantos-hls-rfc8216bis | 00 | 2026-04-16T18:57:52Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/conflict-review-pantos-hls-rfc8216bis/ |
+| ietf | Transport | transport-level | IETF | draft-aboba-avtcore-hevc-webrtc | H.265 Profile for WebRTC | 02 | 2023-10-13T11:58:10Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-aboba-avtcore-hevc-webrtc-02.txt |
+| ietf | Transport | transport-level | IETF | draft-dashevskyi-dnsrr-antipatterns | Common Implementation Anti-Patterns Related to Domain Name System (DNS) Resource Record (RR) Processing | 06 | 2022-07-28T14:03:37Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-dashevskyi-dnsrr-antipatterns-06.txt |
+| ietf | Transport | transport-level | IETF | draft-hancke-webrtc-sped | STUN Protocol for Embedding DTLS (SPED) | 00 | 2026-03-02T23:30:02Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-hancke-webrtc-sped-00.txt |
+| ietf | Transport | transport-level | IETF | draft-hoene-avt-rtp-sbc | RTP Payload Format for Bluetooth's SBC audio codec | 05 | 2010-06-14T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-hoene-avt-rtp-sbc-05.txt |
+| ietf | Transport | transport-level | IETF | draft-ietf-avt-rapid-acquisition-for-rtp | Unicast-Based Rapid Acquisition of Multicast RTP Sessions | 17 | 2018-12-20T08:25:17Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-ietf-avt-rapid-acquisition-for-rtp-17.txt |
+| ietf | Transport | transport-level | IETF | draft-ietf-avt-rtp-sbc | RTP Payload Format for Bluetooth's SBC audio codec | 01 | 2010-12-11T08:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-ietf-avt-rtp-sbc-01.txt |
+| ietf | Transport | transport-level | IETF | draft-ietf-avtcore-hevc-webrtc | H.265 Profile for WebRTC | 08 | 2026-03-25T23:38:13Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-ietf-avtcore-hevc-webrtc-08.txt |
+| ietf | Transport | transport-level | IETF | draft-ietf-fecframe-rtp-raptor | RTP Payload Format for Raptor Forward Error Correction (FEC) | 07 | 2015-10-14T20:52:02Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-ietf-fecframe-rtp-raptor-07.txt |
+| ietf | Transport | transport-level | IETF | draft-jiang7369-webrtc-uri-scheme | The WebRTC URI Scheme | 02 | 2023-10-21T07:13:58Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-jiang7369-webrtc-uri-scheme-02.txt |
+| ietf | Transport | transport-level | IETF | draft-legrand-rtp-isac | RTP Payload Format for the iSAC Codec | 02 | 2009-10-16T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-legrand-rtp-isac-02.txt |
+| ietf | Transport | transport-level | IETF | draft-liu-webrtc-http-interactive-protocol | WebRTC-HTTP Interactive Signaling Protocol(WHISP) | 00 | 2024-01-11T08:14:10Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-liu-webrtc-http-interactive-protocol-00.txt |
+| ietf | Transport | transport-level | IETF | draft-margaria-pce-pcep-hlsp-extension | PCEP Procedures for Hierarchical Label Switched Paths | 00 | 2016-09-22T07:08:20Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt |
+| ietf | Transport | transport-level | IETF | draft-mattsson-srtp-store-and-forward | SRTP Store-and-Forward Use Cases and Requirements | 04 | 2011-03-14T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-mattsson-srtp-store-and-forward-04.txt |
+| ietf | Transport | transport-level | IETF | draft-ohlsson-rtcweb-sdes-support | Support of SDES in WebRTC | 01 | 2013-02-21T08:23:56Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt |
+| ietf | Transport | transport-level | IETF | draft-pantos-hls-rfc8216bis | HTTP Live Streaming 2nd Edition | 22 | 2026-05-22T16:58:54Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt |
+| ietf | Transport | transport-level | IETF | draft-raymond-rtcweb-webrtc-js-obj-api-rationale | WebRTC JavaScript Object API Rationale | 01 | 2014-01-07T08:08:37Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt |
+| ietf | Transport | transport-level | IETF | draft-saintandre-xdash | Deprecating Use of the "X-" Prefix in Application Protocols | 03 | 2011-09-14T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt |
+| ietf | Transport | transport-level | IETF | draft-saintandre-xdash-considered-harmful | "X-" Considered Harmful | 01 | 2014-07-02T13:38:10Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt |
+| ietf | Transport | transport-level | IETF | draft-schierl-avt-rtp-multi-session-transmission | Multi-Session and Multi-Source Transmission in the Real-Time Transport Protocol (RTP) | 00 | 2008-10-26T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-schierl-avt-rtp-multi-session-transmission-00.txt |
+| ietf | Transport | transport-level | IETF | draft-sodder-ppvpn-vhls | Virtual Hierarchical LAN Services | 02 | 2003-04-29T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt |
+| ietf | Transport | transport-level | IETF | draft-versteeg-avt-rapid-synchronization-for-rtp | Unicast-Based Rapid Acquisition of Multicast RTP Sessions | 03 | 2009-07-24T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-versteeg-avt-rapid-synchronization-for-rtp-03.txt |
+| ietf | Transport | transport-level | IETF | draft-wahlstroem-ace-cbor-web-token | CBOR Web Token (CWT) | 00 | 2015-12-14T14:43:52Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt |
+| ietf | Transport | transport-level | IETF | draft-wahlstroem-ace-oauth-introspection | OAuth 2.0 Introspection over the Constrained Application Protocol (CoAP) | 01 | 2015-09-10T07:09:57Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt |
+| ietf | Transport | transport-level | IETF | draft-wahlstroem-oauth-cbor-web-token | CBOR Web Token (CWT) | 00 | 2015-11-12T15:58:38Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt |
+| ietf | Transport | transport-level | IETF | draft-watson-fecframe-rtp-raptor | RTP Payload Format for Raptor FEC | 00 | 2009-03-10T07:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-watson-fecframe-rtp-raptor-00.txt |
+| ietf | Transport | transport-level | IETF | draft-westerlund-avt-rtp-gsm-hr | RTP Payload format for GSM-HR | 00 | 2010-01-13T08:00:00Z | discovered (2026-05-24) | https://www.ietf.org/archive/id/draft-westerlund-avt-rtp-gsm-hr-00.txt |
+| ietf | Transport | transport-level | IETF | liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1 | Liaison on Dynamic Adaptive Streaming over HTTP (DASH) | - | 2012-01-10T08:00:00Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/ |
+| ietf | Transport | transport-level | IETF | liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2 | Information technology — Dynamic adaptive streaming over HTTP (DASH) — Part 1: Media presentation description and segment formats | - | 2012-01-10T08:00:00Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/ |
+| ietf | Transport | transport-level | IETF | review-ietf-appsawg-xdash-secdir-lc-kelly-2012-03-16 | Last Call Review of draft-ietf-appsawg-xdash- | 00 | 2012-03-16T19:58:28Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/review-ietf-appsawg-xdash-secdir-lc-kelly-2012-03-16/ |
+| ietf | Transport | transport-level | IETF | slides-113-mops-dashwebrtc-report | DASH/WebRTC report | 02 | 2022-03-21T01:07:38Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-113-mops-dashwebrtc-report/ |
+| ietf | Transport | transport-level | IETF | slides-118-bmwg-9-fdio-csit-performance-dashboard | 9 - FD.io CSIT Performance Dashboard | 00 | 2023-11-06T08:21:17Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-118-bmwg-9-fdio-csit-performance-dashboard/ |
+| ietf | Transport | transport-level | IETF | slides-118-eodir-sessa-2023-ietf-chairs-training-dashboard | 2023 IETF Chairs Training Dashboard | 00 | 2023-11-08T10:13:34Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-118-eodir-sessa-2023-ietf-chairs-training-dashboard/ |
+| ietf | Transport | transport-level | IETF | slides-118-eodir-sessd-2023-ietf-chairs-training-dashboard | 2023 IETF Chairs Training Dashboard | 00 | 2023-11-08T10:32:44Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-118-eodir-sessd-2023-ietf-chairs-training-dashboard/ |
+| ietf | Transport | transport-level | IETF | slides-118-wish-webrtc-http-interactive-signaling-protocol | WebRTC-HTTP Interactive Signaling Protocol | 00 | 2023-11-04T11:39:16Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-118-wish-webrtc-http-interactive-signaling-protocol/ |
+| ietf | Transport | transport-level | IETF | slides-121-hackathon-sessd-l4s-webrtc | L4S + WebRTC | 00 | 2024-11-03T13:44:20Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-121-hackathon-sessd-l4s-webrtc/ |
+| ietf | Transport | transport-level | IETF | slides-123-maprg-sessb-reacked-quicer-measuring-the-performance-of-instant-acknowledgments-in-quic-handshakes | ReACKed QUICer: Measuring the Performance of Instant Acknowledgments in QUIC Handshakes | 00 | 2025-07-22T07:35:39Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-maprg-sessb-reacked-quicer-measuring-the-performance-of-instant-acknowledgments-in-quic-handshakes/ |
+| ietf | Transport | transport-level | IETF | slides-123-mboned-draft-navarre-quic-flexicast-ietf-123 | draft-navarre-quic-flexicast-ietf-123 | 00 | 2025-07-23T07:54:59Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-mboned-draft-navarre-quic-flexicast-ietf-123/ |
+| ietf | Transport | transport-level | IETF | slides-123-netconf-using-netconf-over-quic-connection | 1. NETCONF over QUIC | 02 | 2025-07-22T12:02:13Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-netconf-using-netconf-over-quic-connection/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-chair-slides | Chair slides | 00 | 2025-07-24T03:23:31Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-chair-slides/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-deadline-aware-streams | Deadline-aware streams | 00 | 2025-07-23T12:47:30Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-deadline-aware-streams/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-instant-acknowledgments-in-quic-handshakes | Instant Acknowledgments in QUIC Handshakes | 00 | 2025-07-23T11:50:19Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-instant-acknowledgments-in-quic-handshakes/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-multipath-extension-for-quic | Multipath extension for QUIC | 02 | 2025-07-24T15:31:35Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-multipath-extension-for-quic/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-qmux-comparing-wire-protocols | QMux comparing wire protocols | 00 | 2025-07-23T22:56:58Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-qmux-comparing-wire-protocols/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-quic-oack | QUIC OACK | 00 | 2025-07-23T11:51:10Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-quic-oack/ |
+| ietf | Transport | transport-level | IETF | slides-123-quic-quic-packet-receive-timestamps | QUIC Packet Receive Timestamps | 00 | 2025-07-23T16:30:19Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-123-quic-quic-packet-receive-timestamps/ |
+| ietf | Transport | transport-level | IETF | slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc | draft-ietf-avtcore-hevc-webrtc | 00 | 2026-03-15T21:15:51Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc/ |
+| ietf | Transport | transport-level | IETF | slides-125-avtcore-h265-profile-for-webrtc | H.265 Profile for WebRTC | 00 | 2026-03-17T21:10:53Z | discovered (2026-05-24) | https://datatracker.ietf.org/doc/slides-125-avtcore-h265-profile-for-webrtc/ |
 
 ## Sources
 
 - `3gpp`
 - `ado_wiki`
+- `confluence`
 - `cta`
 - `dvb`
 - `etsi`
@@ -350,19 +432,109 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 - ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-700.zip
 - ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-710.zip
 - ftp://ftp.3gpp.org/Specs/archive/29_series/29.061/29061-720.zip
-- https://datatracker.ietf.org/doc/agenda-96-quic/
+- http://10.65.130.11:8090/display/NGGUI/3rd+Party+Libraries+Upgrades
+- http://10.65.130.11:8090/display/NGGUI/Architecture+-+High+Level+Design
+- http://10.65.130.11:8090/display/NGGUI/Authentication+-+log+in
+- http://10.65.130.11:8090/display/NGGUI/Automation+test+env+pre-requisites
+- http://10.65.130.11:8090/display/NGGUI/Basic+Training+Topics
+- http://10.65.130.11:8090/display/NGGUI/Channel+Suite
+- http://10.65.130.11:8090/display/NGGUI/Classic+UI+Debugging
+- http://10.65.130.11:8090/display/NGGUI/Code+conventions
+- http://10.65.130.11:8090/display/NGGUI/Code+structure+-+Low+Level+Design
+- http://10.65.130.11:8090/display/NGGUI/Configuration+change
+- http://10.65.130.11:8090/display/NGGUI/Deploying+the+classic+UI+on+our+team+env
+- http://10.65.130.11:8090/display/NGGUI/Development+Knowledge+sharing
+- http://10.65.130.11:8090/display/NGGUI/ESAM+Profiles
+- http://10.65.130.11:8090/display/NGGUI/Features
+- http://10.65.130.11:8090/display/NGGUI/FOSS+Process
+- http://10.65.130.11:8090/display/NGGUI/Git+Flow
+- http://10.65.130.11:8090/display/NGGUI/LDAP+support
+- http://10.65.130.11:8090/display/NGGUI/Logs
+- http://10.65.130.11:8090/display/NGGUI/Manually+Creation+of+the+CSV
+- http://10.65.130.11:8090/display/NGGUI/Navigation+Bar
+- http://10.65.130.11:8090/display/NGGUI/New+Developer+-+Getting+Started
+- http://10.65.130.11:8090/display/NGGUI/Next+Gen+GUI+-+Project+Overview
+- http://10.65.130.11:8090/display/NGGUI/NextGen+GUI
+- http://10.65.130.11:8090/display/NGGUI/NG+CI+-+ADO+Pipeline+and+Reports
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+Automation
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+build+process
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+Config+file
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+E2E+testing
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+Installation
+- http://10.65.130.11:8090/display/NGGUI/NG+GUI+Jenkins+-+Build+RPMS+and+Run+Automation+Tests
+- http://10.65.130.11:8090/display/NGGUI/NG+UI+Configuration+on+Prod
+- http://10.65.130.11:8090/display/NGGUI/Preexist+security+fixes
+- http://10.65.130.11:8090/display/NGGUI/Profiles
+- http://10.65.130.11:8090/display/NGGUI/Region+Area
+- http://10.65.130.11:8090/display/NGGUI/Region+Area+Code+Design
+- http://10.65.130.11:8090/display/NGGUI/Region+Data+sync
+- http://10.65.130.11:8090/display/NGGUI/Security+Vulnerabilities
+- http://10.65.130.11:8090/display/NGGUI/Setup+developer+environment+-+update
+- http://10.65.130.11:8090/display/NGGUI/Setup+Local+Development+Env
+- http://10.65.130.11:8090/display/NGGUI/Technologies
+- http://10.65.130.11:8090/display/NGGUI/To+Do+-+All+rout+to+views+for+regression
+- http://10.65.130.11:8090/display/NGGUI/To+Do+-+TSB+Form
+- http://10.65.130.11:8090/display/NGGUI/To+Do+-+Video+Encoding+Profile+Suite
+- http://10.65.130.11:8090/display/NGGUI/To+Do+-+VOD+Suite
+- http://10.65.130.11:8090/display/NGGUI/UI+Translation
+- http://10.65.130.11:8090/display/NGGUI/Update+Demo+system
+- http://10.65.130.11:8090/display/NGGUI/UX+guidelines+and+standard
+- http://10.65.130.11:8090/display/NGGUI/VOD
+- http://10.65.130.11:8090/display/PM/Product+Manager
+- http://10.65.130.11:8090/display/PM/StreamGate+Developer+Component+Guidelines
+- http://10.65.130.11:8090/display/PM/StreamGate+Grafana+Dashboard+Specification
+- http://10.65.130.11:8090/display/PM/StreamGate+Product+Integration+Requirements
+- http://10.65.130.11:8090/display/PM/StreamGate+Product+Strategy
+- http://10.65.130.11:8090/display/PM/StreamGate+Security+Checklist
+- http://10.65.130.11:8090/display/PM/StreamGate+SYSU+Integration+Guide
+- http://10.65.130.11:8090/display/VP/BoM+Gen10+-+HW+%28Build+of+Materials%29+list+for+generation+10+servers
+- http://10.65.130.11:8090/display/VP/BoM+Gen11+-+HW+%28Bill+of+Materials%29+list+for+generation+11+servers
+- http://10.65.130.11:8090/display/VP/Gen10+-+Fine+tunning+guide
+- http://10.65.130.11:8090/display/VP/Gen11+-+Fine+tunning+guide
+- http://10.65.130.11:8090/display/VP/HPE+Gen10+-+certified
+- http://10.65.130.11:8090/display/VP/HPE+Gen11+-+under+certification+process
+- http://10.65.130.11:8090/display/VP/HPE+Hardware+OS+support+Matrix
+- http://10.65.130.11:8090/display/VP/HPE+network+interface+adapters
+- http://10.65.130.11:8090/display/VP/Server+customer+intent+buiding+document
+- http://10.65.130.11:8090/display/VP/VSPP+3rd+party+certified+hardware+support+matrix
+- http://10.65.130.11:8090/display/VP/VSPP+OS+Support+Matrix
+- http://10.65.130.11:8090/display/VP/VSPP+Product
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530025
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530031
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530033
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530035
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530039
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530043
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530045
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=133530051
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=141132602
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=53250434
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=59704268
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=65868836
+- http://10.65.130.11:8090/pages/viewpage.action?pageId=92798994
 - https://datatracker.ietf.org/doc/bofreq-chazahgroup-intrgtation-of-sw103k-protocol-with-hls-protocol/
 - https://datatracker.ietf.org/doc/conflict-review-pantos-hls-rfc8216bis/
-- https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/
-- https://datatracker.ietf.org/doc/liaison-2010-08-10-isoiec-jtc-1-sc-29wg-11-ietf-liaison-statement-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/
-- https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-1/
-- https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-2/
-- https://datatracker.ietf.org/doc/liaison-2011-04-08-isoiec-jtc-1sc-29wg-11-ietf-liaison-statement-from-sc-29wg-11-on-dynamic-adaptive-streaming-over-http-dash-sc-29wg-11-n-11973-attachment-attachment-3/
-- https://datatracker.ietf.org/doc/liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/
-- https://datatracker.ietf.org/doc/liaison-2011-07-27-isoiec-jtc-1sc-29wg-11-ietf-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/
-- https://datatracker.ietf.org/doc/review-ietf-quic-transport-33-intdir-telechat-volz-2021-01-04/
-- https://datatracker.ietf.org/doc/slides-96-quic-0/
-- https://datatracker.ietf.org/doc/slides-96-quic-1/
+- https://datatracker.ietf.org/doc/liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-1/
+- https://datatracker.ietf.org/doc/liaison-2012-01-10-isoiec-jtc-1sc-29wg-11-cdni-liaison-on-dynamic-adaptive-streaming-over-http-dash-attachment-2/
+- https://datatracker.ietf.org/doc/review-ietf-appsawg-xdash-secdir-lc-kelly-2012-03-16/
+- https://datatracker.ietf.org/doc/slides-113-mops-dashwebrtc-report/
+- https://datatracker.ietf.org/doc/slides-118-bmwg-9-fdio-csit-performance-dashboard/
+- https://datatracker.ietf.org/doc/slides-118-eodir-sessa-2023-ietf-chairs-training-dashboard/
+- https://datatracker.ietf.org/doc/slides-118-eodir-sessd-2023-ietf-chairs-training-dashboard/
+- https://datatracker.ietf.org/doc/slides-118-wish-webrtc-http-interactive-signaling-protocol/
+- https://datatracker.ietf.org/doc/slides-121-hackathon-sessd-l4s-webrtc/
+- https://datatracker.ietf.org/doc/slides-123-maprg-sessb-reacked-quicer-measuring-the-performance-of-instant-acknowledgments-in-quic-handshakes/
+- https://datatracker.ietf.org/doc/slides-123-mboned-draft-navarre-quic-flexicast-ietf-123/
+- https://datatracker.ietf.org/doc/slides-123-netconf-using-netconf-over-quic-connection/
+- https://datatracker.ietf.org/doc/slides-123-quic-chair-slides/
+- https://datatracker.ietf.org/doc/slides-123-quic-deadline-aware-streams/
+- https://datatracker.ietf.org/doc/slides-123-quic-instant-acknowledgments-in-quic-handshakes/
+- https://datatracker.ietf.org/doc/slides-123-quic-multipath-extension-for-quic/
+- https://datatracker.ietf.org/doc/slides-123-quic-qmux-comparing-wire-protocols/
+- https://datatracker.ietf.org/doc/slides-123-quic-quic-oack/
+- https://datatracker.ietf.org/doc/slides-123-quic-quic-packet-receive-timestamps/
+- https://datatracker.ietf.org/doc/slides-125-avtcore-draft-ietf-avtcore-hevc-webrtc/
+- https://datatracker.ietf.org/doc/slides-125-avtcore-h265-profile-for-webrtc/
 - https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2F
 - https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel
 - https://dev.azure.com/tm-vspp/e40dfd8e-fb7d-450e-8b38-ad1265c6e639/_wiki/wikis/145521f6-5639-4e32-9763-ef2717078324?pagePath=%2FCoE%20Israel%2FAutomation
@@ -464,42 +636,32 @@ Container syntax (MPEG-TS / ISOBMFF / NAL carriage), DVB-DASH normative track, D
 - https://www.etsi.org/deliver/etsi_en/300700_300799/300743/
 - https://www.etsi.org/deliver/etsi_en/302300_302399/302307/
 - https://www.etsi.org/deliver/etsi_ts/103200_103299/103285/01.03.01_60/ts_103285v010301p.pdf
-- https://www.ietf.org/archive/id/draft-bergeron-payload-rtpfec-rs-00.txt
-- https://www.ietf.org/archive/id/draft-boucadair-pcp-rtp-rtcp-05.txt
-- https://www.ietf.org/archive/id/draft-dbenham-webrtc-videomti-02.txt
-- https://www.ietf.org/archive/id/draft-ejzak-dispatch-webrtc-data-channel-sdpneg-00.txt
-- https://www.ietf.org/archive/id/draft-garcia-simulcast-and-layered-video-webrtc-00.txt
-- https://www.ietf.org/archive/id/draft-gharai-avtcore-rtp-tfrc-01.txt
-- https://www.ietf.org/archive/id/draft-hamilton-early-deployment-quic-00.txt
-- https://www.ietf.org/archive/id/draft-hamilton-quic-transport-protocol-01.txt
-- https://www.ietf.org/archive/id/draft-huang-ppsp-p2p-webrtc-survey-00.txt
-- https://www.ietf.org/archive/id/draft-ietf-appsawg-xdash-05.txt
-- https://www.ietf.org/archive/id/draft-ietf-avtcore-srtp-encrypted-header-ext-05.txt
-- https://www.ietf.org/archive/id/draft-ietf-avtext-splicing-for-rtp-13.txt
-- https://www.ietf.org/archive/id/draft-ietf-rtcweb-rtp-usage-26.txt
-- https://www.ietf.org/archive/id/draft-iyengar-quic-loss-recovery-01.txt
-- https://www.ietf.org/archive/id/draft-lennox-avtcore-srtp-encrypted-header-ext-00.txt
-- https://www.ietf.org/archive/id/draft-marcon-msrp-over-webrtc-data-channels-00.txt
+- https://www.ietf.org/archive/id/draft-aboba-avtcore-hevc-webrtc-02.txt
+- https://www.ietf.org/archive/id/draft-dashevskyi-dnsrr-antipatterns-06.txt
+- https://www.ietf.org/archive/id/draft-hancke-webrtc-sped-00.txt
+- https://www.ietf.org/archive/id/draft-hoene-avt-rtp-sbc-05.txt
+- https://www.ietf.org/archive/id/draft-ietf-avt-rapid-acquisition-for-rtp-17.txt
+- https://www.ietf.org/archive/id/draft-ietf-avt-rtp-sbc-01.txt
+- https://www.ietf.org/archive/id/draft-ietf-avtcore-hevc-webrtc-08.txt
+- https://www.ietf.org/archive/id/draft-ietf-fecframe-rtp-raptor-07.txt
+- https://www.ietf.org/archive/id/draft-jiang7369-webrtc-uri-scheme-02.txt
+- https://www.ietf.org/archive/id/draft-legrand-rtp-isac-02.txt
+- https://www.ietf.org/archive/id/draft-liu-webrtc-http-interactive-protocol-00.txt
 - https://www.ietf.org/archive/id/draft-margaria-pce-pcep-hlsp-extension-00.txt
+- https://www.ietf.org/archive/id/draft-mattsson-srtp-store-and-forward-04.txt
 - https://www.ietf.org/archive/id/draft-ohlsson-rtcweb-sdes-support-01.txt
 - https://www.ietf.org/archive/id/draft-pantos-hls-rfc8216bis-22.txt
-- https://www.ietf.org/archive/id/draft-pd-msrp-webrtc-00.txt
-- https://www.ietf.org/archive/id/draft-peck-suiteb-dtls-srtp-04.txt
-- https://www.ietf.org/archive/id/draft-perkins-rtcweb-rtp-usage-03.txt
 - https://www.ietf.org/archive/id/draft-raymond-rtcweb-webrtc-js-obj-api-rationale-01.txt
-- https://www.ietf.org/archive/id/draft-rea-avt-rtp-aptx-00.txt
 - https://www.ietf.org/archive/id/draft-saintandre-xdash-03.txt
 - https://www.ietf.org/archive/id/draft-saintandre-xdash-considered-harmful-01.txt
-- https://www.ietf.org/archive/id/draft-shade-quic-http2-mapping-00.txt
-- https://www.ietf.org/archive/id/draft-singh-xrblock-webrtc-additional-stats-02.txt
+- https://www.ietf.org/archive/id/draft-schierl-avt-rtp-multi-session-transmission-00.txt
 - https://www.ietf.org/archive/id/draft-sodder-ppvpn-vhls-02.txt
-- https://www.ietf.org/archive/id/draft-thomson-mmusic-ice-webrtc-01.txt
-- https://www.ietf.org/archive/id/draft-thomson-quic-tls-01.txt
+- https://www.ietf.org/archive/id/draft-versteeg-avt-rapid-synchronization-for-rtp-03.txt
 - https://www.ietf.org/archive/id/draft-wahlstroem-ace-cbor-web-token-00.txt
 - https://www.ietf.org/archive/id/draft-wahlstroem-ace-oauth-introspection-01.txt
 - https://www.ietf.org/archive/id/draft-wahlstroem-oauth-cbor-web-token-00.txt
-- https://www.ietf.org/archive/id/draft-westerlund-perc-webrtc-use-case-01.txt
-- https://www.ietf.org/archive/id/draft-wing-quic-network-req-00.txt
+- https://www.ietf.org/archive/id/draft-watson-fecframe-rtp-raptor-00.txt
+- https://www.ietf.org/archive/id/draft-westerlund-avt-rtp-gsm-hr-00.txt
 - https://www.iso.org/standard/79110.html
 - https://www.iso.org/standard/83102.html
 - https://www.iso.org/standard/89118.html
