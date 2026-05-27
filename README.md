@@ -59,6 +59,7 @@ Ingestion behavior:
 python normalize.py --limit 10
 python normalize.py --source iso --limit 1
 python normalize.py --source github --max-files 200 --max-file-kb 512
+python normalize.py --summarize --limit 5
 ```
 
 Normalization behavior:
@@ -70,7 +71,8 @@ Normalization behavior:
 - Extracted GitHub repositories are bundled from text-like files (`.md`, `.txt`, `.xml`, `.html`, `.json`, etc.) with file-count and file-size caps.
 - DOCX files inside extracted packages or ZIP archives are converted directly from WordprocessingML, so 3GPP packages can normalize without an extra dependency.
 - PDF files (ETSI, SMPTE, etc.) are converted with `pypdf` (`normalizer: pdf_text_v1`). Use `--max-pdf-pages` to cap very large documents.
-- Does not mutate `discovery_manifest.json`; normalized outputs are local because `data/` is gitignored.
+- By default does not mutate `discovery_manifest.json`; normalized outputs are local because `data/` is gitignored.
+- With `--summarize`, runs a local Hugging Face instruct model (default `Qwen/Qwen2.5-1.5B-Instruct`) on each normalized document and writes `metadata.doc_summary` back into `discovery_manifest.json` (idempotent via `input_sha256`; use `--re-summarize` to force refresh).
 
 ## PM Workflow
 
@@ -85,10 +87,13 @@ Normalization behavior:
 python chunk.py
 python embed.py
 python eval_retrieval.py
+python retrieve.py "VM prerequisites for MKP deployment" --source ado_wiki --doc-summary-router
 ```
 
 - `chunk.py` writes `data/chunks/chunks.jsonl` (paragraph-aware packs).
-- `embed.py` builds `data/embeddings/vectors.npy` and `chunk_index.jsonl` (MiniLM).
+- When `metadata.doc_summary` exists in `discovery_manifest.json`, `chunk.py` also emits a `chunk_kind: "doc_summary"` virtual chunk per summarized doc.
+- `embed.py` builds `data/embeddings/vectors.npy` and `chunk_index.jsonl` (MiniLM), including both normal text chunks and doc-summary virtual chunks.
+- `retrieve.py --doc-summary-router` first searches the tiny set of summary chunks to select likely `external_id`s, then searches normal text chunks only inside those docs.
 - `eval_retrieval.py` runs queries from `data/eval/queries.jsonl`.
 
 ## GitHub

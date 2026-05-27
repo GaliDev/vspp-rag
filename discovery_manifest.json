@@ -3998,7 +3998,15 @@
       "wiki_path": "/CoE Israel/VSPP Storage/Cloud Storage Proxy/Kubernetes Deployment/3. VM Prereqs",
       "ado_wiki_etag": "\"9e64c7dcd50808ba3ba170b2952d4ab14dd8a596\"",
       "ado_page_id": 26,
-      "ingest_kind": "ado_wiki_markdown"
+      "ingest_kind": "ado_wiki_markdown",
+      "doc_summary": {
+        "text": "This specification provides detailed steps for installing necessary software packages on a virtual machine (VM), which will be used subsequently to set up a Kubernetes management platform (MKP) microservice cluster. The installation process includes updating the Linux environment, setting up Google Cloud SDK, verifying Bash and other utilities, ensuring compatibility with specific versions of tools like Helm, Python, and various shell scripting languages, as well as configuring key components such as kubectl, Terraform, Azure CLI, and Minikube or K3D for deploying the MKP microservices. These prerequisites ensure that the subsequent scripts can successfully execute without encountering any compatibility issues related to outdated or unsupported software versions.",
+        "model": "Qwen/Qwen2.5-1.5B-Instruct",
+        "method": "single_pass_v1",
+        "input_chars": 3511,
+        "input_sha256": "20cff5cfb207312a9d62f175ee34f94f0271ba00332ea0678067fe26afb7f58b",
+        "summarized_at": "2026-05-26T23:30:00.964551+00:00"
+      }
     }
   },
   {

@@ -29,6 +29,8 @@ flowchart TB
 
     subgraph prepare [Prepare for search]
         Norm["Normalize to text"]
+        SumLLM["Doc summary local LLM<br/>Qwen2.5-1.5B-Instruct<br/>POC: normalize.py --summarize"]
+        SumStore[("doc_summary per spec<br/>manifest.metadata.doc_summary")]
         Chunk["Chunk plus rich metadata"]
         Meta[("Chunk metadata store<br/>JSONL or Postgres")]
         Embed["Embed passages"]
@@ -66,6 +68,9 @@ flowchart TB
     Gap -.-> Raw
     Raw --> Norm
     Norm --> Chunk
+    Norm -.-> SumLLM
+    SumLLM -.-> SumStore
+    SumStore -.-> Route
     Chunk --> Meta
     Chunk --> Embed
     Embed --> Vec
@@ -135,7 +140,7 @@ sequenceDiagram
 | `title`, `char_start` / `char_end` | Citations without re-opening PDF |
 | `normalized_path`, `chunk_id` | Dedup and audit trail |
 | Optional `section_heading`, `spec_version` | Finer filters if extracted at normalize |
-| Optional `doc_summary` per spec | Router picks 1–3 docs without embedding full catalog |
+| `doc_summary` per spec **(POC: `normalize.py --summarize`, local LLM Qwen2.5-1.5B-Instruct, idempotent via `input_sha256`)** | Router picks 1–3 docs without embedding full catalog; production embeds the summary as a virtual doc-level chunk |
 
 ---
 
@@ -165,6 +170,7 @@ sequenceDiagram
 | Step | POC | Scale options |
 |------|-----|----------------|
 | Normalize | `normalize.py`, pypdf, BS4 | **Ray** / **Spark** for parallel PDFs · **Unstructured** · **Docling** |
+| Doc summary | `normalize.py --summarize`, **`Qwen/Qwen2.5-1.5B-Instruct`** via `transformers` + `accelerate`, single-pass or map-reduce, deterministic decoding, idempotent on `input_sha256` | **vLLM** / **Ollama** server for batch summaries · larger instruct models (Llama 3 8B, Qwen2.5 7B/14B) · summary embedded as a virtual doc-level chunk for router |
 | Chunk | `chunk.py`, paragraph_pack_v1 | Adaptive chunking by heading · **LlamaIndex** node parser |
 | Embed | `embed.py`, MiniLM | **bge-small** / **e5-base** (quality) · **voyage** / **OpenAI** APIs · **TEI** / **Triton** self-hosted GPU |
 | Index build | Single index | **Two collections** (structural / transport) · per-authority shards if corpus grows |
@@ -200,8 +206,10 @@ sequenceDiagram
 | Catalog | Full standards menu | `discover.py`, manifest | Postgres + scheduled discover |
 | Ingest | All ingestible specs in vault | `ingest.py` selective | Bulk workers + S3 raw |
 | Prepare | Searchable cited chunks | normalize → chunk → embed | Partitioned vector + BM25 indexes |
+| Doc summaries | Per-spec context for routing | `normalize.py --summarize` writes `metadata.doc_summary` via local Qwen2.5-1.5B-Instruct | Bulk summary worker, larger instruct model, summary as virtual doc-level chunk feeding the router |
 | Quality | Trust and regression tests | `eval_retrieval.py` | RAGAS + judge LLM offline |
 | Ask | Engineer Q&A | eval only | API: router → filter → retrieve → LLM |
+| Pipeline runner | Reproducible local end-to-end | [`run_pipeline.sh`](run_pipeline.sh) (bash; honors `.venv`) | Same DAG in Airflow / Temporal with per-step retries and queues |
 
 ---
 

@@ -3,7 +3,13 @@ from __future__ import annotations
 import argparse
 from pathlib import Path
 
-from src.core.retrieval import RetrievalFilters, load_index, route_query, search
+from src.core.retrieval import (
+    RetrievalFilters,
+    load_index,
+    route_query,
+    search,
+    search_with_doc_summary_router,
+)
 
 ROOT = Path(__file__).parent
 EMBED_DIR = ROOT / "data" / "embeddings"
@@ -17,6 +23,12 @@ def main() -> None:
     parser.add_argument("--embed-dir", type=Path, default=EMBED_DIR)
     parser.add_argument("--chunks", type=Path, default=CHUNKS_PATH)
     parser.add_argument("--no-router", action="store_true", help="Disable keyword router")
+    parser.add_argument(
+        "--doc-summary-router",
+        action="store_true",
+        help="First route over doc_summary virtual chunks, then search text chunks only in the top docs.",
+    )
+    parser.add_argument("--doc-top-k", type=int, default=3, help="Top doc summaries to keep.")
     parser.add_argument("--core-structural-only", action="store_true")
     parser.add_argument("--authority", action="append", default=[], dest="authorities")
     parser.add_argument("--external-id", action="append", default=[], dest="external_ids")
@@ -44,6 +56,7 @@ def main() -> None:
             external_ids=frozenset(args.external_ids),
             categories=frozenset(args.categories),
             sources=frozenset(args.sources),
+            chunk_kinds=frozenset(),
             core_structural_only=args.core_structural_only,
             exclude_external_ids=frozenset(args.exclude_external_ids),
         )
@@ -55,6 +68,7 @@ def main() -> None:
                 external_ids=filters.external_ids,
                 categories=filters.categories,
                 sources=filters.sources,
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
                 exclude_categories=filters.exclude_categories,
@@ -65,6 +79,7 @@ def main() -> None:
                 external_ids=frozenset(set(filters.external_ids) | set(args.external_ids)),
                 categories=filters.categories,
                 sources=filters.sources,
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
                 exclude_categories=filters.exclude_categories,
@@ -75,6 +90,7 @@ def main() -> None:
                 external_ids=filters.external_ids,
                 categories=frozenset(set(filters.categories) | set(args.categories)),
                 sources=filters.sources,
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
                 exclude_categories=filters.exclude_categories,
@@ -85,6 +101,7 @@ def main() -> None:
                 external_ids=filters.external_ids,
                 categories=filters.categories,
                 sources=frozenset(set(filters.sources) | set(args.sources)),
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=filters.exclude_external_ids,
                 exclude_categories=filters.exclude_categories,
@@ -95,6 +112,7 @@ def main() -> None:
                 external_ids=filters.external_ids,
                 categories=filters.categories,
                 sources=filters.sources,
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=filters.core_structural_only or args.core_structural_only,
                 exclude_external_ids=frozenset(
                     set(filters.exclude_external_ids) | set(args.exclude_external_ids)
@@ -107,19 +125,38 @@ def main() -> None:
                 external_ids=filters.external_ids,
                 categories=filters.categories,
                 sources=filters.sources,
+                chunk_kinds=filters.chunk_kinds,
                 core_structural_only=True,
                 exclude_external_ids=filters.exclude_external_ids,
                 exclude_categories=filters.exclude_categories,
             )
 
-    hits = search(index, args.query, top_k=args.top_k, filters=filters)
+    doc_hits = []
+    if args.doc_summary_router:
+        hits, doc_hits = search_with_doc_summary_router(
+            index,
+            args.query,
+            top_k=args.top_k,
+            doc_top_k=args.doc_top_k,
+            filters=filters,
+        )
+    else:
+        hits = search(index, args.query, top_k=args.top_k, filters=filters)
     if not hits:
         print("No hits (empty filter mask).")
+        if doc_hits:
+            print("Doc-summary router matched docs, but no text chunks survived filters:")
+            for n, hit in enumerate(doc_hits, 1):
+                print(f"  {n}. score={hit.score:.4f} {hit.external_id} ({hit.authority})")
         return
 
     print(f"Query: {args.query}")
     if not filters.is_empty():
         print(f"Filters: {filters}")
+    if doc_hits:
+        print("Doc-summary router selected:")
+        for n, hit in enumerate(doc_hits, 1):
+            print(f"  {n}. score={hit.score:.4f} {hit.external_id} ({hit.authority})")
     print()
     for n, hit in enumerate(hits, 1):
         preview = hit.text[:200].replace("\n", " ")

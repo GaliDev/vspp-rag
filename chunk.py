@@ -9,6 +9,7 @@ from typing import Any, Iterator
 from src.core.text_prep import strip_manifest_preamble
 
 ROOT = Path(__file__).parent
+MANIFEST_PATH = ROOT / "discovery_manifest.json"
 RECORDS_PATH = ROOT / "data" / "normalized" / "records.jsonl"
 CHUNKS_DIR = ROOT / "data" / "chunks"
 CHUNKS_PATH = CHUNKS_DIR / "chunks.jsonl"
@@ -125,10 +126,71 @@ def load_normalized_rows(path: Path) -> list[dict[str, Any]]:
     return rows
 
 
+def load_doc_summaries(path: Path) -> dict[tuple[str | None, str | None], dict[str, Any]]:
+    if not path.exists():
+        return {}
+    rows = json.loads(path.read_text(encoding="utf-8"))
+    out: dict[tuple[str | None, str | None], dict[str, Any]] = {}
+    for row in rows:
+        doc_summary = (row.get("metadata") or {}).get("doc_summary")
+        if isinstance(doc_summary, dict) and doc_summary.get("text"):
+            out[(row.get("source"), row.get("external_id"))] = doc_summary
+    return out
+
+
+def base_chunk_metadata(record: dict[str, Any], *, normalized_path: str) -> dict[str, Any]:
+    row: dict[str, Any] = {
+        "source": record.get("source"),
+        "external_id": record.get("external_id"),
+        "authority": record.get("authority"),
+        "title": record.get("title"),
+        "category": record.get("category"),
+        "tier": record.get("tier"),
+        "core_structural_syntax": record.get("core_structural_syntax"),
+        "ingest_kind": record.get("ingest_kind"),
+        "normalized_path": normalized_path,
+    }
+    for key in INTERNAL_CHUNK_META_KEYS:
+        if key in record:
+            row[key] = record[key]
+    return row
+
+
+def doc_summary_chunk(record: dict[str, Any], doc_summary: dict[str, Any]) -> dict[str, Any]:
+    source = str(record.get("source") or "")
+    ext = str(record.get("external_id") or "")
+    title = str(record.get("title") or "")
+    authority = str(record.get("authority") or "")
+    summary_text = str(doc_summary.get("text") or "").strip()
+    text_parts = []
+    if title:
+        text_parts.append(f"Title: {title}")
+    if authority:
+        text_parts.append(f"Authority: {authority}")
+    text_parts.append(f"Document summary: {summary_text}")
+    normalized_path = str(record.get("normalized_path") or "")
+    row = {
+        "chunk_id": f"{source}:{ext}:doc_summary",
+        "chunk_index": -1,
+        "chunk_kind": "doc_summary",
+        "char_start": None,
+        "char_end": None,
+        "text": "\n".join(text_parts),
+        "chunker": "doc_summary_v1",
+        "doc_summary_model": doc_summary.get("model"),
+        "doc_summary_method": doc_summary.get("method"),
+        "doc_summary_input_sha256": doc_summary.get("input_sha256"),
+        "doc_summary_summarized_at": doc_summary.get("summarized_at"),
+        **base_chunk_metadata(record, normalized_path=normalized_path),
+    }
+    return row
+
+
 def chunk_record(
     record: dict[str, Any],
     chunk_chars: int,
     overlap_chars: int,
+    doc_summary: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     norm_rel = str(record["normalized_path"])
     path = ROOT / norm_rel
@@ -138,6 +200,9 @@ def chunk_record(
     source = str(record.get("source") or "")
     ext = str(record.get("external_id") or "")
     out: list[dict[str, Any]] = []
+    if doc_summary:
+        record_with_norm = {**record, "normalized_path": norm_rel}
+        out.append(doc_summary_chunk(record_with_norm, doc_summary))
     for idx, (start, end, chunk_text) in enumerate(
         paragraph_aware_chunks(text, chunk_chars, overlap_chars)
     ):
@@ -145,25 +210,15 @@ def chunk_record(
         chunk_row: dict[str, Any] = {
             "chunk_id": chunk_id,
             "chunk_index": idx,
+            "chunk_kind": "text",
             "char_start": start,
             "char_end": end,
             "text": chunk_text,
-            "source": record.get("source"),
-            "external_id": record.get("external_id"),
-            "authority": record.get("authority"),
-            "title": record.get("title"),
-            "category": record.get("category"),
-            "tier": record.get("tier"),
-            "core_structural_syntax": record.get("core_structural_syntax"),
-            "ingest_kind": record.get("ingest_kind"),
-            "normalized_path": norm_rel,
             "chunker": "paragraph_pack_v1",
             "chunk_chars": chunk_chars,
             "overlap_chars": overlap_chars,
+            **base_chunk_metadata(record, normalized_path=norm_rel),
         }
-        for key in INTERNAL_CHUNK_META_KEYS:
-            if key in record:
-                chunk_row[key] = record[key]
         out.append(chunk_row)
     return out
 
@@ -206,22 +261,34 @@ def main() -> None:
     if args.limit is not None:
         rows = rows[: args.limit]
 
+    doc_summaries = load_doc_summaries(MANIFEST_PATH)
+
     CHUNKS_DIR.mkdir(parents=True, exist_ok=True)
     total_chunks = 0
     missing_files = 0
+    summary_chunks = 0
     with CHUNKS_PATH.open("w", encoding="utf-8") as f:
         for record in rows:
             path = ROOT / str(record["normalized_path"])
             if not path.is_file():
                 missing_files += 1
                 continue
-            for row in chunk_record(record, args.chunk_chars, args.overlap_chars):
+            key = (record.get("source"), record.get("external_id"))
+            for row in chunk_record(
+                record,
+                args.chunk_chars,
+                args.overlap_chars,
+                doc_summary=doc_summaries.get(key),
+            ):
                 f.write(json.dumps(row, ensure_ascii=False) + "\n")
                 total_chunks += 1
+                if row.get("chunk_kind") == "doc_summary":
+                    summary_chunks += 1
 
     print(
         f"Chunking complete: records={len(rows)}, chunks={total_chunks}, "
-        f"missing_normalized_files={missing_files}, output={CHUNKS_PATH.relative_to(ROOT)} "
+        f"doc_summary_chunks={summary_chunks}, missing_normalized_files={missing_files}, "
+        f"output={CHUNKS_PATH.relative_to(ROOT)} "
         f"(chunk_chars={args.chunk_chars}, overlap_chars={args.overlap_chars})."
     )
 

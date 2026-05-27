@@ -1,0 +1,706 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>VSPP-RAG · Pipeline & Metadata Flow</title>
+<style>
+  :root {
+    --bg: #0e1117;
+    --panel: #161b22;
+    --panel-2: #1c2330;
+    --border: #30363d;
+    --text: #e6edf3;
+    --muted: #8b949e;
+    --accent: #58a6ff;
+    --meta: #f0b429;
+    --meta-bg: rgba(240, 180, 41, 0.12);
+    --meta-border: rgba(240, 180, 41, 0.4);
+    --good: #3fb950;
+    --bad: #f85149;
+    --pipe: #7ee787;
+    --arrow: #6e7681;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    padding: 32px 24px 64px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Inter, Roboto, sans-serif;
+    background: radial-gradient(ellipse at top, #1a2233 0%, var(--bg) 70%);
+    color: var(--text);
+    line-height: 1.5;
+  }
+  h1 {
+    font-size: 28px;
+    margin: 0 0 4px;
+    letter-spacing: -0.5px;
+  }
+  h1 .accent { color: var(--accent); }
+  .subtitle {
+    color: var(--muted);
+    font-size: 15px;
+    margin-bottom: 28px;
+  }
+  h2 {
+    font-size: 19px;
+    margin: 40px 0 16px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    letter-spacing: -0.3px;
+  }
+  h2 .step-num {
+    display: inline-block;
+    width: 26px;
+    height: 26px;
+    line-height: 26px;
+    text-align: center;
+    border-radius: 50%;
+    background: var(--accent);
+    color: #0e1117;
+    font-size: 13px;
+    font-weight: 700;
+    margin-right: 10px;
+    vertical-align: middle;
+  }
+
+  /* Legend */
+  .legend {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+    padding: 14px 16px;
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    font-size: 13px;
+    margin-bottom: 12px;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; }
+  .swatch {
+    width: 14px; height: 14px; border-radius: 3px;
+    display: inline-block;
+  }
+  .sw-data { background: var(--accent); }
+  .sw-meta { background: var(--meta); }
+  .sw-store { background: var(--pipe); }
+  .sw-flow  { background: var(--arrow); }
+
+  /* Pipeline grid */
+  .pipeline {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 12px;
+    align-items: stretch;
+    margin-top: 18px;
+  }
+  @media (max-width: 1300px) {
+    .pipeline { grid-template-columns: repeat(4, 1fr); }
+  }
+  @media (max-width: 800px) {
+    .pipeline { grid-template-columns: repeat(2, 1fr); }
+  }
+  .step {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 14px 12px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-height: 230px;
+  }
+  .step .badge {
+    position: absolute;
+    top: -10px; left: 12px;
+    background: var(--accent);
+    color: #0e1117;
+    font-weight: 700;
+    font-size: 11px;
+    padding: 2px 8px;
+    border-radius: 10px;
+    letter-spacing: 0.5px;
+  }
+  .step h3 {
+    margin: 4px 0 6px;
+    font-size: 15px;
+    color: var(--text);
+  }
+  .step .script {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 12px;
+    color: var(--accent);
+    margin-bottom: 8px;
+  }
+  .step .desc {
+    font-size: 12.5px;
+    color: var(--muted);
+    margin-bottom: 10px;
+    flex-grow: 0;
+  }
+  .step .meta-block {
+    background: var(--meta-bg);
+    border: 1px dashed var(--meta-border);
+    border-radius: 8px;
+    padding: 8px 10px;
+    margin-top: auto;
+  }
+  .step .meta-title {
+    font-size: 10.5px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--meta);
+    font-weight: 700;
+    margin-bottom: 6px;
+  }
+  .meta-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px;
+  }
+  .meta-tag {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    background: rgba(240, 180, 41, 0.18);
+    color: var(--meta);
+    border: 1px solid rgba(240, 180, 41, 0.35);
+    border-radius: 4px;
+    padding: 1px 6px;
+    font-size: 11px;
+    line-height: 1.5;
+  }
+  .step .file {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 11px;
+    color: var(--pipe);
+    margin-top: 8px;
+    word-break: break-all;
+  }
+
+  /* Retrieval flow diagram */
+  .retrieval {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px 22px 18px;
+    margin-top: 14px;
+  }
+  .ret-row {
+    display: grid;
+    grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr 24px 1fr;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+  .ret-row.six {
+    grid-template-columns: 1fr 24px 1fr 24px 1fr 24px 1fr 24px 1fr 24px 1fr;
+  }
+  @media (max-width: 1100px) {
+    .ret-row {
+      grid-template-columns: 1fr;
+    }
+    .ret-arrow { display: none; }
+  }
+  @media (max-width: 1400px) {
+    .ret-row.six {
+      grid-template-columns: 1fr;
+    }
+    .ret-row.six .ret-arrow { display: none; }
+  }
+  .ret-card {
+    background: var(--panel-2);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px;
+    text-align: center;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .ret-card.meta {
+    border-color: var(--meta-border);
+    background: var(--meta-bg);
+  }
+  .ret-card h4 {
+    margin: 0 0 6px;
+    font-size: 13px;
+    color: var(--accent);
+  }
+  .ret-card.meta h4 { color: var(--meta); }
+  .ret-card p {
+    margin: 0;
+    font-size: 12px;
+    color: var(--muted);
+  }
+  .ret-card .big {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--text);
+    margin: 4px 0;
+  }
+  .ret-arrow {
+    text-align: center;
+    color: var(--arrow);
+    font-size: 22px;
+    font-weight: 700;
+  }
+
+  /* Why-it-matters */
+  .compare {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 14px;
+  }
+  @media (max-width: 800px) { .compare { grid-template-columns: 1fr; } }
+  .compare-card {
+    border-radius: 12px;
+    padding: 18px;
+    border: 1px solid var(--border);
+  }
+  .compare-card.bad {
+    background: rgba(248, 81, 73, 0.08);
+    border-color: rgba(248, 81, 73, 0.35);
+  }
+  .compare-card.good {
+    background: rgba(63, 185, 80, 0.08);
+    border-color: rgba(63, 185, 80, 0.35);
+  }
+  .compare-card h3 { margin: 0 0 10px; font-size: 15px; }
+  .compare-card.bad h3 { color: var(--bad); }
+  .compare-card.good h3 { color: var(--good); }
+  .compare-card .num {
+    font-size: 36px;
+    font-weight: 700;
+    margin: 4px 0;
+  }
+  .compare-card.bad .num { color: var(--bad); }
+  .compare-card.good .num { color: var(--good); }
+  .compare-card ul {
+    margin: 10px 0 0;
+    padding-left: 18px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .compare-card li { margin-bottom: 4px; }
+
+  /* Example block */
+  .example {
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 18px;
+    margin-top: 16px;
+  }
+  .example h3 { margin: 0 0 10px; font-size: 14px; color: var(--accent); }
+  pre {
+    background: #0a0d12;
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-size: 12.5px;
+    overflow-x: auto;
+    margin: 8px 0 0;
+    color: #c9d1d9;
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+  }
+  pre .k { color: #ff7b72; }
+  pre .s { color: #a5d6ff; }
+  pre .c { color: #8b949e; font-style: italic; }
+  pre .m { color: var(--meta); }
+
+  footer {
+    margin-top: 50px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border);
+    color: var(--muted);
+    font-size: 12px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+
+<h1>VSPP-RAG <span class="accent">·</span> Pipeline &amp; Metadata Flow</h1>
+<div class="subtitle">
+  Where metadata is created at each pipeline stage &mdash; and why it makes retrieval fast &amp; trustworthy.
+  <br>
+  Run end-to-end with <code>./run_pipeline.sh</code> (e.g. <code>./run_pipeline.sh --source ado_wiki --limit 1 --summarize</code>).
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <div class="legend-item"><span class="swatch sw-data"></span> Pipeline step (script)</div>
+  <div class="legend-item"><span class="swatch sw-meta"></span> Metadata produced / used</div>
+  <div class="legend-item"><span class="swatch sw-store"></span> File / store written</div>
+  <div class="legend-item"><span class="swatch sw-flow"></span> Data flow</div>
+</div>
+
+<!-- PIPELINE -->
+<h2><span class="step-num">1</span>Ingestion pipeline &mdash; metadata accumulates at every stage</h2>
+<div class="pipeline">
+
+  <div class="step">
+    <span class="badge">SOURCES</span>
+    <h3>Public + Internal</h3>
+    <div class="script">~131 specs</div>
+    <div class="desc">IETF, 3GPP, W3C, ISO, ETSI/DVB, SMPTE, CTA, AOM, Confluence DC, ADO wiki.</div>
+    <div class="meta-block">
+      <div class="meta-title">Native metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">URL</span>
+        <span class="meta-tag">authority</span>
+        <span class="meta-tag">topic</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 1</span>
+    <h3>Discover</h3>
+    <div class="script">discover.py</div>
+    <div class="desc">Async crawlers build a catalog with classification fields.</div>
+    <div class="meta-block">
+      <div class="meta-title">Adds metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">source</span>
+        <span class="meta-tag">authority</span>
+        <span class="meta-tag">external_id</span>
+        <span class="meta-tag">category</span>
+        <span class="meta-tag">tier</span>
+        <span class="meta-tag">title</span>
+        <span class="meta-tag">version</span>
+        <span class="meta-tag">status</span>
+      </div>
+    </div>
+    <div class="file">discovery_manifest.json<br>PM_Catalog.md</div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 2</span>
+    <h3>Ingest</h3>
+    <div class="script">ingest.py</div>
+    <div class="desc">Downloads artifacts, extracts zips, records hashes.</div>
+    <div class="meta-block">
+      <div class="meta-title">Adds metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">local_path</span>
+        <span class="meta-tag">sha256</span>
+        <span class="meta-tag">ingested_at</span>
+        <span class="meta-tag">file_type</span>
+      </div>
+    </div>
+    <div class="file">data/{authority}/raw/</div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 3</span>
+    <h3>Normalize</h3>
+    <div class="script">normalize.py</div>
+    <div class="desc">PDF / HTML / DOCX / MD &rarr; clean text. <strong>Optional <code>--summarize</code></strong> runs a local LLM and writes <code>metadata.doc_summary</code> back to the manifest.</div>
+    <div class="meta-block">
+      <div class="meta-title">Adds metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">normalized_path</span>
+        <span class="meta-tag">normalizer</span>
+        <span class="meta-tag">ingest_kind</span>
+        <span class="meta-tag">status</span>
+        <span class="meta-tag">doc_summary (--summarize)</span>
+      </div>
+    </div>
+    <div class="file">data/{auth}/normalized/*.txt<br>data/normalized/records.jsonl<br>discovery_manifest.json (--summarize)</div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 4</span>
+    <h3>Chunk</h3>
+    <div class="script">chunk.py</div>
+    <div class="desc">Paragraph packing (~2000 char). Each chunk inherits doc metadata + adds its own.</div>
+    <div class="meta-block">
+      <div class="meta-title">Adds per-chunk metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">chunk_id</span>
+        <span class="meta-tag">char_start</span>
+        <span class="meta-tag">char_end</span>
+        <span class="meta-tag">core_structural_syntax</span>
+        <span class="meta-tag">space_key</span>
+        <span class="meta-tag">ado_project</span>
+      </div>
+    </div>
+    <div class="file">data/chunks/chunks.jsonl</div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 5</span>
+    <h3>Embed</h3>
+    <div class="script">embed.py</div>
+    <div class="desc">MiniLM &rarr; 384-d vectors. Writes a sidecar that maps vector rows to metadata.</div>
+    <div class="meta-block">
+      <div class="meta-title">Writes vector ↔ metadata link</div>
+      <div class="meta-tags">
+        <span class="meta-tag">index</span>
+        <span class="meta-tag">chunk_id</span>
+        <span class="meta-tag">+ all filters</span>
+      </div>
+    </div>
+    <div class="file">vectors.npy<br>chunk_index.jsonl<br>meta.json</div>
+  </div>
+
+  <div class="step">
+    <span class="badge">STEP 6</span>
+    <h3>Retrieve</h3>
+    <div class="script">retrieve.py</div>
+    <div class="desc">Router + metadata mask &rarr; cosine similarity on the surviving slice only.</div>
+    <div class="meta-block">
+      <div class="meta-title">Consumes metadata</div>
+      <div class="meta-tags">
+        <span class="meta-tag">filter by category</span>
+        <span class="meta-tag">filter by source</span>
+        <span class="meta-tag">filter by external_id</span>
+      </div>
+    </div>
+    <div class="file">stdout: ranked hits + citations</div>
+  </div>
+
+</div>
+
+<!-- LLM SUMMARIZE -->
+<h2><span class="step-num">2</span>Optional: Local LLM doc summaries during normalize</h2>
+<div class="retrieval">
+  <div class="ret-row">
+    <div class="ret-card">
+      <h4>Normalized text</h4>
+      <p>One <code>.txt</code> per spec from <code>normalize.py</code>.</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Local LLM</h4>
+      <p>Hugging Face <code>transformers</code> + <code>accelerate</code>.</p>
+      <div class="meta-tags" style="justify-content:center; margin-top:6px;">
+        <span class="meta-tag">Qwen/Qwen2.5-1.5B-Instruct</span>
+      </div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Single-pass or map-reduce</h4>
+      <p>Map-reduce above <code>--summary-max-input-chars</code> (default 60k).</p>
+      <div class="meta-tags" style="justify-content:center; margin-top:6px;">
+        <span class="meta-tag">single_pass_v1</span>
+        <span class="meta-tag">map_reduce_v1</span>
+      </div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Idempotent write</h4>
+      <p>Skips when <code>input_sha256</code> matches. Atomic temp-file replace on the manifest.</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card">
+      <h4>doc_summary metadata</h4>
+      <p>Available to the router for cheap doc-level filtering and to humans browsing the catalog.</p>
+    </div>
+  </div>
+</div>
+
+<div class="example">
+  <h3>discovery_manifest.json (one row, after <code>normalize.py --summarize</code>)</h3>
+<pre>{
+  <span class="k">"source"</span>:        <span class="s">"ado_wiki"</span>,
+  <span class="k">"authority"</span>:     <span class="s">"ADO/MK-VSPP"</span>,
+  <span class="k">"external_id"</span>:   <span class="s">"ado:MK-VSPP:.../3. VM Prereqs"</span>,
+  <span class="k">"title"</span>:         <span class="s">"3. VM Prereqs"</span>,
+  <span class="k">"status"</span>:        <span class="s">"ingested"</span>,
+  <span class="k">"metadata"</span>: {
+    <span class="m">"doc_summary"</span>: {
+      <span class="m">"text"</span>:           <span class="s">"This page lists VM prerequisites for deploying the MKP microservice cluster..."</span>,
+      <span class="m">"model"</span>:          <span class="s">"Qwen/Qwen2.5-1.5B-Instruct"</span>,
+      <span class="m">"method"</span>:         <span class="s">"single_pass_v1"</span>,            <span class="c">// or "map_reduce_v1" for long docs</span>
+      <span class="m">"input_chars"</span>:    <span class="s">3511</span>,
+      <span class="m">"input_sha256"</span>:   <span class="s">"20cff5cf..."</span>,                <span class="c">// idempotency key</span>
+      <span class="m">"summarized_at"</span>:  <span class="s">"2026-05-26T23:30:00Z"</span>
+    }
+  }
+}</pre>
+</div>
+
+<!-- RETRIEVAL DETAIL -->
+<h2><span class="step-num">3</span>How metadata accelerates retrieval (the online path)</h2>
+<div class="retrieval">
+  <div class="ret-row">
+    <div class="ret-card">
+      <h4>User query</h4>
+      <p>"DASH MPD segment template"</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Metadata router</h4>
+      <p>Rule-based, no LLM. Matches keywords to filters.</p>
+      <div class="meta-tags" style="justify-content:center; margin-top:6px;">
+        <span class="meta-tag">external_id = etsi-dvb-dash-ts103168</span>
+      </div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Apply metadata mask</h4>
+      <p>Keep only chunks whose metadata satisfies the filter.</p>
+      <div class="big">2,830 &rarr; ~50</div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card">
+      <h4>Vector search</h4>
+      <p>Cosine similarity on the surviving slice only.</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card">
+      <h4>Top-K results</h4>
+      <p>With citations: <code>external_id</code>, <code>char_start</code>, <code>char_end</code>.</p>
+    </div>
+  </div>
+</div>
+
+<!-- DOC-SUMMARY ROUTED RETRIEVAL -->
+<h2><span class="step-num">4</span>Doc-summary routed retrieval (two-stage)</h2>
+<p style="color: var(--muted); font-size: 13px; margin: 8px 0 14px;">
+  Enabled with <code>python retrieve.py "..." --doc-summary-router</code>. Stage 1 ranks the tiny set of
+  <code>chunk_kind=doc_summary</code> virtual chunks. Stage 2 reuses the same vector index, restricted to
+  the surviving documents.
+</p>
+
+<div class="retrieval">
+  <div class="ret-row six">
+    <div class="ret-card">
+      <h4>User query</h4>
+      <p>"VM prerequisites for MKP deployment"</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card">
+      <h4>Encode once</h4>
+      <p>One 384-d MiniLM embedding, reused for both stages.</p>
+      <div class="meta-tags" style="justify-content:center; margin-top:6px;">
+        <span class="meta-tag">sentence-transformers/all-MiniLM-L6-v2</span>
+      </div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Stage 1<br/>Doc-summary search</h4>
+      <p>Cosine vs <code>chunk_kind=doc_summary</code> only.</p>
+      <div class="big">~131 vectors</div>
+      <p style="margin-top:6px;">Pick top <code>--doc-top-k</code> docs.</p>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Build filter</h4>
+      <p>Take winning <code>external_id</code>s. Merge with any existing filters (<code>category</code>, <code>source</code>...).</p>
+      <div class="meta-tags" style="justify-content:center; margin-top:6px;">
+        <span class="meta-tag">external_ids = {top docs}</span>
+        <span class="meta-tag">chunk_kind = text</span>
+      </div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card meta">
+      <h4>Stage 2<br/>Text-chunk search</h4>
+      <p>Cosine vs text chunks inside the chosen docs.</p>
+      <div class="big">~50&ndash;80 vectors</div>
+    </div>
+    <div class="ret-arrow">&rarr;</div>
+    <div class="ret-card">
+      <h4>Top-K results</h4>
+      <p>Same citations as before: <code>chunk_id</code>, <code>char_start</code>, <code>char_end</code>.</p>
+    </div>
+  </div>
+</div>
+
+<div class="compare">
+  <div class="compare-card bad">
+    <h3>Keyword router only</h3>
+    <div class="num">~500&ndash;1,500</div>
+    <p>chunk-vector ops per query (depends on which regex rule fires)</p>
+    <ul>
+      <li>Hand-coded rules per spec: <code>DASH</code>, <code>moof</code>, <code>MPD</code>, <code>DVB-S2</code>...</li>
+      <li>Queries not matching any keyword fall back to full scan</li>
+      <li>New specs need new regex rules</li>
+    </ul>
+  </div>
+  <div class="compare-card good">
+    <h3>Doc-summary router</h3>
+    <div class="num">~180&ndash;210</div>
+    <p>vector ops per query (131 summaries + ~50&ndash;80 text chunks)</p>
+    <ul>
+      <li>Generalizes to any spec that has a <code>doc_summary</code></li>
+      <li>One query embedding reused across both stages</li>
+      <li>Fallback to full text search when no summaries match</li>
+    </ul>
+  </div>
+</div>
+
+<div class="example">
+  <h3>One doc_summary virtual chunk (from <code>data/chunks/chunks.jsonl</code>)</h3>
+<pre>{
+  <span class="k">"chunk_id"</span>:                    <span class="s">"ado_wiki:ado:MK-VSPP:.../3. VM Prereqs:doc_summary"</span>,
+  <span class="k">"chunk_index"</span>:                 <span class="s">-1</span>,                          <span class="c">// not a positional chunk</span>
+  <span class="m">"chunk_kind"</span>:                  <span class="s">"doc_summary"</span>,                <span class="c">// ← Stage 1 picks these</span>
+  <span class="k">"char_start"</span>:                  <span class="s">null</span>,                        <span class="c">// no source offsets</span>
+  <span class="k">"char_end"</span>:                    <span class="s">null</span>,
+  <span class="k">"text"</span>:                        <span class="s">"Title: 3. VM Prereqs\nAuthority: ADO/MK-VSPP\nDocument summary: ..."</span>,
+  <span class="k">"chunker"</span>:                     <span class="s">"doc_summary_v1"</span>,
+  <span class="m">"doc_summary_model"</span>:           <span class="s">"Qwen/Qwen2.5-1.5B-Instruct"</span>,
+  <span class="m">"doc_summary_method"</span>:          <span class="s">"single_pass_v1"</span>,
+  <span class="m">"doc_summary_input_sha256"</span>:    <span class="s">"20cff5cf..."</span>,                <span class="c">// matches manifest entry</span>
+
+  <span class="m">"external_id"</span>:                 <span class="s">"ado:MK-VSPP:.../3. VM Prereqs"</span>,   <span class="c">// ← Stage 2 filter</span>
+  <span class="m">"source"</span>:                      <span class="s">"ado_wiki"</span>,
+  <span class="m">"authority"</span>:                   <span class="s">"ADO/MK-VSPP"</span>,
+  <span class="m">"category"</span>:                    <span class="s">"Internal"</span>
+}</pre>
+</div>
+
+<!-- WHY IT MATTERS -->
+<h2><span class="step-num">5</span>Why metadata-first matters</h2>
+<div class="compare">
+  <div class="compare-card bad">
+    <h3>Without metadata filters</h3>
+    <div class="num">2,830</div>
+    <p>vectors scored per query</p>
+    <ul>
+      <li>Conformance fixtures pollute ISOBMFF results</li>
+      <li>Internal wiki leaks into normative-standards answers</li>
+      <li>Slow, no audit trail, no citation guarantees</li>
+    </ul>
+  </div>
+  <div class="compare-card good">
+    <h3>With metadata-first routing</h3>
+    <div class="num">~50</div>
+    <p>vectors scored per query (typical)</p>
+    <ul>
+      <li>Hard filter: <code>category</code>, <code>source</code>, <code>external_id</code></li>
+      <li>Internal docs hidden by default unless <code>--include-internal</code></li>
+      <li>Citable hits: <code>chunk_id</code> + char offsets prove the source</li>
+    </ul>
+  </div>
+</div>
+
+<!-- EXAMPLE -->
+<h2><span class="step-num">6</span>One chunk = text + metadata, side by side</h2>
+<div class="example">
+  <h3>data/chunks/chunks.jsonl (one row, simplified)</h3>
+<pre>{
+  <span class="k">"chunk_id"</span>:       <span class="s">"3gpp:26102-j00:00000"</span>,   <span class="c">// unique id</span>
+  <span class="k">"char_start"</span>:     <span class="s">0</span>,                          <span class="c">// citation offsets</span>
+  <span class="k">"char_end"</span>:       <span class="s">2000</span>,
+  <span class="k">"text"</span>:           <span class="s">"3GPP TS 26.102 V19.0.0 ..."</span>,    <span class="c">// the actual passage</span>
+
+  <span class="m">"source"</span>:                 <span class="s">"3gpp"</span>,             <span class="c">// ← router filter</span>
+  <span class="m">"authority"</span>:              <span class="s">"3GPP"</span>,             <span class="c">// ← router filter</span>
+  <span class="m">"external_id"</span>:            <span class="s">"26102-j00"</span>,        <span class="c">// ← router filter</span>
+  <span class="m">"category"</span>:               <span class="s">"Transport"</span>,        <span class="c">// ← router filter</span>
+  <span class="m">"tier"</span>:                   <span class="s">"transport-level"</span>,  <span class="c">// ← router filter</span>
+  <span class="m">"core_structural_syntax"</span>: <span class="s">false</span>,             <span class="c">// ← router filter</span>
+  <span class="m">"title"</span>:                  <span class="s">"26-series spec package ..."</span>,
+  <span class="m">"normalized_path"</span>:        <span class="s">"data/3gpp/normalized/26102-j00.txt"</span>
+}</pre>
+</div>
+
+<footer>
+  VSPP-Standards-Vault &middot; Gen AI hackathon &middot; 384-d embeddings via sentence-transformers/all-MiniLM-L6-v2
+</footer>
+
+</body>
+</html>

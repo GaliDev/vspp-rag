@@ -4,4 +4,6 @@ lxml>=5.0.0
 pypdf>=5.0.0
 numpy>=1.26.0
 sentence-transformers>=3.0.0
+transformers>=4.45.0
+accelerate>=0.34.0
 

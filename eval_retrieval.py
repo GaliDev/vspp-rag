@@ -4,7 +4,13 @@ import argparse
 import json
 from pathlib import Path
 
-from src.core.retrieval import RetrievalFilters, load_index, route_query, search
+from src.core.retrieval import (
+    RetrievalFilters,
+    load_index,
+    route_query,
+    search,
+    search_with_doc_summary_router,
+)
 
 ROOT = Path(__file__).parent
 QUERIES_PATH = ROOT / "data" / "eval" / "queries.jsonl"
@@ -34,10 +40,15 @@ def main() -> None:
     parser.add_argument("--top-k", type=int, default=5)
     parser.add_argument(
         "--mode",
-        choices=("baseline", "router", "structural"),
+        choices=("baseline", "router", "summary-router", "structural"),
         default="router",
-        help="baseline=all chunks; router=keyword filters; structural=core_structural_syntax only",
+        help=(
+            "baseline=all text chunks; router=keyword filters; "
+            "summary-router=doc_summary pre-filter then text search; "
+            "structural=core_structural_syntax only"
+        ),
     )
+    parser.add_argument("--doc-top-k", type=int, default=3, help="Top doc summaries to keep in summary-router mode.")
     parser.add_argument("--embed-dir", type=Path, default=EMBED_DIR)
     parser.add_argument("--chunks", type=Path, default=CHUNKS_PATH)
     args = parser.parse_args()
@@ -64,7 +75,18 @@ def main() -> None:
         text = q["query"]
         expect = set(q.get("expect_external_ids") or [])
         filters = filters_for_mode(args.mode, q)
-        results = search(index, text, top_k=args.top_k, filters=filters, model=model)
+        if args.mode == "summary-router":
+            results, doc_hits = search_with_doc_summary_router(
+                index,
+                text,
+                top_k=args.top_k,
+                doc_top_k=args.doc_top_k,
+                filters=filters,
+                model=model,
+            )
+        else:
+            doc_hits = []
+            results = search(index, text, top_k=args.top_k, filters=filters, model=model)
         got_ids = {h.external_id for h in results if h.external_id}
         prefix = q.get("expect_external_id_prefix")
         if expect:
@@ -83,6 +105,8 @@ def main() -> None:
         print(f"  got: {sorted(got_ids)}")
         if filters and not filters.is_empty():
             print(f"  filters: {filters}")
+        if doc_hits:
+            print(f"  doc router: {[h.external_id for h in doc_hits if h.external_id]}")
         if results:
             best = results[0]
             preview = best.text[:160].replace("\n", " ")

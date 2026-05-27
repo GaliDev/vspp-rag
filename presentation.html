@@ -1,0 +1,1245 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>VSPP RAG — GenAI Mini-Hackathon Presentation</title>
+<style>
+  :root {
+    --bg: #fafafa;
+    --ink: #15181c;
+    --muted: #5a626d;
+    --line: #d8dde4;
+    --card: #ffffff;
+    --accent: #0d7a7a;
+    --accent-soft: #d6efef;
+    --warn: #b25600;
+    --warn-soft: #fbecd9;
+    --good: #1f7a3a;
+    --good-soft: #d8efdf;
+    --bad: #a02c2c;
+    --bad-soft: #f4dcdc;
+    --mono: ui-monospace, "JetBrains Mono", "SF Mono", Menlo, Consolas, monospace;
+    --sans: ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, Inter, sans-serif;
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; height: 100%; background: var(--bg); color: var(--ink); font-family: var(--sans); }
+  body { overflow: hidden; }
+
+  /* Slide container */
+  .deck {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    padding: 56px 80px 110px 80px;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+  }
+  .slide.active { display: flex; }
+
+  /* Header bar */
+  .slide header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 28px;
+    font-size: 13px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  .slide header .section {
+    color: var(--accent);
+    font-weight: 600;
+  }
+  .slide header .project { font-weight: 500; }
+
+  /* Footer */
+  .slide footer {
+    position: absolute;
+    left: 80px;
+    right: 80px;
+    bottom: 28px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 13px;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .slide footer .progress {
+    flex: 1;
+    height: 2px;
+    background: var(--line);
+    margin: 0 24px;
+    position: relative;
+    border-radius: 2px;
+  }
+  .slide footer .progress::after {
+    content: "";
+    position: absolute;
+    left: 0; top: 0; bottom: 0;
+    background: var(--accent);
+    border-radius: 2px;
+    width: var(--prog, 0%);
+  }
+
+  /* Typography */
+  h1 {
+    font-size: 64px;
+    line-height: 1.05;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    margin: 0 0 12px 0;
+  }
+  h1 .accent { color: var(--accent); }
+  h2 {
+    font-size: 40px;
+    line-height: 1.1;
+    font-weight: 700;
+    letter-spacing: -0.015em;
+    margin: 0 0 24px 0;
+  }
+  h3 {
+    font-size: 22px;
+    font-weight: 600;
+    margin: 0 0 8px 0;
+  }
+  .lede {
+    font-size: 22px;
+    line-height: 1.5;
+    color: var(--muted);
+    margin: 0 0 24px 0;
+  }
+  .body {
+    font-size: 18px;
+    line-height: 1.55;
+  }
+  code { font-family: var(--mono); font-size: 0.95em; background: #eef0f3; padding: 1px 6px; border-radius: 4px; }
+
+  /* Title slide */
+  .title-slide {
+    justify-content: center;
+    background: linear-gradient(135deg, #fafafa 0%, #eaf5f5 100%);
+  }
+  .title-slide .eyebrow {
+    font-size: 14px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 24px;
+  }
+  .title-slide h1 { font-size: 96px; line-height: 0.98; }
+  .title-slide .subtitle {
+    font-size: 28px;
+    color: var(--muted);
+    margin-top: 16px;
+    max-width: 900px;
+    line-height: 1.35;
+  }
+  .title-slide .meta {
+    margin-top: 56px;
+    display: flex;
+    gap: 40px;
+    color: var(--muted);
+    font-size: 15px;
+  }
+  .title-slide .meta strong { color: var(--ink); font-weight: 600; }
+
+  /* Section dividers / pill */
+  .pill {
+    display: inline-block;
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: var(--accent-soft);
+    color: var(--accent);
+    font-weight: 600;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+  }
+  .pill.warn { background: var(--warn-soft); color: var(--warn); }
+  .pill.good { background: var(--good-soft); color: var(--good); }
+  .pill.bad  { background: var(--bad-soft);  color: var(--bad); }
+
+  /* Three-line "what it does" */
+  .three-lines {
+    display: grid;
+    grid-template-columns: 120px 1fr;
+    column-gap: 24px;
+    row-gap: 28px;
+    font-size: 22px;
+    line-height: 1.45;
+    max-width: 1100px;
+  }
+  .three-lines .label {
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--muted);
+    padding-top: 6px;
+  }
+  .three-lines .value { color: var(--ink); }
+  .three-lines .value strong { color: var(--accent); font-weight: 700; }
+
+  /* Two-column layout */
+  .cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    flex: 1;
+    min-height: 0;
+  }
+  .cols-3 {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 24px;
+    flex: 1;
+    min-height: 0;
+  }
+
+  /* Cards */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 20px 24px;
+    box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  }
+  .card.accent { border-color: var(--accent); }
+  .card.warn { border-color: #e2b27a; background: #fffaf2; }
+  .card h3 { color: var(--accent); }
+  .card.warn h3 { color: var(--warn); }
+  .card .kv {
+    display: grid;
+    grid-template-columns: 130px 1fr;
+    column-gap: 16px;
+    row-gap: 8px;
+    font-size: 15px;
+    margin-top: 8px;
+  }
+  .card .kv .k { color: var(--muted); }
+  .card .kv .v { color: var(--ink); }
+  .card .kv .v code { font-size: 13px; }
+  .card p { margin: 6px 0; font-size: 15px; line-height: 1.5; color: var(--ink); }
+  .card .alt {
+    margin-top: 12px;
+    font-size: 13px;
+    color: var(--muted);
+    padding-top: 10px;
+    border-top: 1px dashed var(--line);
+  }
+  .card .alt strong { color: var(--ink); }
+
+  /* Tables */
+  table.review {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 16px;
+    table-layout: fixed;
+  }
+  table.review th, table.review td {
+    text-align: left;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+    vertical-align: top;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+  table.review th {
+    font-size: 12px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    border-bottom: 2px solid var(--ink);
+  }
+  table.review td.choice { font-weight: 600; color: var(--accent); }
+  table.review td.alt { color: var(--muted); font-size: 14px; }
+  table.review td code { font-size: 13px; }
+
+  /* Numbers / stats */
+  .stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+    margin: 16px 0 24px 0;
+  }
+  .stat {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 16px 20px;
+  }
+  .stat .num {
+    font-size: 36px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    color: var(--accent);
+    font-variant-numeric: tabular-nums;
+    line-height: 1;
+  }
+  .stat .label {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+  }
+
+  /* Comparison bar */
+  .compare {
+    display: grid;
+    grid-template-columns: 200px 1fr 90px;
+    align-items: center;
+    gap: 16px;
+    margin: 12px 0;
+    font-size: 18px;
+  }
+  .compare .name { font-weight: 600; }
+  .compare .bar {
+    height: 28px;
+    background: var(--line);
+    border-radius: 4px;
+    overflow: hidden;
+    position: relative;
+  }
+  .compare .bar > span {
+    display: block;
+    height: 100%;
+    background: var(--accent);
+    transition: width 0.4s ease;
+  }
+  .compare.bad .bar > span { background: #c97a7a; }
+  .compare .score {
+    font-variant-numeric: tabular-nums;
+    font-weight: 600;
+    text-align: right;
+  }
+
+  /* SVG diagram styling */
+  .diagram-wrap {
+    flex: 1;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 4px 6px;
+  }
+  .diagram-wrap svg { max-width: 100%; max-height: 100%; height: auto; }
+
+  /* Bullet lists */
+  ul.tight { margin: 0; padding-left: 20px; }
+  ul.tight li { margin: 6px 0; font-size: 17px; line-height: 1.5; }
+  ul.tight li b { color: var(--accent); font-weight: 600; }
+
+  /* Retrieval simple flow */
+  .flow-steps {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+    margin-top: 8px;
+    flex: 1;
+    min-height: 0;
+  }
+  .flow-step {
+    display: grid;
+    grid-template-columns: 34px 1fr;
+    column-gap: 14px;
+    align-items: center;
+    width: 100%;
+    max-width: 920px;
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 7px 18px;
+  }
+  .flow-step.accent {
+    border-color: var(--accent);
+    background: var(--accent-soft);
+  }
+  .flow-num {
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    background: var(--ink);
+    color: white;
+    font-weight: 700;
+    font-size: 14px;
+    display: grid;
+    place-items: center;
+  }
+  .flow-step.accent .flow-num { background: var(--accent); }
+  .flow-title {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--ink);
+    line-height: 1.25;
+  }
+  .flow-caption {
+    font-size: 12px;
+    color: var(--muted);
+    margin-top: 1px;
+    line-height: 1.35;
+  }
+  .flow-step.accent .flow-caption { color: #2f5e5e; }
+  .flow-arrow {
+    color: var(--muted);
+    font-size: 14px;
+    line-height: 1;
+  }
+
+  /* Demo step list */
+  .demo-steps {
+    display: grid;
+    grid-template-columns: 36px 1fr;
+    gap: 12px 18px;
+    font-size: 17px;
+    line-height: 1.5;
+  }
+  .demo-steps .step-num {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: white;
+    display: grid;
+    place-items: center;
+    font-weight: 700;
+    font-size: 14px;
+  }
+  .demo-steps code { display: inline-block; }
+
+  /* Nav controls */
+  .nav {
+    position: fixed;
+    right: 24px;
+    bottom: 64px;
+    display: flex;
+    gap: 8px;
+    z-index: 100;
+  }
+  .nav button {
+    width: 36px; height: 36px;
+    border: 1px solid var(--line);
+    background: var(--card);
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    color: var(--muted);
+    display: grid;
+    place-items: center;
+    transition: all 0.15s;
+  }
+  .nav button:hover { background: var(--accent-soft); color: var(--accent); border-color: var(--accent); }
+
+  .hint {
+    position: fixed;
+    left: 24px;
+    bottom: 64px;
+    font-size: 12px;
+    color: var(--muted);
+    background: var(--card);
+    border: 1px solid var(--line);
+    padding: 6px 12px;
+    border-radius: 8px;
+    opacity: 0.7;
+  }
+  .hint kbd {
+    display: inline-block;
+    padding: 1px 6px;
+    background: #eef0f3;
+    border-radius: 4px;
+    border: 1px solid var(--line);
+    font-family: var(--mono);
+    font-size: 11px;
+  }
+
+  /* Print: each slide on its own page */
+  @media print {
+    body, html { overflow: visible; height: auto; background: white; }
+    .deck { width: auto; height: auto; }
+    .slide { position: relative; display: flex !important; page-break-after: always; height: 100vh; }
+    .nav, .hint { display: none; }
+  }
+
+  @media (max-width: 1100px) {
+    .slide { padding: 40px 48px 64px; }
+    h1 { font-size: 48px; }
+    .title-slide h1 { font-size: 64px; }
+    h2 { font-size: 32px; }
+    .stats { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="deck" id="deck">
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 1 — TITLE -->
+  <!-- ============================================================ -->
+  <section class="slide title-slide active" data-section="" data-section-num="">
+    <div class="eyebrow">GenAI Mini-Hackathon · RAG track</div>
+    <h1>VSPP <span class="accent">RAG</span></h1>
+    <div class="subtitle">Metadata-first retrieval over 131 broadcast &amp; streaming specs — built to answer “where does the spec say X?” in seconds, with byte-exact citations.</div>
+    <div style="margin-top: 40px; font-size: 17px; color: var(--muted); letter-spacing: 0.02em;">
+      Presented by <strong style="color: var(--ink); font-weight: 700;">Gali Sandler</strong>
+    </div>
+    <div class="meta" style="margin-top: 32px;">
+      <div><strong>System type</strong><br/>RAG</div>
+      <div><strong>Corpus</strong><br/>131 specs · 2,868 chunks · 384-d MiniLM</div>
+      <div><strong>Stack</strong><br/>Python CLI, NumPy, sentence-transformers, local Qwen2.5-1.5B</div>
+      <div><strong>Repo</strong><br/>github.com/GaliDev/vspp-rag</div>
+    </div>
+    <footer>
+      <span>1 / 11</span>
+      <div class="progress" style="--prog: 9%"></div>
+      <span>Press <kbd>→</kbd> to begin</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 2 — WHAT IT DOES (Section 1) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="1 / 4 · What it does" data-section-num="2">
+    <header>
+      <span class="section">Section 1 / 4 · What it does</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>One user, one problem, one system.</h2>
+    <div class="three-lines">
+      <div class="label">User</div>
+      <div class="value">A <strong>VSPP engineer</strong> drowning in DVB / MPEG / W3C / AOM specs, plus internal ADO &amp; Confluence wikis.</div>
+
+      <div class="label">Problem</div>
+      <div class="value">“Where does the spec say X?” is a <strong>30-minute scavenger hunt</strong> across 131 PDFs and HTML drafts — and when there’s an answer, there’s no clean way to cite the byte offset.</div>
+
+      <div class="label">System</div>
+      <div class="value">A POC RAG that <strong>grounds answers in the actual standards</strong>, routes queries by metadata <em>before</em> doing vector search, and returns passages with <code>(external_id, char_start, char_end)</code> citations.</div>
+    </div>
+
+    <div class="stats" style="margin-top: 48px;">
+      <div class="stat"><div class="num">131</div><div class="label">specs discovered</div></div>
+      <div class="stat"><div class="num">2,868</div><div class="label">chunks indexed</div></div>
+      <div class="stat"><div class="num">384-d</div><div class="label">MiniLM vectors</div></div>
+      <div class="stat"><div class="num">13/13</div><div class="label">top-5 eval pass</div></div>
+    </div>
+
+    <footer>
+      <span>2 / 11</span>
+      <div class="progress" style="--prog: 18%"></div>
+      <span>Section 1 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 3 — BLOCK DIAGRAM (Section 2) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="2 / 4 · Block diagram" data-section-num="3">
+    <header>
+      <span class="section">Section 2 / 4 · Block diagram</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>Pipeline at a glance.</h2>
+    <p class="lede" style="font-size: 17px; margin-bottom: 16px;">
+      Every box names a real script. Every arrow names what flows. State lives in the manifest, on disk vectors, and a JSONL chunk index — no DB, on purpose.
+    </p>
+
+    <div class="diagram-wrap">
+      <svg viewBox="0 0 1280 540" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="VSPP RAG block diagram">
+        <defs>
+          <marker id="arr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#15181c"/>
+          </marker>
+          <marker id="arr-accent" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+            <path d="M0,0 L10,5 L0,10 z" fill="#0d7a7a"/>
+          </marker>
+          <style>
+            .box { fill: #fff; stroke: #15181c; stroke-width: 1.5; }
+            .box-accent { fill: #d6efef; stroke: #0d7a7a; stroke-width: 1.8; }
+            .box-state { fill: #f5f5f5; stroke: #5a626d; stroke-dasharray: 4 3; stroke-width: 1.5; }
+            .lbl { font: 700 18px ui-sans-serif, system-ui, sans-serif; fill: #15181c; }
+            .lbl-sub { font: 14px ui-sans-serif, system-ui, sans-serif; fill: #5a626d; }
+            .lbl-accent { fill: #0d7a7a; }
+            .edge { stroke: #15181c; stroke-width: 1.5; fill: none; }
+            .edge-accent { stroke: #0d7a7a; stroke-width: 1.8; fill: none; stroke-dasharray: 5 4; }
+            .edge-lbl { font: 13px ui-sans-serif, system-ui, sans-serif; fill: #5a626d; }
+          </style>
+        </defs>
+
+        <!-- Row 1: Sources -->
+        <g transform="translate(40, 30)">
+          <rect class="box-state" x="0" y="0" width="220" height="80" rx="8"/>
+          <text class="lbl" x="110" y="26" text-anchor="middle">Sources</text>
+          <text class="lbl-sub" x="110" y="46" text-anchor="middle">ETSI · MPEG · W3C · AOM</text>
+          <text class="lbl-sub" x="110" y="62" text-anchor="middle">ADO wiki · Confluence · GH</text>
+        </g>
+
+        <!-- discover.py -->
+        <g transform="translate(310, 30)">
+          <rect class="box" x="0" y="0" width="170" height="80" rx="8"/>
+          <text class="lbl" x="85" y="32" text-anchor="middle">discover.py</text>
+          <text class="lbl-sub" x="85" y="52" text-anchor="middle">collectors / async</text>
+          <text class="lbl-sub" x="85" y="68" text-anchor="middle">→ manifest rows</text>
+        </g>
+
+        <!-- ingest.py -->
+        <g transform="translate(530, 30)">
+          <rect class="box" x="0" y="0" width="170" height="80" rx="8"/>
+          <text class="lbl" x="85" y="32" text-anchor="middle">ingest.py</text>
+          <text class="lbl-sub" x="85" y="52" text-anchor="middle">PDF / HTML / zip</text>
+          <text class="lbl-sub" x="85" y="68" text-anchor="middle">→ data/{auth}/raw/</text>
+        </g>
+
+        <!-- normalize.py -->
+        <g transform="translate(750, 30)">
+          <rect class="box" x="0" y="0" width="200" height="80" rx="8"/>
+          <text class="lbl" x="100" y="32" text-anchor="middle">normalize.py</text>
+          <text class="lbl-sub" x="100" y="52" text-anchor="middle">pypdf · docx · BS4</text>
+          <text class="lbl-sub" x="100" y="68" text-anchor="middle">→ plain text</text>
+        </g>
+
+        <!-- Optional summarizer (accent) -->
+        <g transform="translate(990, 30)">
+          <rect class="box-accent" x="0" y="0" width="240" height="80" rx="8"/>
+          <text class="lbl lbl-accent" x="120" y="28" text-anchor="middle">+ local LLM summary (opt)</text>
+          <text class="lbl-sub" x="120" y="48" text-anchor="middle">Qwen2.5-1.5B-Instruct</text>
+          <text class="lbl-sub" x="120" y="64" text-anchor="middle">writes manifest.doc_summary</text>
+        </g>
+
+        <!-- Row 2: chunk + embed -->
+        <g transform="translate(310, 180)">
+          <rect class="box" x="0" y="0" width="200" height="80" rx="8"/>
+          <text class="lbl" x="100" y="32" text-anchor="middle">chunk.py</text>
+          <text class="lbl-sub" x="100" y="52" text-anchor="middle">paragraph-pack v1</text>
+          <text class="lbl-sub" x="100" y="68" text-anchor="middle">+ doc_summary virtual chunk</text>
+        </g>
+
+        <g transform="translate(560, 180)">
+          <rect class="box" x="0" y="0" width="200" height="80" rx="8"/>
+          <text class="lbl" x="100" y="32" text-anchor="middle">embed.py</text>
+          <text class="lbl-sub" x="100" y="52" text-anchor="middle">MiniLM-L6-v2 · 384-d</text>
+          <text class="lbl-sub" x="100" y="68" text-anchor="middle">→ vectors.npy + index.jsonl</text>
+        </g>
+
+        <!-- State store -->
+        <g transform="translate(820, 175)">
+          <rect class="box-state" x="0" y="0" width="240" height="90" rx="8"/>
+          <text class="lbl" x="120" y="28" text-anchor="middle">Vector + chunk store</text>
+          <text class="lbl-sub" x="120" y="48" text-anchor="middle">vectors.npy · chunk_index.jsonl</text>
+          <text class="lbl-sub" x="120" y="64" text-anchor="middle">2,868 × 384 floats</text>
+          <text class="lbl-sub" x="120" y="80" text-anchor="middle">+ discovery_manifest.json</text>
+        </g>
+
+        <!-- Row 3: retrieval -->
+        <g transform="translate(40, 360)">
+          <rect class="box-state" x="0" y="0" width="170" height="60" rx="8"/>
+          <text class="lbl" x="85" y="28" text-anchor="middle">User query</text>
+          <text class="lbl-sub" x="85" y="46" text-anchor="middle">CLI / API</text>
+        </g>
+
+        <!-- THE ROUTER — visually prominent -->
+        <g transform="translate(260, 310)">
+          <!-- Outer "highlight" ring -->
+          <rect x="-6" y="-6" width="354" height="184" rx="14" fill="none" stroke="#0d7a7a" stroke-width="1.5" stroke-dasharray="3 4" opacity="0.45"/>
+          <rect class="box-accent" x="0" y="0" width="342" height="172" rx="10" stroke-width="2.5"/>
+          <!-- ROUTER pill -->
+          <rect x="14" y="12" width="78" height="22" rx="11" fill="#0d7a7a"/>
+          <text x="53" y="27" text-anchor="middle" fill="white" style="font: 700 12px ui-sans-serif, system-ui, sans-serif; letter-spacing: 0.1em;">ROUTER</text>
+          <text class="lbl lbl-accent" x="328" y="28" text-anchor="end" style="font-size: 11px;">retrieve.py · src/core/retrieval.py</text>
+          <!-- Title -->
+          <text class="lbl lbl-accent" x="171" y="60" text-anchor="middle" style="font-size: 18px; font-weight: 800;">Metadata Router</text>
+          <text class="lbl-sub" x="171" y="78" text-anchor="middle" style="font-style: italic;">narrows the search space before vector math</text>
+          <line x1="20" y1="92" x2="322" y2="92" stroke="#0d7a7a" stroke-dasharray="3 3"/>
+          <text class="lbl-sub" x="20" y="112" text-anchor="start" fill="#15181c" style="font-weight: 600;">① route_query() — regex rules</text>
+          <text class="lbl-sub" x="36" y="126" text-anchor="start">→ filters: external_id · category · source</text>
+          <text class="lbl-sub" x="20" y="146" text-anchor="start" fill="#15181c" style="font-weight: 600;">② doc_summary router — semantic</text>
+          <text class="lbl-sub" x="36" y="160" text-anchor="start">→ summary hits narrow text-chunk space</text>
+        </g>
+
+        <g transform="translate(640, 340)">
+          <rect class="box" x="0" y="0" width="190" height="100" rx="8"/>
+          <text class="lbl" x="95" y="28" text-anchor="middle">Masked cosine</text>
+          <text class="lbl-sub" x="95" y="48" text-anchor="middle">build_mask → np.where</text>
+          <text class="lbl-sub" x="95" y="64" text-anchor="middle">→ filtered subset</text>
+          <text class="lbl-sub" x="95" y="84" text-anchor="middle">scores = sub_vec @ q</text>
+        </g>
+
+        <g transform="translate(870, 350)">
+          <rect class="box-accent" x="0" y="0" width="350" height="80" rx="8"/>
+          <text class="lbl lbl-accent" x="175" y="32" text-anchor="middle">Top-k passages with citations</text>
+          <text class="lbl-sub" x="175" y="52" text-anchor="middle">external_id · category · authority</text>
+          <text class="lbl-sub" x="175" y="68" text-anchor="middle">char_start · char_end · score</text>
+        </g>
+
+        <!-- Edges row 1 -->
+        <path class="edge" d="M260 70 L308 70" marker-end="url(#arr)"/>
+        <path class="edge" d="M480 70 L528 70" marker-end="url(#arr)"/>
+        <path class="edge" d="M700 70 L748 70" marker-end="url(#arr)"/>
+        <path class="edge-accent" d="M950 70 L988 70" marker-end="url(#arr-accent)"/>
+
+        <!-- normalize → chunk -->
+        <path class="edge" d="M850 110 L850 150 L410 150 L410 178" marker-end="url(#arr)"/>
+        <text class="edge-lbl" x="610" y="144" text-anchor="middle">normalized .txt</text>
+
+        <!-- doc_summary → chunk (accent dashed) -->
+        <path class="edge-accent" d="M1110 110 L1110 150 L510 150 L510 178" marker-end="url(#arr-accent)"/>
+        <text class="edge-lbl" x="900" y="144" text-anchor="middle" fill="#0d7a7a">manifest.doc_summary</text>
+
+        <!-- chunk → embed -->
+        <path class="edge" d="M510 220 L558 220" marker-end="url(#arr)"/>
+        <text class="edge-lbl" x="534" y="212" text-anchor="middle">chunks.jsonl</text>
+
+        <!-- embed → store -->
+        <path class="edge" d="M760 220 L818 220" marker-end="url(#arr)"/>
+
+        <!-- store → masked cosine (down) -->
+        <path class="edge" d="M940 265 L940 320 L735 320 L735 338" marker-end="url(#arr)"/>
+        <text class="edge-lbl" x="830" y="312" text-anchor="middle">vectors + metadata</text>
+
+        <!-- query → router -->
+        <path class="edge" d="M210 390 L258 390" marker-end="url(#arr)"/>
+
+        <!-- router → masked cosine (filters flow) -->
+        <path class="edge-accent" d="M602 390 L638 390" marker-end="url(#arr-accent)"/>
+        <text class="edge-lbl" x="620" y="382" text-anchor="middle" fill="#0d7a7a" style="font-weight: 600;">filters</text>
+
+        <!-- cosine → results -->
+        <path class="edge" d="M830 390 L868 390" marker-end="url(#arr)"/>
+      </svg>
+    </div>
+
+    <footer>
+      <span>3 / 11</span>
+      <div class="progress" style="--prog: 27%"></div>
+      <span>Section 2 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 4 (NEW) — RETRIEVAL SIMPLE FLOW (Section 2) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="2 / 4 · Block diagram" data-section-num="4">
+    <header>
+      <span class="section">Section 2 / 4 · Retrieval, step by step</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2 style="font-size: 30px; margin-bottom: 8px;">From a question to top-k chunks — in six steps.</h2>
+    <p style="font-size: 14px; color: var(--muted); margin: 0 0 4px 0;">
+      The previous slide showed every box. This is just the retrieval path, in plain English.
+    </p>
+
+    <div class="flow-steps">
+      <div class="flow-step">
+        <div class="flow-num">1</div>
+        <div>
+          <div class="flow-title">User asks a question</div>
+          <div class="flow-caption">CLI, API call, or eval harness — same entry point.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="flow-num">2</div>
+        <div>
+          <div class="flow-title">Load the vector index</div>
+          <div class="flow-caption"><code>vectors.npy</code> (2,868 × 384 floats) + <code>chunk_index.jsonl</code> (per-chunk metadata).</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-step accent">
+        <div class="flow-num">3</div>
+        <div>
+          <div class="flow-title">Optional: metadata router creates filters</div>
+          <div class="flow-caption"><code>route_query()</code> → <code>RetrievalFilters</code>: external_id, category, source, exclude lists. This is where the corpus gets narrowed <em>before</em> any vector math.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="flow-num">4</div>
+        <div>
+          <div class="flow-title">Convert the question into an embedding vector</div>
+          <div class="flow-caption">Same MiniLM-L6-v2 that embedded the chunks. Output: 384 numbers, length-normalized.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-step">
+        <div class="flow-num">5</div>
+        <div>
+          <div class="flow-title">Search only chunks that match the filters</div>
+          <div class="flow-caption">Cosine similarity (one BLAS matmul) → score for every surviving chunk. Sort descending.</div>
+        </div>
+      </div>
+      <div class="flow-arrow">↓</div>
+
+      <div class="flow-step accent">
+        <div class="flow-num">6</div>
+        <div>
+          <div class="flow-title">Return top-k chunks with citations</div>
+          <div class="flow-caption">Each hit carries <code>external_id</code>, <code>char_start</code>, <code>char_end</code>, score, and the original text.</div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>4 / 11</span>
+      <div class="progress" style="--prog: 36%"></div>
+      <span>Section 2 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 5 — METADATA ROUTER DETAIL (Section 2) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="2 / 4 · Block diagram" data-section-num="5">
+    <header>
+      <span class="section">Section 2 / 4 · Where the design lives</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>The router is the whole point.</h2>
+    <p class="lede" style="font-size: 18px;">
+      A naive RAG hits one vector index. We hit metadata <em>first</em>, then a smaller vector space — two layers, same code path.
+    </p>
+
+    <div class="cols">
+      <div class="card accent">
+        <span class="pill">Layer 1</span>
+        <h3 style="margin-top: 10px;">Cheap regex router</h3>
+        <p><code>route_query()</code> in <code>src/core/retrieval.py</code> turns query text into a <code>RetrievalFilters</code> object:</p>
+        <ul class="tight" style="margin-top: 8px;">
+          <li><b>external_ids</b> — pin to one spec (“IMSC1.1” → <code>w3c-tr-imsc11</code>)</li>
+          <li><b>categories</b> — Structural/System vs Transport</li>
+          <li><b>sources</b> — <code>ado_wiki</code>, <code>confluence</code>, …</li>
+          <li><b>exclude_external_ids</b> — kick out conformance fixtures when the query is normative</li>
+        </ul>
+        <p style="margin-top: 14px; font-size: 14px; color: var(--muted);">Fast, transparent, debuggable. Brittle — needs a new rule per spec family.</p>
+      </div>
+
+      <div class="card accent">
+        <span class="pill">Layer 2</span>
+        <h3 style="margin-top: 10px;">Doc-summary router (semantic)</h3>
+        <p>During normalize, a local Qwen2.5-1.5B writes a 3-sentence summary per doc into <code>manifest.metadata.doc_summary</code>.</p>
+        <p><code>chunk.py</code> emits a virtual chunk per summary (<code>chunk_kind: doc_summary</code>). At query time, <code>retrieve.py --doc-summary-router</code> does:</p>
+        <ul class="tight" style="margin-top: 8px;">
+          <li><b>Stage 1</b> — cosine over ~131 summary vectors → pick top docs</li>
+          <li><b>Stage 2</b> — cosine over text chunks <em>inside those docs only</em></li>
+        </ul>
+        <p style="margin-top: 14px; font-size: 14px; color: var(--muted);">General — works for new specs with no new code. Cost: one local LLM pass per doc at ingest.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>5 / 11</span>
+      <div class="progress" style="--prog: 45%"></div>
+      <span>Section 2 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 5 — TECH REVIEW PT 1 (Section 3) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="3 / 4 · Tech review" data-section-num="5">
+    <header>
+      <span class="section">Section 3 / 4 · Tech review — prep stack</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>What we picked &amp; why <span style="color: var(--muted); font-weight: 400; font-size: 22px;">— prep side</span></h2>
+
+    <table class="review">
+      <thead>
+        <tr>
+          <th style="width: 17%;">Component</th>
+          <th style="width: 20%;">We picked</th>
+          <th style="width: 33%;">Why</th>
+          <th style="width: 30%;">Alternative considered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Discovery</td>
+          <td class="choice">async collectors + <code>discovery_manifest.json</code></td>
+          <td>Single source of truth; merge preserves prior ingest state across re-runs (<code>merge_discovery_preserving_ingest</code>).</td>
+          <td class="alt">Crawl-on-demand with no manifest — simpler, but every re-run loses ingest state and provenance.</td>
+        </tr>
+        <tr>
+          <td>Normalization</td>
+          <td class="choice">pypdf · BS4 · docx XML · zip bundles</td>
+          <td>One normalizer per file type; W3C TR HTML and GitHub repo archives avoid lossy PDF rendering entirely.</td>
+          <td class="alt">unstructured.io / pdfplumber — better tables, much heavier deps, slower for our mostly-prose specs.</td>
+        </tr>
+        <tr>
+          <td>Doc summary</td>
+          <td class="choice"><strong>Qwen2.5-1.5B-Instruct</strong> (local)</td>
+          <td>Offline demo, no API keys, zero data exfil — important because some sources are internal wikis.</td>
+          <td class="alt">gpt-4o-mini in the cloud — faster &amp; better summaries, but cost + privacy + offline-demo break.</td>
+        </tr>
+        <tr>
+          <td>Chunking</td>
+          <td class="choice"><code>paragraph_pack_v1</code> · 2000 chars / 200 overlap</td>
+          <td>Spec text has hard paragraph structure — packing paragraphs preserves clause boundaries without fixed-token cuts.</td>
+          <td class="alt">Semantic chunking (LLM-decided breaks) — better quality, but expensive at 131 docs and harder to debug.</td>
+        </tr>
+        <tr>
+          <td>Embeddings</td>
+          <td class="choice">sentence-transformers <code>all-MiniLM-L6-v2</code> · 384-d</td>
+          <td>~80 MB model, runs on CPU, ~50 ms/query. Good-enough recall on technical English at POC scale.</td>
+          <td class="alt">BGE-base-en / E5-base — measurably better quality, 4× larger, slower; would matter past ~50 k chunks.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      <span>6 / 11</span>
+      <div class="progress" style="--prog: 55%"></div>
+      <span>Section 3 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 6 — TECH REVIEW PT 2 (Section 3) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="3 / 4 · Tech review" data-section-num="6">
+    <header>
+      <span class="section">Section 3 / 4 · Tech review — retrieval stack</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>What we picked &amp; why <span style="color: var(--muted); font-weight: 400; font-size: 22px;">— retrieval side</span></h2>
+
+    <table class="review">
+      <thead>
+        <tr>
+          <th style="width: 17%;">Component</th>
+          <th style="width: 20%;">We picked</th>
+          <th style="width: 33%;">Why</th>
+          <th style="width: 30%;">Alternative considered</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Vector store</td>
+          <td class="choice">NumPy <code>vectors.npy</code> + JSONL <code>chunk_index.jsonl</code></td>
+          <td>2,868 × 384 floats = ~4 MB. Whole index fits in RAM; cosine is a single BLAS matmul (&lt; 1 ms).</td>
+          <td class="alt">pgvector / Qdrant / FAISS — necessary past ~50 k chunks for ANN + filter as partition key. Overkill today.</td>
+        </tr>
+        <tr>
+          <td>Routing</td>
+          <td class="choice">Regex <code>route_query()</code> + doc-summary 2-stage</td>
+          <td>Layer 1 is precision; layer 2 generalizes without writing new rules per spec. Both produce the same <code>RetrievalFilters</code>.</td>
+          <td class="alt">Pure LLM-based router — flexible but slow (~1 s/query) and not deterministic enough to unit-test.</td>
+        </tr>
+        <tr>
+          <td>Scoring</td>
+          <td class="choice">masked cosine on filtered subset</td>
+          <td>One code path for filtered &amp; unfiltered — <code>build_mask → np.where → vectors[idx] @ q</code>. Trivial to read and trace.</td>
+          <td class="alt">Hybrid BM25 + dense + reranker — better top-1 quality, three more moving parts to maintain.</td>
+        </tr>
+        <tr>
+          <td>Citations</td>
+          <td class="choice"><code>(external_id, char_start, char_end)</code> on every chunk</td>
+          <td>Byte-exact provenance — judges &amp; auditors can verify any answer against the original normative source.</td>
+          <td class="alt">Page-number citations from PDF — lossy after normalization, doesn’t survive HTML or repo sources.</td>
+        </tr>
+        <tr>
+          <td>Evaluation</td>
+          <td class="choice"><code>eval_retrieval.py</code> + JSONL queries · modes: baseline / router / summary-router</td>
+          <td>13 ground-truth queries; we can grade a code change in 9 seconds. Same harness graded the eval on the next slide.</td>
+          <td class="alt">LLM-as-judge for faithfulness — needed once we add a final answer step. Not in POC scope.</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <footer>
+      <span>7 / 11</span>
+      <div class="progress" style="--prog: 64%"></div>
+      <span>Section 3 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 7 — EVAL RESULTS (Section 4 opener — the receipts) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="4 / 4 · Issues &amp; dilemmas" data-section-num="7">
+    <header>
+      <span class="section">Section 4 / 4 · What the eval actually says</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>Does this metadata stuff actually help?</h2>
+    <p class="lede" style="font-size: 18px;">
+      13 ground-truth queries, top-5 hit rate. Same code, same vectors — only the filters change.
+    </p>
+
+    <div class="compare bad">
+      <span class="name">baseline (cosine only)</span>
+      <div class="bar"><span style="width: 69.2%"></span></div>
+      <span class="score">9 / 13 · 69%</span>
+    </div>
+    <div class="compare">
+      <span class="name">router (metadata filters)</span>
+      <div class="bar"><span style="width: 100%"></span></div>
+      <span class="score">13 / 13 · 100%</span>
+    </div>
+
+    <div class="cols" style="margin-top: 28px;">
+      <div class="card">
+        <span class="pill bad">Why baseline fails</span>
+        <h3 style="margin-top: 10px;">Conformance fixtures drown the spec</h3>
+        <p>The <code>MPEGGroup/FileFormatConformance</code> repo is <strong>1,237 chunks — 44% of the corpus</strong>. It’s full of JSON test fixtures with strings like <code>"@Type": "moof"</code>.</p>
+        <p>The actual normative spec, <code>MPEGGroup/isobmff</code>, is only <strong>92 chunks (3.2%)</strong>. Pure cosine returns the fixtures.</p>
+        <p>Internal sources (ADO wiki, Confluence) are even smaller — they get buried under sheer volume of spec prose.</p>
+      </div>
+      <div class="card accent">
+        <span class="pill good">Why router wins</span>
+        <h3 style="margin-top: 10px;">Filter before you score</h3>
+        <p>For <em>isobmff-normative</em>: router adds <code>exclude_external_ids = {FileFormatConformance}</code> and pins <code>category = Structural/System</code>. Now cosine runs against ~92 vectors instead of 2,868 — and returns the actual spec.</p>
+        <p>For <em>ado-wiki-*</em>: router sets <code>sources = {ado_wiki}</code>. The wiki pages stop being needles in a haystack.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>8 / 11</span>
+      <div class="progress" style="--prog: 73%"></div>
+      <span>Section 4 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 8 — HONEST DILEMMAS (Section 4) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="4 / 4 · Issues &amp; dilemmas" data-section-num="8">
+    <header>
+      <span class="section">Section 4 / 4 · Issues &amp; dilemmas — the honest part</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>Trade-offs we made — and where they hurt.</h2>
+
+    <div class="cols">
+      <div class="card warn">
+        <span class="pill warn">Time win is theoretical</span>
+        <h3 style="margin-top: 10px;">At 2,868 chunks, filtering doesn’t save real time.</h3>
+        <p>Cosine over the full index is a single BLAS matmul — sub-millisecond. The Python <code>build_mask</code> we add to “save work” roughly cancels the matmul we skip.</p>
+        <p>The metadata router’s value here is <strong>precision (+31 pts)</strong>, not latency. The latency win only shows up past ~50 k chunks or when we swap to an ANN index — same code, different scale.</p>
+      </div>
+
+      <div class="card warn">
+        <span class="pill warn">Map-reduce summary is slow on CPU</span>
+        <h3 style="margin-top: 10px;">Local Qwen on a 71 KB spec ≈ minutes.</h3>
+        <p>Single-pass works for ~10 KB docs (Confluence, ADO wiki). Map-reduce on a full 3GPP spec hangs the demo without a GPU.</p>
+        <p>Mitigation: idempotent via <code>input_sha256</code> in the manifest — run summary once, never re-run unless content changes. Today only a handful of summaries exist; doc-summary router plumbing is in place but under-populated.</p>
+      </div>
+
+      <div class="card warn">
+        <span class="pill warn">Regex router is brittle</span>
+        <h3 style="margin-top: 10px;">Every new spec family wants a new rule.</h3>
+        <p>The ISOBMFF / DASH / DVB rules in <code>route_query()</code> are hand-coded. Add a new authority → write a new regex → write a new test.</p>
+        <p>The doc-summary router is exactly the fix — but it only generalizes once enough docs have summaries. We’re half-shipped on that.</p>
+      </div>
+
+      <div class="card warn">
+        <span class="pill warn">No answer step yet</span>
+        <h3 style="margin-top: 10px;">We return passages, not synthesized answers.</h3>
+        <p>Deliberate scope cut for a 4-hour POC: no LLM call at retrieve time → no hallucination, no API cost, no eval-faithfulness rabbit hole. Just citations and let the human read.</p>
+        <p>Cost: it’s not yet a “product” — a UX layer and an answer-synthesis LLM are the obvious next two days of work.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>9 / 11</span>
+      <div class="progress" style="--prog: 82%"></div>
+      <span>Section 4 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 9 — OPEN QUESTIONS (Section 4) -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="4 / 4 · Issues &amp; dilemmas" data-section-num="9">
+    <header>
+      <span class="section">Section 4 / 4 · Open questions</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>What we’d explore next — and what we honestly don’t know.</h2>
+
+    <div class="cols-3" style="margin-top: 12px;">
+      <div class="card">
+        <h3>Hybrid retrieval</h3>
+        <p>Spec queries are <em>extremely</em> keyword-dense (“ftyp brand compatibility”, “PAT PMT NIT”). A BM25 leg might out-perform dense for normative terms.</p>
+        <p class="alt"><strong>Hypothesis:</strong> hybrid (BM25 + MiniLM) gives +1–2 queries on baseline before any router.</p>
+      </div>
+
+      <div class="card">
+        <h3>Cross-encoder reranker</h3>
+        <p>Top-1 quality matters more than top-5 once a UI exists. A small cross-encoder rerank over the top-20 should fix the “right doc, wrong chunk” cases.</p>
+        <p class="alt"><strong>Open:</strong> can we keep it CPU-only? Cohere rerank is the obvious cloud fallback.</p>
+      </div>
+
+      <div class="card">
+        <h3>Answer synthesis</h3>
+        <p>Once we add an LLM at the end, we need a faithfulness metric, not just an external_id match. LLM-as-judge or RAGAS?</p>
+        <p class="alt"><strong>Open:</strong> which LLM, with which context budget, with which citation format the user can actually click.</p>
+      </div>
+
+      <div class="card">
+        <h3>Summary coverage</h3>
+        <p>The doc-summary router only shines when ~all 131 docs have summaries. Running Qwen on the full corpus needs a GPU pass or a smaller model.</p>
+        <p class="alt"><strong>Open:</strong> distill summaries cheaper, or just accept ~30 min on GPU once per spec change.</p>
+      </div>
+
+      <div class="card">
+        <h3>Scale threshold</h3>
+        <p>At what chunk count does NumPy + masked cosine actually break? Our back-of-envelope says ~50 k chunks before we need ANN.</p>
+        <p class="alt"><strong>Open:</strong> pgvector vs Qdrant when we cross that line — and how filters become partition keys.</p>
+      </div>
+
+      <div class="card">
+        <h3>Eval bias</h3>
+        <p>Our 13 queries were written by us. They probably encode our priors about what the router should do well.</p>
+        <p class="alt"><strong>Open:</strong> mine real engineer questions from Slack / wiki search logs to get an unbiased eval set.</p>
+      </div>
+    </div>
+
+    <footer>
+      <span>10 / 11</span>
+      <div class="progress" style="--prog: 91%"></div>
+      <span>Section 4 / 4</span>
+    </footer>
+  </section>
+
+  <!-- ============================================================ -->
+  <!-- SLIDE 10 — DEMO + CLOSING -->
+  <!-- ============================================================ -->
+  <section class="slide" data-section="" data-section-num="10">
+    <header>
+      <span class="section">Demo &amp; close</span>
+      <span class="project">VSPP RAG · GenAI Mini-Hackathon</span>
+    </header>
+    <h2>Live demo — three commands.</h2>
+
+    <div class="cols">
+      <div>
+        <div class="demo-steps" style="margin-top: 12px;">
+          <div class="step-num">1</div>
+          <div>
+            <strong>End-to-end pipeline</strong><br/>
+            <code>bash run_pipeline.sh --summarize</code>
+            <p style="color: var(--muted); font-size: 14px; margin: 6px 0 0;">Discover → ingest → normalize (with optional local LLM summary) → chunk → embed.</p>
+          </div>
+
+          <div class="step-num">2</div>
+          <div>
+            <strong>The router wins one</strong><br/>
+            <code>python retrieve.py "ISO BMFF moof structure" --router</code>
+            <p style="color: var(--muted); font-size: 14px; margin: 6px 0 0;">Same query: baseline returns conformance JSON fixtures, router returns the actual <code>MPEGGroup/isobmff</code> spec.</p>
+          </div>
+
+          <div class="step-num">3</div>
+          <div>
+            <strong>Grade the change</strong><br/>
+            <code>python eval_retrieval.py --mode router</code>
+            <p style="color: var(--muted); font-size: 14px; margin: 6px 0 0;">13 ground-truth queries, ~9 seconds, full pass/fail table. Same harness we showed on slide 7.</p>
+          </div>
+        </div>
+      </div>
+
+      <div>
+        <div class="card accent">
+          <span class="pill">In one line</span>
+          <h3 style="margin-top: 10px;">What makes this not-just-another-RAG</h3>
+          <ul class="tight" style="margin-top: 10px; font-size: 17px;">
+            <li><b>Metadata is the index.</b> Every chunk knows its <code>external_id</code>, category, authority, and byte offsets — that’s the routing surface, not an afterthought.</li>
+            <li><b>Two routers, same filters.</b> Cheap regex for known patterns, doc-summary 2-stage for everything else. One <code>RetrievalFilters</code> object downstream.</li>
+            <li><b>Receipts on every claim.</b> 9/13 → 13/13 is a measured number from this repo, not a brag.</li>
+            <li><b>Honest about what doesn’t work yet.</b> CPU-only summaries, brittle regex rules, no answer step. Slide 8 wasn’t marketing.</li>
+          </ul>
+        </div>
+
+        <div style="margin-top: 20px; padding: 16px 20px; border-left: 3px solid var(--accent); background: var(--accent-soft); border-radius: 0 8px 8px 0;">
+          <strong style="color: var(--accent);">Thanks.</strong><br/>
+          <span style="color: var(--muted); font-size: 15px;">Questions? Most useful ones for me right now: hybrid retrieval, eval bias, and where the regex router should die.</span>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <span>11 / 11</span>
+      <div class="progress" style="--prog: 100%"></div>
+      <span>Done.</span>
+    </footer>
+  </section>
+
+</div>
+
+<div class="nav">
+  <button id="prev" title="Previous (←)">‹</button>
+  <button id="next" title="Next (→)">›</button>
+</div>
+
+<div class="hint">
+  <kbd>←</kbd> <kbd>→</kbd> navigate · <kbd>F</kbd> fullscreen · <kbd>P</kbd> print
+</div>
+
+<script>
+  (function () {
+    const slides = Array.from(document.querySelectorAll('.slide'));
+    let i = 0;
+
+    function show(n) {
+      i = Math.max(0, Math.min(slides.length - 1, n));
+      slides.forEach((s, k) => s.classList.toggle('active', k === i));
+      history.replaceState(null, '', '#' + (i + 1));
+    }
+
+    function next() { show(i + 1); }
+    function prev() { show(i - 1); }
+
+    document.getElementById('next').addEventListener('click', next);
+    document.getElementById('prev').addEventListener('click', prev);
+
+    document.addEventListener('keydown', (e) => {
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+      switch (e.key) {
+        case 'ArrowRight':
+        case 'PageDown':
+        case ' ':
+          e.preventDefault(); next(); break;
+        case 'ArrowLeft':
+        case 'PageUp':
+          e.preventDefault(); prev(); break;
+        case 'Home':
+          e.preventDefault(); show(0); break;
+        case 'End':
+          e.preventDefault(); show(slides.length - 1); break;
+        case 'f':
+        case 'F':
+          if (!document.fullscreenElement) document.documentElement.requestFullscreen();
+          else document.exitFullscreen();
+          break;
+        case 'p':
+        case 'P':
+          window.print();
+          break;
+      }
+    });
+
+    // Open at #N if present
+    const m = location.hash.match(/^#(\d+)$/);
+    if (m) show(parseInt(m[1], 10) - 1);
+  })();
+</script>
+</body>
+</html>

@@ -9,6 +9,8 @@ from typing import Any
 import numpy as np
 
 DEFAULT_MODEL = "sentence-transformers/all-MiniLM-L6-v2"
+DOC_SUMMARY_KIND = "doc_summary"
+TEXT_CHUNK_KIND = "text"
 
 # Conformance repo dominates BMFF semantic search; exclude when query targets normative ISOBMFF.
 CONFORMANCE_EXTERNAL_ID = "MPEGGroup/FileFormatConformance"
@@ -21,6 +23,7 @@ class RetrievalFilters:
     external_ids: frozenset[str] = field(default_factory=frozenset)
     categories: frozenset[str] = field(default_factory=frozenset)
     sources: frozenset[str] = field(default_factory=frozenset)
+    chunk_kinds: frozenset[str] = field(default_factory=frozenset)
     core_structural_only: bool = False
     exclude_external_ids: frozenset[str] = field(default_factory=frozenset)
     exclude_categories: frozenset[str] = field(default_factory=frozenset)
@@ -31,6 +34,7 @@ class RetrievalFilters:
             and not self.external_ids
             and not self.categories
             and not self.sources
+            and not self.chunk_kinds
             and not self.core_structural_only
             and not self.exclude_external_ids
             and not self.exclude_categories
@@ -53,6 +57,7 @@ class SearchHit:
     external_id: str | None
     authority: str | None
     title: str | None
+    chunk_kind: str
     text: str
     char_start: int | None
     char_end: int | None
@@ -124,6 +129,9 @@ def _row_matches(row: dict[str, Any], filters: RetrievalFilters) -> bool:
         return False
     src = str(row.get("source") or "")
     if filters.sources and src not in filters.sources:
+        return False
+    kind = str(row.get("chunk_kind") or TEXT_CHUNK_KIND)
+    if filters.chunk_kinds and kind not in filters.chunk_kinds:
         return False
     if filters.core_structural_only and not row.get("core_structural_syntax"):
         return False
@@ -216,9 +224,50 @@ def route_query(query: str, *, filter_hints: dict[str, Any] | None = None) -> Re
         external_ids=frozenset(external_ids),
         categories=frozenset(categories),
         sources=frozenset(sources),
+        chunk_kinds=frozenset(),
         core_structural_only=core_only,
         exclude_external_ids=frozenset(exclude),
         exclude_categories=frozenset(exclude_categories),
+    )
+
+
+def _sentence_model(index: RetrievalIndex, model: Any | None) -> Any:
+    if model is not None:
+        return model
+    try:
+        from sentence_transformers import SentenceTransformer
+    except ImportError as exc:
+        raise ImportError("pip install sentence-transformers") from exc
+    return SentenceTransformer(index.model_name)
+
+
+def _with_external_ids(filters: RetrievalFilters, external_ids: set[str]) -> RetrievalFilters:
+    if filters.external_ids:
+        next_ids = frozenset(set(filters.external_ids) & external_ids)
+    else:
+        next_ids = frozenset(external_ids)
+    return RetrievalFilters(
+        authorities=filters.authorities,
+        external_ids=next_ids,
+        categories=filters.categories,
+        sources=filters.sources,
+        chunk_kinds=filters.chunk_kinds,
+        core_structural_only=filters.core_structural_only,
+        exclude_external_ids=filters.exclude_external_ids,
+        exclude_categories=filters.exclude_categories,
+    )
+
+
+def _summary_filter(filters: RetrievalFilters) -> RetrievalFilters:
+    return RetrievalFilters(
+        authorities=filters.authorities,
+        external_ids=filters.external_ids,
+        categories=filters.categories,
+        sources=filters.sources,
+        chunk_kinds=frozenset({DOC_SUMMARY_KIND}),
+        core_structural_only=filters.core_structural_only,
+        exclude_external_ids=filters.exclude_external_ids,
+        exclude_categories=filters.exclude_categories,
     )
 
 
@@ -229,21 +278,25 @@ def search(
     top_k: int = 5,
     filters: RetrievalFilters | None = None,
     model: Any | None = None,
+    include_doc_summaries: bool = False,
 ) -> list[SearchHit]:
     if top_k <= 0:
         return []
 
     filt = filters or RetrievalFilters()
     mask = build_mask(index.index_rows, filt)
+    if not include_doc_summaries:
+        mask &= np.array(
+            [
+                str(row.get("chunk_kind") or TEXT_CHUNK_KIND) != DOC_SUMMARY_KIND
+                for row in index.index_rows
+            ],
+            dtype=bool,
+        )
     if not mask.any():
         return []
 
-    if model is None:
-        try:
-            from sentence_transformers import SentenceTransformer
-        except ImportError as exc:
-            raise ImportError("pip install sentence-transformers") from exc
-        model = SentenceTransformer(index.model_name)
+    model = _sentence_model(index, model)
 
     qvec = model.encode([query], normalize_embeddings=True)[0]
     masked_idx = np.where(mask)[0]
@@ -265,9 +318,52 @@ def search(
                 external_id=row.get("external_id"),
                 authority=row.get("authority"),
                 title=row.get("title"),
+                chunk_kind=str(row.get("chunk_kind") or TEXT_CHUNK_KIND),
                 text=str(chunk.get("text") or ""),
                 char_start=chunk.get("char_start"),
                 char_end=chunk.get("char_end"),
             )
         )
     return hits
+
+
+def search_with_doc_summary_router(
+    index: RetrievalIndex,
+    query: str,
+    *,
+    top_k: int = 5,
+    doc_top_k: int = 3,
+    filters: RetrievalFilters | None = None,
+    model: Any | None = None,
+) -> tuple[list[SearchHit], list[SearchHit]]:
+    """Route by doc-summary virtual chunks, then search text chunks inside those docs.
+
+    Returns (text_hits, doc_hits). If no doc-summary chunks match, falls back to
+    normal text search and returns an empty doc_hits list.
+    """
+    filt = filters or RetrievalFilters()
+    model = _sentence_model(index, model)
+    doc_hits = search(
+        index,
+        query,
+        top_k=doc_top_k,
+        filters=_summary_filter(filt),
+        model=model,
+        include_doc_summaries=True,
+    )
+    doc_ids = {str(hit.external_id) for hit in doc_hits if hit.external_id}
+    if not doc_ids:
+        return search(index, query, top_k=top_k, filters=filt, model=model), []
+    if filt.external_ids:
+        doc_ids &= set(filt.external_ids)
+        if not doc_ids:
+            return [], doc_hits
+
+    narrowed = _with_external_ids(filt, doc_ids)
+    if narrowed.external_ids and not any(
+        _row_matches(row, narrowed)
+        and str(row.get("chunk_kind") or TEXT_CHUNK_KIND) != DOC_SUMMARY_KIND
+        for row in index.index_rows
+    ):
+        return [], doc_hits
+    return search(index, query, top_k=top_k, filters=narrowed, model=model), doc_hits

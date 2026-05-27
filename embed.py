@@ -59,6 +59,7 @@ def main() -> None:
             row = {
                 "index": i,
                 "chunk_id": chunk.get("chunk_id"),
+                "chunk_kind": chunk.get("chunk_kind", "text"),
                 "source": chunk.get("source"),
                 "external_id": chunk.get("external_id"),
                 "authority": chunk.get("authority"),
@@ -72,6 +73,9 @@ def main() -> None:
                 "space_key": chunk.get("space_key"),
                 "page_id": chunk.get("page_id"),
                 "content_version": chunk.get("content_version"),
+                "doc_summary_model": chunk.get("doc_summary_model"),
+                "doc_summary_method": chunk.get("doc_summary_method"),
+                "doc_summary_input_sha256": chunk.get("doc_summary_input_sha256"),
             }
             f.write(json.dumps(row, ensure_ascii=False) + "\n")
 

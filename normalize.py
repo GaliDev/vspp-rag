@@ -3,6 +3,7 @@ from __future__ import annotations
 import argparse
 import hashlib
 import json
+import os
 import re
 import warnings
 import zipfile
@@ -13,6 +14,14 @@ from xml.etree import ElementTree
 
 from bs4 import BeautifulSoup, XMLParsedAsHTMLWarning
 
+from src.core.summarize import (
+    DEFAULT_MODEL as DEFAULT_SUMMARY_MODEL,
+    SummaryResult,
+    Summarizer,
+    get_summarizer,
+    sha256_text,
+    summarize_text,
+)
 from src.core.text_prep import content_with_header
 
 ROOT = Path(__file__).parent
@@ -523,6 +532,65 @@ def write_records(path: Path, records: dict[tuple[str | None, str | None], dict[
             f.write(json.dumps(row, ensure_ascii=False, sort_keys=True) + "\n")
 
 
+def write_manifest_atomic(path: Path, manifest_rows: list[dict[str, Any]]) -> None:
+    tmp_path = path.with_suffix(".json.tmp")
+    payload = json.dumps(manifest_rows, indent=2, ensure_ascii=False) + "\n"
+    tmp_path.write_text(payload, encoding="utf-8")
+    os.replace(tmp_path, path)
+
+
+def doc_summary_payload(result: SummaryResult, *, summarized_at: str) -> dict[str, Any]:
+    return {
+        "text": result.text,
+        "model": result.model,
+        "method": result.method,
+        "input_chars": result.input_chars,
+        "input_sha256": result.input_sha256,
+        "summarized_at": summarized_at,
+    }
+
+
+def maybe_summarize(
+    manifest_row: dict[str, Any],
+    normalized_text: str,
+    summarizer: Summarizer,
+    *,
+    force: bool = False,
+    max_input_chars: int = 60_000,
+    chunk_chars: int = 6_000,
+    target_sentences: int = 3,
+) -> dict[str, Any] | None:
+    """Return doc_summary dict for manifest, or None if cache hit."""
+    text_hash = sha256_text(normalized_text)
+    meta = manifest_row.setdefault("metadata", {})
+    existing = meta.get("doc_summary")
+    if (
+        not force
+        and isinstance(existing, dict)
+        and existing.get("input_sha256") == text_hash
+        and existing.get("text")
+    ):
+        return None
+
+    print(
+        f"Summarizing {manifest_row.get('external_id')} "
+        f"({len(normalized_text)} chars)..."
+    )
+    result = summarize_text(
+        normalized_text,
+        title=str(manifest_row.get("title") or "") or None,
+        authority=str(manifest_row.get("authority") or "") or None,
+        model_id=summarizer.model_id,
+        max_input_chars=max_input_chars,
+        chunk_chars=chunk_chars,
+        target_sentences=target_sentences,
+        summarizer=summarizer,
+    )
+    payload = doc_summary_payload(result, summarized_at=utc_now_iso())
+    meta["doc_summary"] = payload
+    return payload
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description="Normalize ingested standards artifacts into text for RAG indexing.")
     parser.add_argument(
@@ -538,6 +606,33 @@ def main() -> None:
         type=int,
         default=800,
         help="Max PDF pages to extract per file (0 = no limit).",
+    )
+    parser.add_argument(
+        "--summarize",
+        action="store_true",
+        help="After normalization, summarize each doc with a local LLM and write metadata.doc_summary to the manifest.",
+    )
+    parser.add_argument(
+        "--re-summarize",
+        action="store_true",
+        help="Force re-summarize even when input_sha256 matches an existing doc_summary.",
+    )
+    parser.add_argument(
+        "--summary-model",
+        default=DEFAULT_SUMMARY_MODEL,
+        help=f"Hugging Face model id for --summarize (default: {DEFAULT_SUMMARY_MODEL}).",
+    )
+    parser.add_argument(
+        "--summary-max-input-chars",
+        type=int,
+        default=60_000,
+        help="Above this length, use map-reduce summarization (default: 60000).",
+    )
+    parser.add_argument(
+        "--summary-target-sentences",
+        type=int,
+        default=3,
+        help="Target sentence count for the final doc summary (default: 3).",
     )
     args = parser.parse_args()
 
@@ -556,6 +651,13 @@ def main() -> None:
     existing = load_existing_records(RECORDS_PATH)
     normalized = 0
     skipped = 0
+    summarized = 0
+    summary_skipped_cache = 0
+    manifest_dirty = False
+    summarizer: Summarizer | None = None
+    if args.summarize:
+        summarizer = get_summarizer(args.summary_model)
+
     for record in selected:
         row = normalize_record(
             record,
@@ -568,14 +670,41 @@ def main() -> None:
         existing[(row.get("source"), row.get("external_id"))] = row
         if row.get("status") == "normalized":
             normalized += 1
+            if args.summarize and summarizer is not None:
+                norm_rel = row.get("normalized_path")
+                if norm_rel:
+                    norm_path = ROOT / str(norm_rel)
+                    if norm_path.is_file():
+                        normalized_text = norm_path.read_text(encoding="utf-8", errors="replace")
+                        summary_payload = maybe_summarize(
+                            record,
+                            normalized_text,
+                            summarizer,
+                            force=args.re_summarize,
+                            max_input_chars=args.summary_max_input_chars,
+                            chunk_chars=6_000,
+                            target_sentences=args.summary_target_sentences,
+                        )
+                        if summary_payload is not None:
+                            summarized += 1
+                            manifest_dirty = True
+                        else:
+                            summary_skipped_cache += 1
         else:
             skipped += 1
 
     write_records(RECORDS_PATH, existing)
+    if manifest_dirty:
+        write_manifest_atomic(MANIFEST_PATH, records)
     print(
         f"Normalization complete: normalized={normalized}, skipped={skipped}, "
         f"index={RECORDS_PATH.relative_to(ROOT)}"
     )
+    if args.summarize:
+        print(
+            f"Summaries: written={summarized}, cache_skipped={summary_skipped_cache}, "
+            f"manifest_updated={manifest_dirty}"
+        )
 
 
 if __name__ == "__main__":
